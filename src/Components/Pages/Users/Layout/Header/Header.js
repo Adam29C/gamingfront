@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
@@ -73,19 +74,19 @@ const Header = () => {
             {/**/}
             {/**/}
             <li _ngcontent-nsr-c54="" className="nav-item dropdown pe-3">
-              <a
+              <Link
                 _ngcontent-nsr-c54=""
                 type="button"
-                routerlink="/signup"
+               
                 className="btn-login"
-                href="/signup"
+                to='/signup'
               >
-                Signup{" "}
-              </a>
+                Signup
+              </Link>
               {/**/}
-              <a _ngcontent-nsr-c54="" type="button" className="btn-login">
+              <Link _ngcontent-nsr-c54="" type="button" className="btn-login" to='/login'> 
                 Login{" "}
-              </a>
+              </Link>
               {/**/}
               {/**/}
               <ul
