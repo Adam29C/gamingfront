@@ -293,9 +293,9 @@ const Users = () => {
           }
         />
 
-        <p className="text-center my-3">
+        <p className="text-center my-3 fs-6">
           Already have an account?
-          <Link to="/">&nbsp; Sign in</Link>
+          <Link to="/login">&nbsp; Sign in</Link>
         </p>
       </Content>
 

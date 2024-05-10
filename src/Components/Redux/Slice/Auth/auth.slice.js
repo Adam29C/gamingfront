@@ -10,6 +10,7 @@ import {
   VERFY_FORGET_PASSWORD_LINK,
 } from "../../../Service/auth.service";
 
+
 export const Generate_Token = createAsyncThunk(
   "auth/generatetoken",
   async (data) => {
@@ -22,10 +23,15 @@ export const Generate_Token = createAsyncThunk(
   }
 );
 export const Login = createAsyncThunk("auth/login", async (data) => {
-  const { user_id, token } = data;
+  const { mobileNumber,password, token } = data;
+  const loginData = {
+    mobileNumber:mobileNumber,
+    password:password
+  }
+  console.log(token)
 
   try {
-    const res = await LOGIN(data, token);
+    const res = await LOGIN(loginData, token);
     return await res;
   } catch (err) {
     return err;

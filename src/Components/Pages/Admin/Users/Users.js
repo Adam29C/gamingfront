@@ -74,8 +74,10 @@ const Users = () => {
 
   return (
     <>
-      <Content title="Users" col_size={12}>
-        <Data_Table columns={columns} data={data} />
+      <Content title="Users" col_size={12}> 
+      
+       <Data_Table columns={columns} data={data} />
+      
       </Content>
     </>
   );

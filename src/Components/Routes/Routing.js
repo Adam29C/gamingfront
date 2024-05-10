@@ -64,11 +64,11 @@ const Routing = () => {
       <Routes>
         <Route path="/super/*" element={<SuperAdmin />} />
         <Route path="/admin/*" element={<Admin />} />
-        <Route path="/user/*" element={<Users />} />
+        <Route path="/*" element={<Users />} />
         {/* <Route path="/super/*" element={(roles === "SUPERADMIN") ? <SuperAdmin /> : <Login />} />
       <Route path="/admin/*" element={(roles === "ADMIN") ? <Admin /> : <Login />} /> */}
         {/* <Route path="/subadmin/*" element={(roles === "SUBADMIN") ? <SubAdmin /> : <Login />} /> */}
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUpUser />} />
         <Route path="/verifyotp" element={<Otp />} />
         <Route path="/forgetpassword" element={<ForgotPassword />} />
