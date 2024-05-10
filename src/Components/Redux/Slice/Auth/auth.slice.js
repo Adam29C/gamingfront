@@ -5,15 +5,33 @@ import {
   SIGN_UP,
   SEND_OTP,
   VERIFY_OTP,
+  GENERATE_TOKEN,
   FORGET_PASSWORD_LINK,
   VERFY_FORGET_PASSWORD_LINK,
 } from "../../../Service/auth.service";
 
+
+export const Generate_Token = createAsyncThunk(
+  "auth/generatetoken",
+  async (data) => {
+    try {
+      const res = await GENERATE_TOKEN(data);
+      return await res;
+    } catch (err) {
+      return err;
+    }
+  }
+);
 export const Login = createAsyncThunk("auth/login", async (data) => {
-  const { user_id, token } = data;
+  const { mobileNumber,password, token } = data;
+  const loginData = {
+    mobileNumber:mobileNumber,
+    password:password
+  }
+  console.log(token)
 
   try {
-    const res = await LOGIN(data, token);
+    const res = await LOGIN(loginData, token);
     return await res;
   } catch (err) {
     return err;
@@ -29,14 +47,19 @@ export const Sign_Up = createAsyncThunk("auth/signup", async (data) => {
   }
 });
 
-export const Send_OTP = createAsyncThunk("auth/send_otp", async (data) => {
-  try {
-    const res = await SEND_OTP(data);
-    return await res;
-  } catch (err) {
-    return err;
+export const Send_OTP = createAsyncThunk(
+  "auth/send_otp",
+  async (data, token) => {
+
+    console.log("data" , token);
+    try {
+      const res = await SEND_OTP(data, token);
+      return await res;
+    } catch (err) {
+      return err;
+    }
   }
-});
+);
 export const Verify_OTP = createAsyncThunk("auth/verify_otp", async (data) => {
   try {
     const res = await VERIFY_OTP(data);
@@ -79,6 +102,7 @@ const AuthSlice = createSlice({
     verify_otp_Info: [],
     Forget_Password_Link_Info: [],
     verify_Password_Link_Info: [],
+    token_Info: [],
     status: false,
   },
 
@@ -146,6 +170,19 @@ const AuthSlice = createSlice({
       })
       .addCase(Verify_Forget_Password_Link.rejected, (state, action) => {
         return { ...state, verify_Password_Link_Info: [], isLoading: false };
+      })
+      .addCase(Generate_Token.pending, (state, action) => {
+        return { ...state, token_Info: [], isLoading: true };
+      })
+      .addCase(Generate_Token.fulfilled, (state, action) => {
+        return {
+          ...state,
+          token_Info: action.payload,
+          isLoading: false,
+        };
+      })
+      .addCase(Generate_Token.rejected, (state, action) => {
+        return { ...state, token_Info: [], isLoading: false };
       });
   },
 });

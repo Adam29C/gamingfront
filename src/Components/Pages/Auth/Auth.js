@@ -1,16 +1,14 @@
-
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Content from "../../Layout/Content/Content1";
 import Formikform from "../../Helpers/Form";
 // import * as valid_err from "../../../Utils/Common_Messages";
 import * as valid_err from "../../Utils/Common_Msg";
 import { Link, useNavigate } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import ToastButton from "../../Helpers/Toast";
 import toast from "react-hot-toast";
-
-import { Login } from "../../Redux/Slice/Auth/auth.slice";
+import { v4 } from "uuid";
+import { Login, Generate_Token } from "../../Redux/Slice/Auth/auth.slice";
 import {
   Name_regex,
   Password_Rejex,
@@ -23,12 +21,34 @@ const Users = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [token, setToken] = useState("");
+
+
   const isValidContact = (mobile) => {
     return Mobile_regex(mobile);
   };
   const isValidPassword = (mobile) => {
     return Password_Rejex(mobile);
   };
+
+  const getToken = async () => {
+    const request1 = {
+      
+      deviceId: v4(),
+    };
+    const res1 = await dispatch(Generate_Token(request1)).unwrap();
+
+    if (res1.statusCode === 200) {
+      setToken(res1.data);
+    }
+
+  
+  };
+
+  useEffect(() => {
+    getToken();
+  }, []);
+
 
   const formik = useFormik({
     initialValues: {
@@ -55,14 +75,12 @@ const Users = () => {
     onSubmit: async (values) => {
       const request = {
         mobileNumber: parseInt(values.mobileNumber),
-        password: values.password,
+        password: parseInt(values.password),
+        token:token
       };
 
       const res = await dispatch(Login(request)).unwrap();
 
-      console.log('====================================');
-      console.log("res" ,res);
-      console.log('====================================');
       if (res.status) {
         if (res.data.role === 0 || "0") {
           navigate("/admin/dashboard");
@@ -95,6 +113,7 @@ const Users = () => {
     },
   ];
 
+  // console.log("uuidv4()", v4());
   return (
     <>
       <Content title="Login " responsive_col={"col-md-8 col-lg-6"}>
