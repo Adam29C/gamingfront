@@ -33,30 +33,29 @@ export const Login = createAsyncThunk("auth/login", async (data) => {
 });
 
 export const Sign_Up = createAsyncThunk("auth/signup", async (data) => {
+  const { request, token } = data;
   try {
-    const res = await SIGN_UP(data);
+    const res = await SIGN_UP(request, token);
     return await res;
   } catch (err) {
     return err;
   }
 });
 
-export const Send_OTP = createAsyncThunk(
-  "auth/send_otp",
-  async (data, token) => {
-
-    console.log("data" , token);
-    try {
-      const res = await SEND_OTP(data, token);
-      return await res;
-    } catch (err) {
-      return err;
-    }
-  }
-);
-export const Verify_OTP = createAsyncThunk("auth/verify_otp", async (data) => {
+export const Send_OTP = createAsyncThunk("auth/send_otp", async (data) => {
+  const { mobileNumber, token } = data;
   try {
-    const res = await VERIFY_OTP(data);
+    const res = await SEND_OTP({ mobileNumber: mobileNumber }, token);
+    return await res;
+  } catch (err) {
+    return err;
+  }
+});
+export const Verify_OTP = createAsyncThunk("auth/verify_otp", async (data) => {
+  const { request, token } = data;
+
+  try {
+    const res = await VERIFY_OTP(request, token);
     return await res;
   } catch (err) {
     return err;

@@ -43,6 +43,20 @@ const Users = () => {
     return Name_regex(name);
   };
 
+  const getToken = async () => {
+    const request1 = {
+            deviceId: v4(),
+    };
+    const res1 = await dispatch(Generate_Token(request1)).unwrap();
+    if (res1.statusCode === 200) {
+      setToken(res1.data);
+    }
+  };
+
+  useEffect(() => {
+    getToken();
+  }, []);
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -79,7 +93,7 @@ const Users = () => {
         otp: OTP,
       };
 
-      await dispatch(Sign_Up(req))
+      await dispatch(Sign_Up({ request: req, token: Token && Token }))
         .unwrap()
         .then((response) => {
           if (response.status === 400) {
@@ -124,26 +138,6 @@ const Users = () => {
     },
   ];
 
-  const getToken = async () => {
-    const request1 = {
-      // userId: v4(),
-      deviceId: v4(),
-    };
-    const res1 = await dispatch(Generate_Token(request1)).unwrap();
-
-    if (res1.statusCode === 200) {
-      setToken(res1.data);
-    }
-
-    console.log("====================================");
-    console.log("res1", res1);
-    console.log("====================================");
-  };
-
-  useEffect(() => {
-    getToken();
-  }, []);
-
   const Send_Opt_Function = async () => {
     if (!formik.values.name) {
       formik.errors.name = valid_err.PASSWORD_ERROR;
@@ -169,7 +163,10 @@ const Users = () => {
       return;
     } else {
       const res = await dispatch(
-        Send_OTP({ mobileNumber: formik.values.mobileNumber }, Token)
+        Send_OTP({
+          mobileNumber: formik.values.mobileNumber,
+          token: Token && Token,
+        })
       ).unwrap();
 
       if (res.status) {
@@ -192,8 +189,12 @@ const Users = () => {
       return;
     }
 
+    const req = {
+      mobileNumber: formik.values.mobileNumber,
+      otp: parseInt(OTP),
+    };
     const response = await dispatch(
-      Verify_OTP({ mobileNumber: formik.values.mobileNumber, otp: OTP })
+      Verify_OTP({ request: req, token: Token && Token })
     )
       .unwrap()
       .then((response) => {
