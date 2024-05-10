@@ -1,16 +1,14 @@
-
 import React from "react";
 import Content from "../../Layout/Content/Content1";
 import Formikform from "../../Helpers/Form";
 // import * as valid_err from "../../../Utils/Common_Messages";
 import * as valid_err from "../../Utils/Common_Msg";
 import { Link, useNavigate } from "react-router-dom";
-
 import { useDispatch, useSelector } from "react-redux";
 import ToastButton from "../../Helpers/Toast";
 import toast from "react-hot-toast";
 
-import { Login } from "../../Redux/Slice/Auth/auth.slice";
+import { Login, Generate_Token } from "../../Redux/Slice/Auth/auth.slice";
 import {
   Name_regex,
   Password_Rejex,
@@ -60,9 +58,6 @@ const Users = () => {
 
       const res = await dispatch(Login(request)).unwrap();
 
-      console.log('====================================');
-      console.log("res" ,res);
-      console.log('====================================');
       if (res.status) {
         if (res.data.role === 0 || "0") {
           navigate("/admin/dashboard");
@@ -95,6 +90,7 @@ const Users = () => {
     },
   ];
 
+  // console.log("uuidv4()", v4());
   return (
     <>
       <Content title="Login " responsive_col={"col-md-8 col-lg-6"}>
