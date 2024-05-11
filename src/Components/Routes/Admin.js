@@ -16,6 +16,7 @@ import Dashboard from "../Pages/Admin/Dashboard/Dashboard";
 import AddUsers from "../Pages/Admin/Users/AddUsers";
 import EditUsers from "../Pages/Admin/Users/EditUsers";
 import Users from "../Pages/Admin/Users/Users";
+import Profile from "../Pages/Admin/profile/Profile";
 
 const Admin = () => {
   const location = useLocation();
@@ -37,6 +38,7 @@ const Admin = () => {
         <Route exact path="/user/add" element={<AddUsers />} />
         <Route exact path="/user/edit/1" element={<EditUsers />} />
         <Route exact path="/users" element={<Users />} />
+        <Route exact path="/profile" element={<Profile />} />
       </Routes>
     </>
   );

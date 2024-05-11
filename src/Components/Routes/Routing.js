@@ -15,11 +15,13 @@ const Routing = () => {
   const location = useLocation();
 
   const navigate = useNavigate();
-  const accessToken = JSON.parse(localStorage.getItem("user_details"));
+  const roles = JSON.parse(localStorage.getItem("roles"));
+  console.log(roles,"accesstoken")
 
-  const roles = JSON.parse(localStorage.getItem("user_role"));
-  const gotodashboard = JSON.parse(localStorage.getItem("gotodashboard"));
-  const user_role_goTo = JSON.parse(localStorage.getItem("user_role_goTo"));
+  // const roles = JSON.parse(localStorage.getItem("user_role"));
+  // const gotodashboard = JSON.parse(localStorage.getItem("gotodashboard"));
+  // const user_role_goTo = JSON.parse(localStorage.getItem("user_role_goTo"));
+  
 
   useEffect(() => {
     // if (location.pathname === "/forget") {
@@ -62,12 +64,12 @@ const Routing = () => {
   return (
     <>
       <Routes>
-        <Route path="/super/*" element={<SuperAdmin />} />
-        <Route path="/admin/*" element={<Admin />} />
-        <Route path="/*" element={<Users />} />
-        {/* <Route path="/super/*" element={(roles === "SUPERADMIN") ? <SuperAdmin /> : <Login />} />
-      <Route path="/admin/*" element={(roles === "ADMIN") ? <Admin /> : <Login />} /> */}
-        {/* <Route path="/subadmin/*" element={(roles === "SUBADMIN") ? <SubAdmin /> : <Login />} /> */}
+        {/* <Route path="/super/*" element={<SuperAdmin />} /> */}
+        {/* <Route path="/admin/*" element={<Admin />} /> */}
+        {/* <Route path="/*" element={<Users />} /> */}
+        {/* <Route path="/super/*" element={(roles === "SUPERADMIN") ? <SuperAdmin /> : <Login />} /> */}
+      <Route path="/admin/*" element={(roles === 0 || "0") ? <Admin /> : "/"} />
+        <Route path="/*" element={(roles === 2 || "2") ? <Users /> : "/"} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUpUser />} />
         <Route path="/verifyotp" element={<Otp />} />

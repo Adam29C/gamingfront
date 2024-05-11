@@ -1534,3 +1534,33 @@
 
 .otp_Button {
 }
+
+.profile-image {
+  /* border: 1px solid black; */
+  /* height: 200px; */
+}
+
+.change-pass-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+.profile-circle {
+width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 217px;
+  font-family: roboto, arial;
+  color: white;
+ text-align: center;
+  background: orange;
+}
+
+.profile-circle-text{
+  color: white;
+}
