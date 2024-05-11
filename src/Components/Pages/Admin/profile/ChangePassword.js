@@ -1,10 +1,7 @@
 import React from "react";
-
 import Formikform from "../../../Helpers/Form";
 import * as valid_err from "../../../Utils/Common_Msg";
-
 import { useFormik } from "formik";
-
 import ToastButton from "../../../Helpers/Toast";
 import { ChangePasswordApi } from "../../../Service/admin.service";
 import toast from "react-hot-toast";
@@ -20,10 +17,6 @@ const ChangePassword = () => {
 
     validate: (values) => {
       const errors = {};
-
-      // if (!values.panel_name && formik.touched.panel_name) {
-      //   errors.panel_name = valid_err.PANEL_NAME_ERROR;
-      // }
 
       if (!values.old_password) {
         errors.old_password = valid_err.OLD_PASSWORD_ERROR;
@@ -85,7 +78,6 @@ const ChangePassword = () => {
 
   return (
     <>
-      {/* <Content title="Add Users" col_size={12} show_footer={false}> */}
       <div className=" card col-12 col-md-6 d-flex justify-content-center align-items-center">
         <h1 className="change-pass-title my-3">Change Password</h1>
         <Formikform
@@ -93,7 +85,6 @@ const ChangePassword = () => {
           formik={formik}
           btn_name="Update"
         />
-        {/* </Content> */}
         <ToastButton />
       </div>
     </>
