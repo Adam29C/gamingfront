@@ -1,11 +1,22 @@
 import React from "react";
 import { useAppContext } from "../../Context/CreateContext";
+import { Link, useNavigate } from "react-router-dom";
 const Headers = () => {
   const {toggleMenuCollapsed } = useAppContext();
+  const navigate = useNavigate()
 
   const handleClick = () => {
     toggleMenuCollapsed();
   };
+
+  const handleLogout =()=>{
+    localStorage.removeItem("token")
+    localStorage.removeItem("user_details")
+    localStorage.removeItem("roles")
+    setTimeout(()=>{
+      navigate("/")
+    },1000)
+  }
   return (
     <>
       <header className="top-header-area d-flex align-items-center justify-content-between">
@@ -243,10 +254,10 @@ const Headers = () => {
               <div className="dropdown-menu profile dropdown-menu-right">
                 {/* User Profile Area */}
                 <div className="user-profile-area">
-                  <a href="#" className="dropdown-item">
+                  <Link to="/admin/profile" className="dropdown-item">
                     <i className="bx bx-user font-15" aria-hidden="true" /> My
-                    profile
-                  </a>
+                    profile 
+                  </Link>
                   <a href="#" className="dropdown-item">
                     <i className="bx bx-wallet font-15" aria-hidden="true" /> My
                     wallet
@@ -255,10 +266,10 @@ const Headers = () => {
                     <i className="bx bx-wrench font-15" aria-hidden="true" />{" "}
                     settings
                   </a>
-                  <a href="#" className="dropdown-item">
+                  <button onClick={()=>handleLogout()}  className="dropdown-item">
                     <i className="bx bx-power-off font-15" aria-hidden="true" />{" "}
                     Sign-out
-                  </a>
+                  </button>
                 </div>
               </div>
             </li>

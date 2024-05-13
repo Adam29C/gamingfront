@@ -75,21 +75,39 @@ const Users = () => {
     onSubmit: async (values) => {
       const request = {
         mobileNumber: parseInt(values.mobileNumber),
-        password: parseInt(values.password),
+        password: values.password,
         token:token
       };
 
       const res = await dispatch(Login(request)).unwrap();
 
+
+     console.log(res.role === 0 || "0")
       if (res.status) {
-        if (res.data.role === 0 || "0") {
-          navigate("/admin/dashboard");
-        } else if (res.data.role === 1 || "1") {
-          navigate("/subadmin/dashboard");
-        } else if (res.data.role === 2 || "2") {
-          navigate("/user/dashboard");
+        let ROLES = res.role === 0 ? "admin" : res.role === 1 ? "subadmin" : res.role === 2 ? "user" : ""
+        if (ROLES==="admin") {
+          console.log("admin")
+        
+          setTimeout(() => {
+            navigate("/admin/dashboard");
+          }, 1000);
+        } else if (ROLES === "subadmin") {
+          console.log("subadmin")
+        
+          setTimeout(() => {
+            navigate("/subadmin/dashboard");
+          }, 1000);
+        } else if (ROLES === "user") {
+          console.log("user")
+        
+          setTimeout(() => {
+            navigate("/");
+          }, 1000);
         }
+        console.log(res,"admin login")
         localStorage.setItem("user_details", JSON.stringify(res));
+        localStorage.setItem("roles", JSON.stringify(res.role));
+        localStorage.setItem("token", res.token);
       } else {
         toast.error(res.msg);
       }

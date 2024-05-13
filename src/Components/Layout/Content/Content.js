@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../Footer/Footer";
 import Headers from "../Header/Headers";
-const Content = ({ title, children, col_size , responsive_col }) => {
+const Content = ({ title, children, col_size, show_footer, responsive_col }) => {
 
   return (
     <>
@@ -21,7 +21,7 @@ const Content = ({ title, children, col_size , responsive_col }) => {
               </div>
             </div>
           </div>
-          <Footer />
+          {show_footer ? <Footer /> :"" }
         </div>
       </div>
     </>
