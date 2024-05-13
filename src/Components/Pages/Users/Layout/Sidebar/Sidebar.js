@@ -6,9 +6,15 @@ const Sidebar = () => {
     <app-sidebar _ngcontent-nsr-c57="" _nghost-nsr-c55="">
       <aside id="sidebar" className="sidebar">
         <ul id="sidebar-nav" className="sidebar-nav">
-          <img className="mobile-logo" src="/assets/images/reddybook/logo.png" />
+          <img
+            className="mobile-logo"
+            src="/assets/images/reddybook/logo.png"
+          />
           <li className="d-none d-sm-block nav-item">
-            <a href="/assets/images/sports/detail/28127348" className="nav-link final-link">
+            <a
+              href="/assets/images/sports/detail/28127348"
+              className="nav-link final-link"
+            >
               <img src="/assets/images/events/menu-ipl2024.png" />
               <span className="blinker">
                 <b>IPL 2024</b>
@@ -25,7 +31,22 @@ const Sidebar = () => {
           </li>
           {/**/}
           {/**/}
-          <li className="nav-item">{/**/}</li>
+          <li className="nav-item">
+            {" "}
+            <Link to='/deposit' className="nav-link" aria-expanded="false">
+              <img src="/assets/images/deposit-icon.png" />
+              <span>Deposit</span>
+              <i className="bi bi-caret-down ms-auto" />
+            </Link>
+          </li>
+          <li className="nav-item">
+            {" "}
+            <Link to="/withdraw" className="nav-link" aria-expanded="false">
+              <img src="/assets/images/withdrawal-icon.png" />
+              <span>Withdraw</span>
+              <i className="bi bi-caret-down ms-auto" />
+            </Link>
+          </li>
           <li className="nav-item">
             {/**/}
             {/**/}
