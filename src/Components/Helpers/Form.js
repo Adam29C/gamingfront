@@ -49,6 +49,9 @@ const ReusableForm = ({
 
     reader.readAsDataURL(file);
   };
+
+
+
   const getCurrentDate = () => {
     const today = new Date();
     const year = today.getFullYear();

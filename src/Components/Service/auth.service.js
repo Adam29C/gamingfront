@@ -49,8 +49,6 @@ export async function SIGN_UP(data, token) {
 // SEND OTP
 export async function SEND_OTP(data, token) {
 
-console.log("data" ,data);
-console.log("token" ,token);
 
 
   try {

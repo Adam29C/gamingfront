@@ -28,7 +28,6 @@ export const Login = createAsyncThunk("auth/login", async (data) => {
     mobileNumber:mobileNumber,
     password:password
   }
-  console.log(token)
 
   try {
     const res = await LOGIN(loginData, token);

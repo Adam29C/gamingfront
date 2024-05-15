@@ -1,8 +1,32 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Withdraw } from "../../../../Service/user.service";
+import { useSelector } from "react-redux";
 
 const Header = () => {
-  const role = localStorage.getItem("roles")
+  const [data, setData] = useState();
+  const role = localStorage.getItem("roles");
+  const token = localStorage.getItem("token");
+  const user_details = JSON.parse(localStorage.getItem("user_details"));
+
+  const navigate = useNavigate();
+
+  const getWithdrawData = async () => {
+    const res = await Withdraw(user_details?.id, token);
+    setData(res);
+  };
+
+  useEffect(() => {
+    getWithdrawData();
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_details");
+    localStorage.removeItem("roles");
+
+    navigate("/");
+  };
 
   return (
     <app-topnav _ngcontent-nsr-c57="" _nghost-nsr-c54="">
@@ -60,7 +84,6 @@ const Header = () => {
                 aria-autocomplete="list"
               />
 
-
               <button _ngcontent-nsr-c54="" type="submit" title="Search">
                 <i _ngcontent-nsr-c54="" className="bi bi-search" />
               </button>
@@ -70,155 +93,176 @@ const Header = () => {
             rules
           </a>
 
-          {(role === 2 || "2") && <>
+          {role == 2 ? (
+            <>
+              <Link
+                _ngcontent-mmi-c54=""
+                to="/deposit"
+                className="rules btn-deposit ng-star-inserted"
+              >
+                <img
+                  _ngcontent-mmi-c54=""
+                  src="assets/images/deposit-icon.png"
+                />{" "}
+                deposit
+              </Link>
 
-            <a
-              _ngcontent-mmi-c54=""
-              href="/deposit"
-              routerlink="/deposit"
-              className="rules btn-deposit ng-star-inserted"
-            >
-              <img _ngcontent-mmi-c54="" src="assets/images/deposit-icon.png" /> deposit
-            </a>
-
-            <a
-              _ngcontent-mmi-c54=""
-              href="/withdraw"
-              routerlink="/withdraw"
-              className="rules btn-withdraw ng-star-inserted"
-            >
-              <img _ngcontent-mmi-c54="" src="assets/images/withdrawal-icon.png" />
-              withdrawal
-            </a>
-          </>}
-
+              <Link
+                _ngcontent-mmi-c54=""
+                to="/withdraw"
+                className="rules btn-withdraw ng-star-inserted"
+              >
+                <img
+                  _ngcontent-mmi-c54=""
+                  src="assets/images/withdrawal-icon.png"
+                />
+                withdrawal
+              </Link>
+            </>
+          ) : (
+            ""
+          )}
 
           <nav _ngcontent-nsr-c54="" className="header-nav ms-auto">
             <ul _ngcontent-nsr-c54="" className="d-flex align-items-center">
-              {(role == 2 || "2") && <>
-                <li
-                  _ngcontent-mmi-c54=""
-                  className="nav-item expo_bal ng-star-inserted"
-                >
-                  <a
+              {role == 2 ? (
+                <>
+                  <li
                     _ngcontent-mmi-c54=""
-                    href="javascript:void(0);"
-                    className="nav-link"
+                    className="nav-item expo_bal ng-star-inserted"
                   >
-                    <i _ngcontent-mmi-c54="" className="bi bi-bank" />
-                    <span _ngcontent-mmi-c54="">
-                      Bal<b _ngcontent-mmi-c54="">0</b>
-                    </span>
-                  </a>
-                </li>
-
-                <li
-                  _ngcontent-mmi-c54=""
-                  className="nav-item expo_bal ng-star-inserted"
-                >
-                  <a
-                    _ngcontent-mmi-c54=""
-                    href="/market-analysis"
-                    routerlink="/market-analysis"
-                    className="nav-link"
-                  >
-                    <i _ngcontent-mmi-c54="" className="bi bi-bar-chart" />
-                    <span _ngcontent-mmi-c54="">
-                      exp<b _ngcontent-mmi-c54="">0</b>
-                    </span>
-                  </a>
-                </li>
-
-                <li _ngcontent-mmi-c54="" className="nav-item dropdown pe-3">
-                  <a
-                    _ngcontent-mmi-c54=""
-                    href="javascript:void(0);"
-                    data-bs-toggle="dropdown"
-                    className="nav-link nav-profile d-flex align-items-center pe-0 ng-star-inserted"
-                  >
-                    <i
+                    <a
                       _ngcontent-mmi-c54=""
-                      className="bi bi-person-fill userpro-icons"
-                    />
-                    <span _ngcontent-mmi-c54="" className="dropdown-toggle ps-lg-2">
-                      9101270692
-                    </span>
-                  </a>
+                      href="javascript:void(0);"
+                      className="nav-link"
+                    >
+                      <i _ngcontent-mmi-c54="" className="bi bi-bank" />
+                      <span _ngcontent-mmi-c54="">
+                        Bal
+                        <b _ngcontent-mmi-c54="">
+                          {data?.WalledInfo?.amount
+                            ? data?.WalledInfo?.amount
+                            : "0"}
+                        </b>
+                      </span>
+                    </a>
+                  </li>
 
-                  <ul
+                  <li
                     _ngcontent-mmi-c54=""
-                    className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
+                    className="nav-item expo_bal ng-star-inserted"
                   >
-                    <li _ngcontent-mmi-c54="" className="dropdown-header">
-                      <h6 _ngcontent-mmi-c54="">HI, 9101270692</h6>
-                    </li>
+                    <a
+                      _ngcontent-mmi-c54=""
+                      href="/market-analysis"
+                      routerlink="/market-analysis"
+                      className="nav-link"
+                    >
+                      <i _ngcontent-mmi-c54="" className="bi bi-bar-chart" />
+                      <span _ngcontent-mmi-c54="">
+                        exp<b _ngcontent-mmi-c54="">0</b>
+                      </span>
+                    </a>
+                  </li>
 
+                  <li _ngcontent-mmi-c54="" className="nav-item dropdown pe-3">
+                    <a
+                      _ngcontent-mmi-c54=""
+                      href="javascript:void(0);"
+                      data-bs-toggle="dropdown"
+                      className="nav-link nav-profile d-flex align-items-center pe-0 ng-star-inserted"
+                    >
+                      <i
+                        _ngcontent-mmi-c54=""
+                        className="bi bi-person-fill userpro-icons"
+                      />
+                      <span
+                        _ngcontent-mmi-c54=""
+                        className="dropdown-toggle ps-lg-2"
+                      >
+                        {/* 9101270692 */}
+                        {user_details?.name}
+                      </span>
+                    </a>
 
-                    <li _ngcontent-mmi-c54="">
-                      <a
-                        _ngcontent-mmi-c54=""
-                        href="/home"
-                        routerlink="/home"
-                        className="dropdown-item d-flex align-items-center deposit-withdraw-sidebar-title"
-                      >
-                        <img _ngcontent-mmi-c54="" src="assets/images/menu-home.png" />
-                        <span _ngcontent-mmi-c54="">home</span>
-                      </a>
-                    </li>
-                    <li _ngcontent-mmi-c54="" className="ng-star-inserted">
-                      <a
-                        _ngcontent-mmi-c54=""
-                        href="/deposit"
-                        routerlink="/deposit"
-                        className="dropdown-item d-flex align-items-center deposit-withdraw-sidebar-title deposit"
-                      >
-                        <img
+                    <ul
+                      _ngcontent-mmi-c54=""
+                      className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
+                    >
+                      <li _ngcontent-mmi-c54="" className="dropdown-header">
+                        <h6 _ngcontent-mmi-c54="">HI, {user_details?.name}</h6>
+                      </li>
+
+                      <li _ngcontent-mmi-c54="">
+                        <a
                           _ngcontent-mmi-c54=""
-                          src="assets/images/deposit-icon.png"
-                        />
-                        <span _ngcontent-mmi-c54="">Deposit </span>
-                      </a>
-                    </li>
-
-                    <li _ngcontent-mmi-c54="" className="ng-star-inserted">
-                      <a
-                        _ngcontent-mmi-c54=""
-                        href="/withdraw"
-                        routerlink="/withdraw"
-                        className="dropdown-item d-flex align-items-center deposit-withdraw-sidebar-title withdraw"
-                      >
-                        <img
+                          href="/home"
+                          routerlink="/home"
+                          className="dropdown-item d-flex align-items-center deposit-withdraw-sidebar-title"
+                        >
+                          <img
+                            _ngcontent-mmi-c54=""
+                            src="assets/images/menu-home.png"
+                          />
+                          <span _ngcontent-mmi-c54="">home</span>
+                        </a>
+                      </li>
+                      <li _ngcontent-mmi-c54="" className="ng-star-inserted">
+                        <a
                           _ngcontent-mmi-c54=""
-                          src="assets/images/withdrawal-icon.png"
-                        />
-                        <span _ngcontent-mmi-c54="">Withdraw</span>
-                      </a>
-                    </li>
+                          href="/deposit"
+                          routerlink="/deposit"
+                          className="dropdown-item d-flex align-items-center deposit-withdraw-sidebar-title deposit"
+                        >
+                          <img
+                            _ngcontent-mmi-c54=""
+                            src="assets/images/deposit-icon.png"
+                          />
+                          <span _ngcontent-mmi-c54="">Deposit </span>
+                        </a>
+                      </li>
 
-                    <li _ngcontent-mmi-c54="">
-                      <a
-                        _ngcontent-mmi-c54=""
-                        href="/profile"
-                        routerlink="/profile"
-                        className="dropdown-item d-flex align-items-center"
-                      >
-                        <i _ngcontent-mmi-c54="" className="bi bi-person" />
-                        <span _ngcontent-mmi-c54="">My Profile</span>
-                      </a>
-                    </li>
-                    <li _ngcontent-mmi-c54="">
-                      <a
-                        _ngcontent-mmi-c54=""
-                        href="/reports/account-statement"
-                        routerlink="/reports/account-statement"
-                        className="dropdown-item d-flex align-items-center"
-                      >
-                        <i _ngcontent-mmi-c54="" className="bi bi-bar-chart-steps" />
-                        <span _ngcontent-mmi-c54="">Account statement</span>
-                      </a>
-                    </li>
+                      <li _ngcontent-mmi-c54="" className="ng-star-inserted">
+                        <a
+                          _ngcontent-mmi-c54=""
+                          href="/withdraw"
+                          routerlink="/withdraw"
+                          className="dropdown-item d-flex align-items-center deposit-withdraw-sidebar-title withdraw"
+                        >
+                          <img
+                            _ngcontent-mmi-c54=""
+                            src="assets/images/withdrawal-icon.png"
+                          />
+                          <span _ngcontent-mmi-c54="">Withdraw</span>
+                        </a>
+                      </li>
 
-                    <li _ngcontent-mmi-c54="">
+                      <li _ngcontent-mmi-c54="">
+                        <Link
+                          _ngcontent-mmi-c54=""
+                          to="/userprofile"
+                          className="dropdown-item d-flex align-items-center"
+                        >
+                          <i _ngcontent-mmi-c54="" className="bi bi-person" />
+                          <span _ngcontent-mmi-c54="">My Profile</span>
+                        </Link>
+                      </li>
+                      <li _ngcontent-mmi-c54="">
+                        <a
+                          _ngcontent-mmi-c54=""
+                          href="/reports/account-statement"
+                          routerlink="/reports/account-statement"
+                          className="dropdown-item d-flex align-items-center"
+                        >
+                          <i
+                            _ngcontent-mmi-c54=""
+                            className="bi bi-bar-chart-steps"
+                          />
+                          <span _ngcontent-mmi-c54="">Account statement</span>
+                        </a>
+                      </li>
+
+                      {/* <li _ngcontent-mmi-c54="">
                       <a
                         _ngcontent-mmi-c54=""
                         href="/profile/stake-settings"
@@ -228,30 +272,36 @@ const Header = () => {
                         <i _ngcontent-mmi-c54="" className="bi bi-bullseye" />
                         <span _ngcontent-mmi-c54="">stake settings</span>
                       </a>
-                    </li>
-                    <li _ngcontent-mmi-c54="">
-                      <a
-                        _ngcontent-mmi-c54=""
-                        href="/reports/profit-loss"
-                        routerlink="/reports/profit-loss"
-                        className="dropdown-item d-flex align-items-center"
-                      >
-                        <i _ngcontent-mmi-c54="" className="bi bi-bar-chart-line" />
-                        <span _ngcontent-mmi-c54="">profit &amp; loss</span>
-                      </a>
-                    </li>
-                    <li _ngcontent-mmi-c54="">
-                      <a
-                        _ngcontent-mmi-c54=""
-                        href="/reports/unsettled-bets"
-                        routerlink="/reports/unsettled-bets"
-                        className="dropdown-item d-flex align-items-center"
-                      >
-                        <i _ngcontent-mmi-c54="" className="bi bi-bar-chart" />
-                        <span _ngcontent-mmi-c54="">Unsettled Bets</span>
-                      </a>
-                    </li>
-                    <li _ngcontent-mmi-c54="">
+                    </li> */}
+                      <li _ngcontent-mmi-c54="">
+                        <a
+                          _ngcontent-mmi-c54=""
+                          href="/reports/profit-loss"
+                          routerlink="/reports/profit-loss"
+                          className="dropdown-item d-flex align-items-center"
+                        >
+                          <i
+                            _ngcontent-mmi-c54=""
+                            className="bi bi-bar-chart-line"
+                          />
+                          <span _ngcontent-mmi-c54="">profit &amp; loss</span>
+                        </a>
+                      </li>
+                      <li _ngcontent-mmi-c54="">
+                        <a
+                          _ngcontent-mmi-c54=""
+                          href="/reports/unsettled-bets"
+                          routerlink="/reports/unsettled-bets"
+                          className="dropdown-item d-flex align-items-center"
+                        >
+                          <i
+                            _ngcontent-mmi-c54=""
+                            className="bi bi-bar-chart"
+                          />
+                          <span _ngcontent-mmi-c54="">Unsettled Bets</span>
+                        </a>
+                      </li>
+                      {/* <li _ngcontent-mmi-c54="">
                       <a
                         _ngcontent-mmi-c54=""
                         href="/profile/change-password"
@@ -261,151 +311,162 @@ const Header = () => {
                         <i _ngcontent-mmi-c54="" className="bi bi-lock" />
                         <span _ngcontent-mmi-c54="">change password</span>
                       </a>
+                    </li> */}
+                      <li _ngcontent-mmi-c54="">
+                        <Link
+                          _ngcontent-mmi-c54=""
+                          href="#"
+                          onClick={handleLogout}
+                          className="dropdown-item d-flex align-items-center"
+                        >
+                          <i
+                            _ngcontent-mmi-c54=""
+                            className="bi bi-box-arrow-right"
+                          />
+                          <span _ngcontent-mmi-c54="">Sign Out</span>
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+                </>
+              ) : (
+                ""
+              )}
+
+              {/* login logout btn */}
+              {(!role === 2 || role === null || role === "null") && (
+                <li _ngcontent-nsr-c54="" className="nav-item dropdown pe-3">
+                  <Link
+                    _ngcontent-nsr-c54=""
+                    type="button"
+                    className="btn-login"
+                    to="/signup"
+                  >
+                    Signup
+                  </Link>
+
+                  <Link
+                    _ngcontent-nsr-c54=""
+                    type="button"
+                    className="btn-login"
+                    to="/login"
+                  >
+                    Login
+                  </Link>
+
+                  <ul
+                    _ngcontent-nsr-c54=""
+                    className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
+                  >
+                    <li _ngcontent-nsr-c54="" className="dropdown-header">
+                      <h6 _ngcontent-nsr-c54="">HI,</h6>
                     </li>
-                    <li _ngcontent-mmi-c54="">
+
+                    <li _ngcontent-nsr-c54="">
                       <a
-                        _ngcontent-mmi-c54=""
-                        href="javascript:void(0)"
+                        _ngcontent-nsr-c54=""
+                        href="/home"
+                        routerlink="/home"
+                        className="dropdown-item d-flex align-items-center deposit-withdraw-sidebar-title"
+                      >
+                        <img
+                          _ngcontent-nsr-c54=""
+                          src="/assets/images/menu-home.png"
+                        />
+                        <span _ngcontent-nsr-c54="">home</span>
+                      </a>
+                    </li>
+
+                    <li _ngcontent-nsr-c54="">
+                      <a
+                        _ngcontent-nsr-c54=""
+                        href="/profile"
+                        routerlink="/profile"
                         className="dropdown-item d-flex align-items-center"
                       >
-                        <i _ngcontent-mmi-c54="" className="bi bi-box-arrow-right" />
-                        <span _ngcontent-mmi-c54="">Sign Out</span>
+                        <i _ngcontent-nsr-c54="" className="bi bi-person" />
+                        <span _ngcontent-nsr-c54="">My Profile</span>
+                      </a>
+                    </li>
+                    <li _ngcontent-nsr-c54="">
+                      <a
+                        _ngcontent-nsr-c54=""
+                        href="#"
+                        routerlink="#"
+                        className="dropdown-item d-flex align-items-center"
+                      >
+                        <i
+                          _ngcontent-nsr-c54=""
+                          className="bi bi-bar-chart-steps"
+                        />
+                        <span _ngcontent-nsr-c54="">Account statement</span>
+                      </a>
+                    </li>
+
+                    <li _ngcontent-nsr-c54="">
+                      <a
+                        _ngcontent-nsr-c54=""
+                        href="#"
+                        routerlink="#"
+                        className="dropdown-item d-flex align-items-center"
+                      >
+                        <i _ngcontent-nsr-c54="" className="bi bi-bullseye" />
+                        <span _ngcontent-nsr-c54="">stake settings</span>
+                      </a>
+                    </li>
+                    <li _ngcontent-nsr-c54="">
+                      <a
+                        _ngcontent-nsr-c54=""
+                        href="#"
+                        routerlink="#"
+                        className="dropdown-item d-flex align-items-center"
+                      >
+                        <i
+                          _ngcontent-nsr-c54=""
+                          className="bi bi-bar-chart-line"
+                        />
+                        <span _ngcontent-nsr-c54="">profit &amp; loss</span>
+                      </a>
+                    </li>
+                    <li _ngcontent-nsr-c54="">
+                      <a
+                        _ngcontent-nsr-c54=""
+                        href="#"
+                        routerlink="#"
+                        className="dropdown-item d-flex align-items-center"
+                      >
+                        <i _ngcontent-nsr-c54="" className="bi bi-bar-chart" />
+                        <span _ngcontent-nsr-c54="">Unsettled Bets</span>
+                      </a>
+                    </li>
+                    <li _ngcontent-nsr-c54="">
+                      <a
+                        _ngcontent-nsr-c54=""
+                        href="#"
+                        routerlink="#"
+                        className="dropdown-item d-flex align-items-center"
+                      >
+                        <i _ngcontent-nsr-c54="" className="bi bi-lock" />
+                        <span _ngcontent-nsr-c54="">change password</span>
+                      </a>
+                    </li>
+                    <li _ngcontent-nsr-c54="">
+                      <a
+                        _ngcontent-nsr-c54=""
+                        href="#"
+                        className="dropdown-item d-flex align-items-center"
+                      >
+                        <i
+                          _ngcontent-nsr-c54=""
+                          className="bi bi-box-arrow-right"
+                        />
+                        <span _ngcontent-nsr-c54="">Sign Out</span>
                       </a>
                     </li>
                   </ul>
                 </li>
+              )}
 
-              </>}
-
-              {/* login logout btn */}
-              <li _ngcontent-nsr-c54="" className="nav-item dropdown pe-3">
-                {/* <Link
-                _ngcontent-nsr-c54=""
-                type="button"
-               
-                className="btn-login"
-                to='/signup'
-              >
-                Signup
-              </Link>
-          
-              <Link _ngcontent-nsr-c54="" type="button" className="btn-login" to='/login'> 
-                Login
-              </Link> */}
-
-                <ul
-                  _ngcontent-nsr-c54=""
-                  className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
-                >
-                  <li _ngcontent-nsr-c54="" className="dropdown-header">
-                    <h6 _ngcontent-nsr-c54="">HI,</h6>
-                  </li>
-
-
-                  <li _ngcontent-nsr-c54="">
-                    <a
-                      _ngcontent-nsr-c54=""
-                      href="/home"
-                      routerlink="/home"
-                      className="dropdown-item d-flex align-items-center deposit-withdraw-sidebar-title"
-                    >
-                      <img
-                        _ngcontent-nsr-c54=""
-                        src="/assets/images/menu-home.png"
-                      />
-                      <span _ngcontent-nsr-c54="">home</span>
-                    </a>
-                  </li>
-
-
-                  <li _ngcontent-nsr-c54="">
-                    <a
-                      _ngcontent-nsr-c54=""
-                      href="/profile"
-                      routerlink="/profile"
-                      className="dropdown-item d-flex align-items-center"
-                    >
-                      <i _ngcontent-nsr-c54="" className="bi bi-person" />
-                      <span _ngcontent-nsr-c54="">My Profile</span>
-                    </a>
-                  </li>
-                  <li _ngcontent-nsr-c54="">
-                    <a
-                      _ngcontent-nsr-c54=""
-                      href="#"
-                      routerlink="#"
-                      className="dropdown-item d-flex align-items-center"
-                    >
-                      <i
-                        _ngcontent-nsr-c54=""
-                        className="bi bi-bar-chart-steps"
-                      />
-                      <span _ngcontent-nsr-c54="">Account statement</span>
-                    </a>
-                  </li>
-
-                  <li _ngcontent-nsr-c54="">
-                    <a
-                      _ngcontent-nsr-c54=""
-                      href="#"
-                      routerlink="#"
-                      className="dropdown-item d-flex align-items-center"
-                    >
-                      <i _ngcontent-nsr-c54="" className="bi bi-bullseye" />
-                      <span _ngcontent-nsr-c54="">stake settings</span>
-                    </a>
-                  </li>
-                  <li _ngcontent-nsr-c54="">
-                    <a
-                      _ngcontent-nsr-c54=""
-                      href="#"
-                      routerlink="#"
-                      className="dropdown-item d-flex align-items-center"
-                    >
-                      <i
-                        _ngcontent-nsr-c54=""
-                        className="bi bi-bar-chart-line"
-                      />
-                      <span _ngcontent-nsr-c54="">profit &amp; loss</span>
-                    </a>
-                  </li>
-                  <li _ngcontent-nsr-c54="">
-                    <a
-                      _ngcontent-nsr-c54=""
-                      href="#"
-                      routerlink="#"
-                      className="dropdown-item d-flex align-items-center"
-                    >
-                      <i _ngcontent-nsr-c54="" className="bi bi-bar-chart" />
-                      <span _ngcontent-nsr-c54="">Unsettled Bets</span>
-                    </a>
-                  </li>
-                  <li _ngcontent-nsr-c54="">
-                    <a
-                      _ngcontent-nsr-c54=""
-                      href="#"
-                      routerlink="#"
-                      className="dropdown-item d-flex align-items-center"
-                    >
-                      <i _ngcontent-nsr-c54="" className="bi bi-lock" />
-                      <span _ngcontent-nsr-c54="">change password</span>
-                    </a>
-                  </li>
-                  <li _ngcontent-nsr-c54="">
-                    <a
-                      _ngcontent-nsr-c54=""
-                      href="#"
-                      className="dropdown-item d-flex align-items-center"
-                    >
-                      <i
-                        _ngcontent-nsr-c54=""
-                        className="bi bi-box-arrow-right"
-                      />
-                      <span _ngcontent-nsr-c54="">Sign Out</span>
-                    </a>
-                  </li>
-                </ul>
-              </li>
               {/* login logout btn */}
             </ul>
           </nav>
@@ -431,10 +492,7 @@ const Header = () => {
               href="/inplay"
               routerlinkactive="nmm-active"
             >
-              <img
-                _ngcontent-nsr-c54=""
-                src="/assets/images/menu-inplay.png"
-              />
+              <img _ngcontent-nsr-c54="" src="/assets/images/menu-inplay.png" />
               in-play
             </a>
           </li>
@@ -450,8 +508,6 @@ const Header = () => {
               />
               Cricket
             </a>
-
-
           </li>
           <li _ngcontent-nsr-c54="" className="nav-item">
             <a
@@ -465,8 +521,6 @@ const Header = () => {
               />
               Football
             </a>
-
-
           </li>
           <li _ngcontent-nsr-c54="" className="nav-item">
             <a
@@ -480,8 +534,6 @@ const Header = () => {
               />
               Tennis
             </a>
-
-
           </li>
           <li _ngcontent-nsr-c54="" className="nav-item">
             <a
@@ -495,8 +547,6 @@ const Header = () => {
               />
               Politics
             </a>
-
-
           </li>
           <li _ngcontent-nsr-c54="" className="nav-item">
             <a
@@ -510,8 +560,6 @@ const Header = () => {
               />
               Horse Racing
             </a>
-
-
           </li>
           <li _ngcontent-nsr-c54="" className="nav-item">
             <a
@@ -525,8 +573,6 @@ const Header = () => {
               />
               Greyhound Racing
             </a>
-
-
           </li>
           <li _ngcontent-nsr-c54="" className="nav-item">
             <a
@@ -540,8 +586,6 @@ const Header = () => {
               />
               Kabaddi
             </a>
-
-
           </li>
           <li _ngcontent-nsr-c54="" className="nav-item">
             <a
@@ -556,23 +600,15 @@ const Header = () => {
               />
               Casino
             </a>
-
-
           </li>
           <li _ngcontent-nsr-c54="" className="nav-item">
-
-            <a
-              _ngcontent-nsr-c54=""
-              href="#(0)"
-              routerlinkactive="nmm-active"
-            >
+            <a _ngcontent-nsr-c54="" href="#(0)" routerlinkactive="nmm-active">
               <img
                 _ngcontent-nsr-c54=""
                 src="/assets/images/events/menu-99991.png"
               />
               Sports book
             </a>
-
           </li>
           <li _ngcontent-nsr-c54="" className="nav-item">
             <a
@@ -587,8 +623,6 @@ const Header = () => {
               />
               Int Casino
             </a>
-
-
           </li>
           <li _ngcontent-nsr-c54="" className="nav-item">
             <a
@@ -602,8 +636,6 @@ const Header = () => {
               />
               Binary
             </a>
-
-
           </li>
           <li _ngcontent-nsr-c54="" className="nav-item">
             <a
@@ -617,19 +649,11 @@ const Header = () => {
               />
               Casino Vivo
             </a>
-
-
           </li>
-
         </ul>
-
       </div>
       <div _ngcontent-nsr-c54="" className="ipl-loksabha">
-        <a
-          _ngcontent-nsr-c54=""
-          className="ipl"
-          href="/sports/detail/28127348"
-        >
+        <a _ngcontent-nsr-c54="" className="ipl" href="/sports/detail/28127348">
           <span _ngcontent-nsr-c54="" className="blinker">
             ipl 2024
           </span>
@@ -675,10 +699,7 @@ const Header = () => {
                       _ngcontent-nsr-c51=""
                       className="row align-items-center"
                     >
-                      <div
-                        _ngcontent-nsr-c51=""
-                        className="col-md-6 login-sec"
-                      >
+                      <div _ngcontent-nsr-c51="" className="col-md-6 login-sec">
                         <h2 _ngcontent-nsr-c51="" className="text-center">
                           Login Now
                         </h2>
@@ -701,7 +722,6 @@ const Header = () => {
                               formcontrolname="username"
                               className="form-control ng-untouched ng-pristine ng-invalid"
                             />
-
                           </div>
                           <div _ngcontent-nsr-c51="" className="form-group">
                             <label
@@ -717,7 +737,6 @@ const Header = () => {
                               formcontrolname="password"
                               className="form-control ng-untouched ng-pristine ng-invalid"
                             />
-
                           </div>
                           <div _ngcontent-nsr-c51="" className="form-check">
                             <label
@@ -755,7 +774,6 @@ const Header = () => {
                           >
                             Login with Demo ID
                           </button>
-
                         </form>
                         <div _ngcontent-nsr-c51="" className="copy-text">
                           Powered by
@@ -770,7 +788,6 @@ const Header = () => {
                               reddybook.clubofficial@gmail.com
                             </a>
                           </p>
-
                         </div>
                       </div>
                       <div
@@ -876,9 +893,6 @@ const Header = () => {
                     </div>
                   </div>
                 </section>
-
-
-
               </app-login>
             </div>
           </div>
@@ -940,7 +954,6 @@ const Header = () => {
                         formcontrolname="old_password"
                         className="form-control ng-untouched ng-pristine ng-invalid"
                       />
-
                     </div>
                   </div>
                   <div
@@ -962,7 +975,6 @@ const Header = () => {
                         formcontrolname="new_password"
                         className="form-control ng-untouched ng-pristine ng-invalid"
                       />
-
                     </div>
                   </div>
                   <div
@@ -984,7 +996,6 @@ const Header = () => {
                         formcontrolname="new_password_re"
                         className="form-control ng-untouched ng-pristine ng-invalid"
                       />
-
                     </div>
                   </div>
                   <div _ngcontent-nsr-c53="" className="feedback">
@@ -996,8 +1007,8 @@ const Header = () => {
                     </p>
                     <p _ngcontent-nsr-c53="" className="small m-0">
                       <i _ngcontent-nsr-c53="">
-                        <b _ngcontent-nsr-c53="">Note:</b> The New Password
-                        must contain at least: 1 uppercase letter, 1 lowercase
+                        <b _ngcontent-nsr-c53="">Note:</b> The New Password must
+                        contain at least: 1 uppercase letter, 1 lowercase
                         letter, 1 number
                       </i>
                     </p>
@@ -1050,7 +1061,7 @@ const Header = () => {
                   right: 13,
                   top: 1,
                   color: "#fff",
-                  fontSize: 21
+                  fontSize: 21,
                 }}
               >
                 <span _ngcontent-nsr-c54="" aria-hidden="true">
@@ -1064,9 +1075,8 @@ const Header = () => {
           </div>
         </div>
       </div>
-
     </app-topnav>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

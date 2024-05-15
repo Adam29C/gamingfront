@@ -389,7 +389,7 @@ nav.header-nav ul .expo_bal:nth-child(2) {
 }
 
 .expo_bal span {
-  top: -2px;
+  top: 4px;
   margin-left: -5px;
   font-size: 12px;
   text-transform: uppercase;

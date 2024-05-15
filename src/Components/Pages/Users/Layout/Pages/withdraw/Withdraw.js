@@ -3,7 +3,6 @@ import WithdrawModel from "./WithdrawModel";
 
 const Withdraw = ({ abbb }) => {
 
-  // console.log("abbb", abbb);
   const [show, setShow] = useState(false);
 
 

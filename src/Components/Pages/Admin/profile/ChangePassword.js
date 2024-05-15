@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 
 const ChangePassword = () => {
   const token = localStorage.getItem("token");
+  const user_details = JSON.parse(localStorage.getItem("user_details"))
+  
   const formik = useFormik({
     initialValues: {
       old_password: "",
@@ -37,12 +39,12 @@ const ChangePassword = () => {
     onSubmit: async (values) => {
       try {
         const data = {
+          user_id:user_details?.id,
           old_password: values.old_password,
           new_password: values.new_password,
         };
 
         const response = await ChangePasswordApi(data, token);
-        console.log(response);
         if (response?.status) {
           toast.success(response?.data?.msg);
         }
