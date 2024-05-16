@@ -121,7 +121,7 @@ const UserProfile = () => {
                         >
                           <h5 _ngcontent-aja-c61="" className="card-title">
                             Welcome to reddybook,{" "}
-                            <b _ngcontent-aja-c61="">9101270692</b>
+                            <b _ngcontent-aja-c61="">{data?.mobileNumber}</b>
                           </h5>
                           <div
                             _ngcontent-aja-c61=""

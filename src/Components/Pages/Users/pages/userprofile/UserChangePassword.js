@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 const UserChangePassword = () => {
   const token = localStorage.getItem("token");
   const user_details = JSON.parse(localStorage.getItem("user_details"))
-  
+
   const formik = useFormik({
     initialValues: {
       old_password: "",
@@ -36,20 +36,27 @@ const UserChangePassword = () => {
 
       return errors;
     },
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
         const data = {
-          user_id:user_details?.id,
+          user_id: user_details?.id,
           old_password: values.old_password,
           new_password: values.new_password,
         };
 
         const response = await ChangePasswordApi(data, token);
-        if (response?.status) {
+  
+
+        if (response?.status == 200) {
           toast.success(response?.data?.msg);
+          resetForm()
+        }
+        else if(response.response.data.statusCode === 400){
+          toast.error(response.response.data.msg);
         }
       } catch (error) {
         toast.error(error.message);
+
       }
     },
   });
@@ -58,21 +65,21 @@ const UserChangePassword = () => {
     {
       name: "old_password",
       label: "Old Password",
-      type: "text",
+      type: "password",
       label_size: 12,
       col_size: 12,
     },
     {
       name: "new_password",
       label: "New Password",
-      type: "text",
+      type: "password",
       label_size: 12,
       col_size: 12,
     },
     {
       name: "confirm_password",
       label: "Confirm Password",
-      type: "text",
+      type: "password",
       label_size: 12,
       col_size: 12,
     },
@@ -80,118 +87,17 @@ const UserChangePassword = () => {
 
   return (
     <app-change-password
-    _ngcontent-aja-c61=""
-    _nghost-aja-c53=""
-  >
-    {/* <form
-      _ngcontent-aja-c53=""
-      noValidate=""
-      className="cp_form ng-untouched ng-pristine ng-invalid"
+      _ngcontent-aja-c61=""
+      _nghost-aja-c53=""
     >
-      <div
-        _ngcontent-aja-c53=""
-        className="row mb-lg-3 mt-lg-2 align-items-center"
-      >
-        <label
-          _ngcontent-aja-c53=""
-          htmlFor="currentPassword"
-          className="col-md-3 col-lg-3 col-form-label text-lg-end"
-        >
-          Current Password :
-        </label>
-        <div
-          _ngcontent-aja-c53=""
-          className="col-md-9 col-lg-9"
-        >
-          <input
-            _ngcontent-aja-c53=""
-            type="password"
-            id="currentPassword"
-            formcontrolname="old_password"
-            className="form-control ng-untouched ng-pristine ng-invalid"
-          />
-        </div>
-      </div>
-      <div
-        _ngcontent-aja-c53=""
-        className="row mb-lg-3 mt-lg-2 align-items-center"
-      >
-        <label
-          _ngcontent-aja-c53=""
-          htmlFor="newPassword"
-          className="col-md-3 col-lg-3 col-form-label text-lg-end"
-        >
-          New Password :
-        </label>
-        <div
-          _ngcontent-aja-c53=""
-          className="col-md-9 col-lg-9"
-        >
-          <input
-            _ngcontent-aja-c53=""
-            type="password"
-            id="newPassword"
-            formcontrolname="new_password"
-            className="form-control ng-untouched ng-pristine ng-invalid"
-          />
-        </div>
-      </div>
-      <div
-        _ngcontent-aja-c53=""
-        className="row mb-lg-3 mt-lg-2 align-items-center"
-      >
-        <label
-          _ngcontent-aja-c53=""
-          htmlFor="renewPassword"
-          className="col-md-3 col-lg-3 col-form-label text-lg-end"
-        >
-          Re-enter New Password :
-        </label>
-        <div
-          _ngcontent-aja-c53=""
-          className="col-md-9 col-lg-9"
-        >
-          <input
-            _ngcontent-aja-c53=""
-            type="password"
-            id="renewPassword"
-            formcontrolname="new_password_re"
-            className="form-control ng-untouched ng-pristine ng-invalid"
-          />
-        </div>
-      </div>
-      <div _ngcontent-aja-c53="" className="feedback">
-        <p _ngcontent-aja-c53="" className="small m-0">
-          <i _ngcontent-aja-c53="">
-            <b _ngcontent-aja-c53="">Note:</b> The New
-            Password field must be at least 6 characters
-          </i>
-        </p>
-        <p _ngcontent-aja-c53="" className="small m-0">
-          <i _ngcontent-aja-c53="">
-            <b _ngcontent-aja-c53="">Note:</b> The New
-            Password must contain at least: 1 uppercase
-            letter, 1 lowercase letter, 1 number
-          </i>
-        </p>
-      </div>
-      <div _ngcontent-aja-c53="" className="row">
-        <button
-          _ngcontent-aja-c53=""
-          type="submit"
-          className="btn btn-thmemes"
-        >
-          Change Password
-        </button>
-      </div>
-    </form> */}
-    <Formikform
-          fieldtype={fields.filter((field) => !field.showWhen)}
-          formik={formik}
-          btn_name="Update"
-        />
-        <ToastButton />
-  </app-change-password>
+  
+      <Formikform
+        fieldtype={fields.filter((field) => !field.showWhen)}
+        formik={formik}
+        btn_name="Update"
+      />
+      <ToastButton />
+    </app-change-password>
   )
 }
 

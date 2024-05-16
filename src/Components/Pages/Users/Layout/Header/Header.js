@@ -24,8 +24,11 @@ const Header = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user_details");
     localStorage.removeItem("roles");
+    console.log("check logout")
 
+  setTimeout(() => {
     navigate("/");
+  }, 1000);
   };
 
   return (
@@ -451,9 +454,10 @@ const Header = () => {
                       </a>
                     </li>
                     <li _ngcontent-nsr-c54="">
-                      <a
+                      <Link
                         _ngcontent-nsr-c54=""
                         href="#"
+                        onClick={handleLogout}
                         className="dropdown-item d-flex align-items-center"
                       >
                         <i
@@ -461,7 +465,7 @@ const Header = () => {
                           className="bi bi-box-arrow-right"
                         />
                         <span _ngcontent-nsr-c54="">Sign Out</span>
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </li>
