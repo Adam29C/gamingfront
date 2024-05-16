@@ -1,7 +1,7 @@
 export const admin_sidebar = [
   {
     id: 1,
-    name: "Admin Dashboard",
+    name: "SuperAdmin Dashboard",
     Icon: "bx bx-home-heart",
     route: "/admin/dashboard",
     Data: [],
@@ -15,18 +15,18 @@ export const admin_sidebar = [
       {
         id: 1,
         name: "Add Client",
-        route: "/admin/user/add",
+        route: "/superadmin/user/add",
       },
       {
         id: 2,
         name: "Clients",
-        route: "/admin/users",
+        route: "/superadmin/users",
       },
 
       {
         id: 4,
         name: "Expired-Clients",
-        route: "/admin/user/edit",
+        route: "/superadmin/user/edit",
       },
     ],
   },

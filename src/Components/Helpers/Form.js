@@ -26,7 +26,8 @@ const ReusableForm = ({
   Disable_Button,
   after_password_field,
   after_submit_button,
-  disable_button
+  before_submit,
+  disable_button,
 }) => {
   const location = useLocation();
 
@@ -448,6 +449,7 @@ const ReusableForm = ({
               )}
             </>
           ))}
+          {before_submit}
 
           {additional_field}
           <div className="form-group mb-0">

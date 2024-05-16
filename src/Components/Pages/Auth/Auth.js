@@ -23,7 +23,6 @@ const Users = () => {
 
   const [token, setToken] = useState("");
 
-
   const isValidContact = (mobile) => {
     return Mobile_regex(mobile);
   };
@@ -33,7 +32,6 @@ const Users = () => {
 
   const getToken = async () => {
     const request1 = {
-      
       deviceId: v4(),
     };
     const res1 = await dispatch(Generate_Token(request1)).unwrap();
@@ -41,14 +39,11 @@ const Users = () => {
     if (res1.statusCode === 200) {
       setToken(res1.data);
     }
-
-  
   };
 
   useEffect(() => {
     getToken();
   }, []);
-
 
   const formik = useFormik({
     initialValues: {
@@ -76,35 +71,39 @@ const Users = () => {
       const request = {
         mobileNumber: parseInt(values.mobileNumber),
         password: values.password,
-        token:token
+        token: token,
       };
 
       const res = await dispatch(Login(request)).unwrap();
 
-
-     console.log(res.role === 0 || "0")
       if (res.status) {
-        let ROLES = res.role === 0 ? "admin" : res.role === 1 ? "subadmin" : res.role === 2 ? "user" : ""
-        if (ROLES==="admin") {
-          console.log("admin")
-        
+        let ROLES =
+          res.role === 0
+            ? "superadmin"
+            : res.role === 1
+            ? "admin"
+            : res.role === 2
+            ? "user"
+            : "";
+        if (ROLES === "superadmin") {
+          // console.log("admin")
+
+          setTimeout(() => {
+            navigate("/superadmin/dashboard");
+          }, 1000);
+        } else if (ROLES === "admin") {
+          // console.log("admin")
+
           setTimeout(() => {
             navigate("/admin/dashboard");
           }, 1000);
-        } else if (ROLES === "subadmin") {
-          console.log("subadmin")
-        
-          setTimeout(() => {
-            navigate("/subadmin/dashboard");
-          }, 1000);
         } else if (ROLES === "user") {
-          console.log("user")
-        
+          // console.log("user");
+
           setTimeout(() => {
             navigate("/");
           }, 1000);
         }
-        console.log(res,"admin login")
         localStorage.setItem("user_details", JSON.stringify(res));
         localStorage.setItem("roles", JSON.stringify(res.role));
         localStorage.setItem("token", res.token);
@@ -131,7 +130,6 @@ const Users = () => {
     },
   ];
 
-  // console.log("uuidv4()", v4());
   return (
     <>
       <Content title="Login " responsive_col={"col-md-8 col-lg-6"}>

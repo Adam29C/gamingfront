@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useAppContext } from "../../Context/CreateContext";
 
 const Sidebar = () => {
+  const ROLES = JSON.parse(localStorage.getItem("user_role"));
+
   const { handleMouseLeave, handleMouseEnter } = useAppContext();
 
   const MouserExit = () => {
@@ -12,42 +14,91 @@ const Sidebar = () => {
   const mouseEnter = () => {
     handleMouseEnter();
   };
+
+  // res.role === 0
+  //   ? "superadmin"
+  //   : res.role === 1
+  //   ? "admin"
+  //   : res.role === 2
+  //   ? "user"
+  //   : "";
+  // if (ROLES === "superadmin") {
+  // }
   return (
     <>
       <div className="side-menu-area">
         <nav onMouseEnter={mouseEnter} onMouseLeave={MouserExit}>
           <ul className="sidebar-menu" data-widget="tree">
-            {admin_sidebar &&
-              admin_sidebar.map((item) => {
-                // console.log("item" ,item);
-                return (
-                  <>
-                    {item.Data.length === 0 ? (
-                      <li className="active">
-                        <Link to={item.route}>
-                          <i className={item.Icon} />
-                          <span>{item.name}</span>
-                        </Link>
-                      </li>
-                    ) : (
-                      <li className="treeview">
-                        <a href="">
-                          <i className={item.Icon} />
-                          <span>{item.name}</span>
-                          <i className="fa fa-angle-right" />
-                        </a>
-                        <ul className="treeview-menu">
-                          {item.Data.map((subItem) => (
-                            <li key={subItem.id}>
-                              <Link to={subItem.route}>{subItem.name}</Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </li>
-                    )}
-                  </>
-                );
-              })}
+            {(ROLES && ROLES === 0) || "0" ? (
+              <>
+                {admin_sidebar &&
+                  admin_sidebar.map((item) => {
+                    return (
+                      <>
+                        {item.Data.length === 0 ? (
+                          <li className="active">
+                            <Link to={item.route}>
+                              <i className={item.Icon} />
+                              <span>{item.name}</span>
+                            </Link>
+                          </li>
+                        ) : (
+                          <li className="treeview">
+                            <a href="">
+                              <i className={item.Icon} />
+                              <span>{item.name}</span>
+                              <i className="fa fa-angle-right" />
+                            </a>
+                            <ul className="treeview-menu">
+                              {item.Data.map((subItem) => (
+                                <li key={subItem.id}>
+                                  <Link to={subItem.route}>{subItem.name}</Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </li>
+                        )}
+                      </>
+                    );
+                  })}
+              </>
+            ) : (ROLES && ROLES === 1) || "1" ? (
+              <>
+                {admin_sidebar &&
+                  admin_sidebar.map((item) => {
+                    console.log("item", item);
+                    return (
+                      <>
+                        {item.Data.length === 0 ? (
+                          <li className="active">
+                            <Link to={item.route}>
+                              <i className={item.Icon} />
+                              <span>{item.name}</span>
+                            </Link>
+                          </li>
+                        ) : (
+                          <li className="treeview">
+                            <a href="">
+                              <i className={item.Icon} />
+                              <span>{item.name}</span>
+                              <i className="fa fa-angle-right" />
+                            </a>
+                            <ul className="treeview-menu">
+                              {item.Data.map((subItem) => (
+                                <li key={subItem.id}>
+                                  <Link to={subItem.route}>{subItem.name}</Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </li>
+                        )}
+                      </>
+                    );
+                  })}
+              </>
+            ) : (
+              ""
+            )}
 
             {/* <li className="active">
               <a href="index.html">
