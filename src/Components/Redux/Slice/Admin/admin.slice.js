@@ -1,5 +1,6 @@
 import { createSlice, createReducer, createAsyncThunk } from "@reduxjs/toolkit";
 import { ProfileGet } from "../../../Service/admin.service";
+import { LOGIN } from "../../../Service/auth.service";
 
 
 
@@ -20,6 +21,8 @@ const AdminSlice = createSlice({
   name: "AdminSlice",
   initialState: {
     getProfile: [],
+    loginData:{},
+    isLogin:false
   },
 
   recuders: {},
@@ -34,6 +37,14 @@ const AdminSlice = createSlice({
       .addCase(profileGetApi.rejected, (state, action) => {
         return { ...state, getProfile: [] };
       })
+      // .addCase(LOGIN.pending, (state, action) => {
+      //   return {  isLogin:false };
+      // .addCase(LOGIN.fulfilled, (state, action) =>{
+      //   state.loginData=action.payload
+      // })
+      // .addCase(LOGIN.rejected, (state, action) => {
+      //   return { isLogin:false  };
+      // })
 
   },
 });

@@ -2,7 +2,7 @@
     --theme-primary-color: #4e3897;
     --theme-secondary-color: #4bb6b9;
     --dark-color: #343435;
-    /* --be-img:url('../images/inner-balexpo-red.png'); */
+    --be-img:url('/public/assets/images/inner-balexpo-red.png');
 }
 body{
     background: #DFE8E9;

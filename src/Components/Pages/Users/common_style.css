@@ -1,3 +1,7 @@
+*{
+  /* border: 1px solid black; */
+}
+
 body::-webkit-scrollbar,
 .sidebar::-webkit-scrollbar {
   width: 8px;
@@ -112,14 +116,14 @@ iframe#tvStr {
 }
 
 .header .btn-deposit {
-  background: darkgreen;
+  background:--theme-primary-color;
   color: #fff !important;
-  border-bottom: 4px solid darkred;
+  border-bottom: 4px solid --theme-secondary-color;
 }
 .header .btn-withdraw {
-  background: darkred;
+  background: --theme-primary-color;
   color: #fff !important;
-  border-bottom: 4px solid darkgreen;
+  border-bottom: 4px solid --theme-secondary-color;
 }
 
 .form_search .form-control:focus {
@@ -371,6 +375,7 @@ nav.header-nav ul .expo_bal:nth-child(2) {
   right: 10px;
   top: 0px;
   opacity: 0.3;
+  background-color: #03b37f;
 }
 
 .expo_bal:hover i {
@@ -384,7 +389,7 @@ nav.header-nav ul .expo_bal:nth-child(2) {
 }
 
 .expo_bal span {
-  top: -2px;
+  top: 4px;
   margin-left: -5px;
   font-size: 12px;
   text-transform: uppercase;
@@ -3787,4 +3792,422 @@ typeahead-container.dropdown-menu button.dropdown-item {
 
 .img-fluid {
   height: 20px !important; 
+}
+
+
+.container-fluid {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  /* border: 1px solid black; */
+}
+
+/* .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+} */
+
+.logo-section {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed var(--theme-primary-color);
+  text-align: left !important;
+}
+
+/* .img-fluid {
+  max-width: 100%;
+  height: auto;
+} */
+
+.logo-section h2 {
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0.8rem 0;
+}
+
+.bankingUi .card {
+  background: #fff;
+  box-shadow: none;
+  border: 1px solid #eee;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border-radius: 25px;
+  padding: 5px;
+  margin-bottom: 12px;
+}
+
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, .125);
+  border-radius: .25rem;
+}
+
+.bankingUi .card .card-body {
+  text-align: center;
+}
+
+.bankingUi .card {
+  background: #fff;
+  box-shadow: none;
+  border: 1px solid #eee;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border-radius: 25px;
+  padding: 5px;
+  margin-bottom: 12px;
+}
+
+.bankingUi .card .card-body {
+  text-align: center;
+}
+
+.amount-div .card-body {
+  padding: 5px;
+}
+
+.card-body {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+
+.bankingUi form {
+  position: relative;
+}
+
+.bankingUi .card .card-body {
+    text-align: center;
+}
+
+.bankingUi form input {
+  border-radius: 5px;
+  font-size: 13px;
+  color: #000;
+  font-weight: 300;
+  height: 50px;
+  text-align: left;
+}
+
+.amount-div .form-group {
+  margin-bottom: 0;
+}
+
+.bankingUi form label {
+  text-align: left;
+  display: inherit;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.amount-div .form-group .input-group {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.amount-div .form-group input {
+  border: none;
+}
+
+.input-group-append {
+  margin-left: -1px;
+}
+
+.amount-div .amountBtn {
+  text-transform: uppercase;
+  background: green;
+  color: #fff;
+  font-weight: 700;
+  border: 1px solid green;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.input-group-append {
+  margin-left: -1px;
+}
+
+.bankingUi .account-table {
+  padding: 10px;
+  border-radius: 16px;
+  background: #fff;
+}
+
+
+.bankingUi .table {
+    width: 100%;
+    overflow-y: overlay;
+    max-height: 585px;
+    display: inline-block;
+    border: none;
+    margin-bottom: 0;
+}
+
+.bankingUi .table thead th {
+  padding: 7px;
+  text-align: center;
+  border: none;
+  background: var(--theme-secondary-color);
+  color: var(--theme-primary-color);
+  font-size: 12px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+}
+
+.bankingUi .table tbody tr:nth-child(odd) {
+  background: #fff;
+}
+
+.row.video-player {
+  margin: 0;
+  background: #fff;
+  border-radius: 25px;
+  padding: 13px;
+}
+
+.video-player label {
+  color: #fff;
+  display: block;
+  border-radius: 0;
+  position: relative;
+  font-size: 10px;
+  text-transform: uppercase;
+  background: var(--theme-secondary-color);
+  padding: 5px 5px;
+  font-weight: 600;
+  width: 70%;
+  left: 0;
+  z-index: 9;
+  bottom: 0;
+  border-top-left-radius: 5px;
+}
+.deposit-anchor {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+.card-body p{
+  font-size: 10px !important;
+  color: red;
+  text-align: lefta;
+}
+
+.bankingUi .table tbody td {
+  padding: 7px;
+  text-align: center;
+  font-size: 13px;
+  white-space: nowrap;
+  border-color: #f5f5f5;
+}
+
+
+
+.deposit-btn{
+  border: none;
+  color: #fff;
+  margin-right: 5px;
+  text-transform: uppercase;
+  font-size: 12px;
+  padding: 5px 10px;
+  background-color: #343435;
+}
+
+
+.text-left {
+  text-align: left !important;
+}
+
+.payment-issues {
+  background: #008d05;
+  border-radius: 15px;
+}
+
+.payment-issues p b {
+  font-size: 10px;
+  font-weight: 900;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: #fff;
+  display: block;
+}
+
+#addAccountButton::before {
+  content: '+';
+  margin-right: 5px;
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  background: var(--theme-secondary-color);
+  color: #fff;
+  border-radius: 50px;
+  line-height: 17px;
+  font-weight: 500;
+  vertical-align: bottom;
+}
+
+#addAccountButton {
+  margin-left: 0;
+  border-radius: 50px;
+  color: #000;
+  background: none;
+  font-size: 13px;
+  border: 1px solid #eee;
+  /* border-bottom: 1px solid transparent; */
+  padding: 5px 7px;
+  transition: 0.9s;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+#addAccountButton:hover {
+  border-color: var(--theme-secondary-color);
+  color:var(--theme-primary-color);
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+
+
+
+.payment-issues p .withdraw-whp-icon{
+  font-size: 12px;
+  color: #fff;
+  animation: zoom-in-zoom-out 2s ease-out infinite;
+  font-weight: 700;
+}
+
+
+.modal-open {
+  overflow: hidden;
+  padding-right: 17px;
+
+}
+
+
+.modal .modal-header {
+  border: none;
+  background: var(--theme-secondary-color);
+}
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  outline: 0;
+}
+
+
+.modal .modal-footer {
+  border: none;
+  background: var(--theme-secondary-color);
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+}
+
+.btn-secondary {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.modal .btn-info {
+  background: #fff;
+  border-color: #fff;
+  color: var(--theme-primary-color);
+}
+
+.modal .btn-info:hover {
+  background: var(--theme-secondary-color);
+  color: #fff;
+  border-color: #fff;
+}
+
+.modal form .form-group label {
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: .5rem;
+}
+
+.modal form .form-group input {
+  border: none;
+  background: none;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0;
+  font-size: 13px;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: .25rem;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25);
+}
+
+.modal .modal-header .close {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  color: #fff;
+  opacity: 1;
+  box-shadow: none;
+  text-shadow: none;
+  font-weight: 100;
+  font-size: 20px;
+  background-color: var(--theme-secondary-color) ;
 }

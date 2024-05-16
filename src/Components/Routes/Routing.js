@@ -17,48 +17,42 @@ const Routing = () => {
 
   const navigate = useNavigate();
   const roles = JSON.parse(localStorage.getItem("roles"));
-  console.log(roles, "accesstoken");
 
-  // const roles = JSON.parse(localStorage.getItem("user_role"));
-  // const gotodashboard = JSON.parse(localStorage.getItem("gotodashboard"));
-  // const user_role_goTo = JSON.parse(localStorage.getItem("user_role_goTo"));
+  const accessToken = localStorage.getItem("token");
 
   // useEffect(() => {
-  // if (location.pathname === "/forget") {
-  //   console.log("test1");
-  //   navigate("/forget");
+  // if (location.pathname === "/forgetpassword") {
+  //   navigate("/forgetpassword");
   //   return;
   // }
   // if (location.pathname === "/") {
   //   navigate("/login");
+  //   // return;
   // }
-  // if (location.pathname === "/newsignup") {
-  //   navigate("/newsignup");
+  // if (location.pathname === "/signup") {
+  //   navigate("/signup");
   //   return;
   // }
   // if (
-  //   accessToken === null ||
-  //   accessToken === undefined ||
-  //   accessToken === "null"
+  //   accessToken  === null ||
+  //   accessToken  === undefined ||
+  //   accessToken  === "null"
   // ) {
   //   navigate("/login");
   //   return;
   // }
-  // if (roles !== null) {
-  //   if (roles === "ADMIN" && location.pathname === "/login") {
-  //     navigate("/admin/dashboard");
-  //     window.location.reload();
-  //   } else if (roles === "USER" && location.pathname === "/login") {
-  //     navigate("/client/dashboard");
-  //     window.location.reload();
-  //   } else if (roles === "SUBADMIN" && location.pathname === "/login") {
-  //     navigate("/subadmin/clients");
-  //     window.location.reload();
-  //   } else if (roles === "SUPERADMIN" && location.pathname === "/login") {
-  //     navigate("/super/dashboard");
-  //     window.location.reload();
-  //   }
-  // }
+  //   if (roles !== null || accessToken  === null ||
+  //      accessToken  === undefined ||
+  //       accessToken  === "null") {
+
+  //     if ((roles ==0) ) {
+  //       navigate("/admin/dashboard");
+
+  //     } else if ((roles ==2) ) {
+  //       navigate("/user/dashboard");
+
+  //     } else{ navigate("/")}    }
+
   // }, [location.pathname]);
 
   return (

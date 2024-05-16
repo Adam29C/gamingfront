@@ -23,7 +23,7 @@ const MainProfile = () => {
             <div class="profile-circle  ">
               <h1 className="profile-circle-text">
                 {getProfile &&
-                  getProfile?.data?.name.toString().charAt(0).toUpperCase()}
+                  getProfile?.data?.name?.toString().charAt(0).toUpperCase()}
               </h1>
             </div>
  <div className="card-body text-center">

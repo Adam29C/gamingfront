@@ -12,6 +12,11 @@ import {
 
 import Wraper from "../Pages/Users/Wraper/Wraper";
 import Dashboard from "../Pages/Users/Layout/Pages/dashbaord";
+import Deposit from "../Pages/Users/Layout/Pages/deposit/Deposit";
+import Withdraw from "../Pages/Users/Layout/Pages/withdraw/Withdraw";
+import UserProfile from "../Pages/Users/pages/userprofile/UserProfile";
+
+
 // import { useDispatch, useSelector } from "react-redux";
 // import AddUsers from "../Pages/Admin/Users/AddUsers";
 // import EditUsers from "../Pages/Admin/Users/EditUsers";
@@ -34,7 +39,11 @@ const Admin = () => {
       ) : null}
       <Routes>
         <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/deposit" element={<Deposit />} />
+        <Route exact path="/withdraw" element={<Withdraw />} />
+        <Route exact path="/userprofile" element={<UserProfile />} />
 
+     
         {/* <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/user/add" element={<AddUsers />} />
         <Route exact path="/user/edit/1" element={<EditUsers />} />

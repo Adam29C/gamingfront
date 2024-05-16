@@ -77,37 +77,22 @@ const Users = () => {
       const res = await dispatch(Login(request)).unwrap();
 
       if (res.status) {
-        let ROLES =
-          res.role === 0
-            ? "superadmin"
-            : res.role === 1
-            ? "admin"
-            : res.role === 2
-            ? "user"
-            : "";
-        if (ROLES === "superadmin") {
-          // console.log("admin")
-
-          setTimeout(() => {
-            navigate("/superadmin/dashboard");
-          }, 1000);
-        } else if (ROLES === "admin") {
-          // console.log("admin")
-
+        localStorage.setItem("user_details", JSON.stringify(res.details));
+        localStorage.setItem("roles", JSON.stringify(res.details.role));
+        localStorage.setItem("token", res.token);
+        let ROLES = res.details.role === 0 ? "admin" : res.details.role === 1 ? "subadmin" : res.details.role === 2 ? "user" : ""
+        if (ROLES==="admin") {
+        
           setTimeout(() => {
             navigate("/admin/dashboard");
           }, 1000);
-        } else if (ROLES === "user") {
-          // console.log("user");
-
+        } else if (ROLES === "subadmin") {
+        
           setTimeout(() => {
-            navigate("/");
+            navigate("/subadmin/dashboard");
           }, 1000);
-        }
-        localStorage.setItem("user_details", JSON.stringify(res));
-        localStorage.setItem("roles", JSON.stringify(res.role));
-        localStorage.setItem("token", res.token);
-      } else {
+        } else if (ROLES === "user") {
+            } else {
         toast.error(res.msg);
       }
     },

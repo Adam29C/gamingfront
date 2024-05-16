@@ -29,76 +29,37 @@ const Sidebar = () => {
       <div className="side-menu-area">
         <nav onMouseEnter={mouseEnter} onMouseLeave={MouserExit}>
           <ul className="sidebar-menu" data-widget="tree">
-            {(ROLES && ROLES === 0) || "0" ? (
-              <>
-                {admin_sidebar &&
-                  admin_sidebar.map((item) => {
-                    return (
-                      <>
-                        {item.Data.length === 0 ? (
-                          <li className="active">
-                            <Link to={item.route}>
-                              <i className={item.Icon} />
-                              <span>{item.name}</span>
-                            </Link>
-                          </li>
-                        ) : (
-                          <li className="treeview">
-                            <a href="">
-                              <i className={item.Icon} />
-                              <span>{item.name}</span>
-                              <i className="fa fa-angle-right" />
-                            </a>
-                            <ul className="treeview-menu">
-                              {item.Data.map((subItem) => (
-                                <li key={subItem.id}>
-                                  <Link to={subItem.route}>{subItem.name}</Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </li>
-                        )}
-                      </>
-                    );
-                  })}
-              </>
-            ) : (ROLES && ROLES === 1) || "1" ? (
-              <>
-                {admin_sidebar &&
-                  admin_sidebar.map((item) => {
-                    console.log("item", item);
-                    return (
-                      <>
-                        {item.Data.length === 0 ? (
-                          <li className="active">
-                            <Link to={item.route}>
-                              <i className={item.Icon} />
-                              <span>{item.name}</span>
-                            </Link>
-                          </li>
-                        ) : (
-                          <li className="treeview">
-                            <a href="">
-                              <i className={item.Icon} />
-                              <span>{item.name}</span>
-                              <i className="fa fa-angle-right" />
-                            </a>
-                            <ul className="treeview-menu">
-                              {item.Data.map((subItem) => (
-                                <li key={subItem.id}>
-                                  <Link to={subItem.route}>{subItem.name}</Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </li>
-                        )}
-                      </>
-                    );
-                  })}
-              </>
-            ) : (
-              ""
-            )}
+            {admin_sidebar &&
+              admin_sidebar.map((item) => {
+                // console.log("item" ,item);
+                return (
+                  <>
+                    {item.Data.length === 0 ? (
+                      <li className="active">
+                        <Link to={item.route}>
+                          <i className={item.Icon} />
+                          <span>{item.name}</span>
+                        </Link>
+                      </li>
+                    ) : (
+                      <li className="treeview">
+                        <a href="">
+                          <i className={item.Icon} />
+                          <span>{item.name}</span>
+                          <i className="fa fa-angle-right" />
+                        </a>
+                        <ul className="treeview-menu">
+                          {item.Data.map((subItem) => (
+                            <li key={subItem.id}>
+                              <Link to={subItem.route}>{subItem.name}</Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </li>
+                    )}
+                  </>
+                );
+              })}
 
             {/* <li className="active">
               <a href="index.html">
