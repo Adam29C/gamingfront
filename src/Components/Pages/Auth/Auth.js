@@ -80,20 +80,26 @@ const Users = () => {
         localStorage.setItem("user_details", JSON.stringify(res.details));
         localStorage.setItem("roles", JSON.stringify(res.details.role));
         localStorage.setItem("token", res.token);
-        let ROLES = res.details.role === 0 ? "admin" : res.details.role === 1 ? "subadmin" : res.details.role === 2 ? "user" : ""
-        if (ROLES==="admin") {
-        
+        let ROLES =
+          res.details.role === 0
+            ? "admin"
+            : res.details.role === 1
+            ? "subadmin"
+            : res.details.role === 2
+            ? "user"
+            : "";
+        if (ROLES === "admin") {
           setTimeout(() => {
             navigate("/admin/dashboard");
           }, 1000);
         } else if (ROLES === "subadmin") {
-        
           setTimeout(() => {
             navigate("/subadmin/dashboard");
           }, 1000);
         } else if (ROLES === "user") {
-            } else {
-        toast.error(res.msg);
+        } else {
+          toast.error(res.msg);
+        }
       }
     },
   });
