@@ -7,14 +7,10 @@ const Data_Table = ({ columns, data , tableStyle }) => {
   const adminStyles = {
     rows: {
       style: {
-        // minHeight: "72px",
       },
     },
     headCells: {
       style: {
-        // paddingLeft: "8px",
-        // paddingRight: "8px",
-
         background: "#0e0b2b",
         color: "#fff",
       },
@@ -35,9 +31,6 @@ const Data_Table = ({ columns, data , tableStyle }) => {
     },
     headCells: {
       style: {
-        // paddingLeft: "8px",
-        // paddingRight: "8px",
-
         background: "#4E3896",
         color: "#fff",
       },
