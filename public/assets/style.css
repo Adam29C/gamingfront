@@ -4026,7 +4026,7 @@ ul#flaptToDo-list {
 .btn:hover {
   font-weight: 600;
   box-shadow: none !important;
-  font-size: 13px;
+  /* font-size: 13px; */
 }
 
 @media only screen and (max-width: 767px) {
@@ -15349,7 +15349,7 @@ a.mytooltip {
 }
 
 .erro-thumb img {
-  max-width: 100%;
+  max-width: 50%;
   height: auto;
 }
 

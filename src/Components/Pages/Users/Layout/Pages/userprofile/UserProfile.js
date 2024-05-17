@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import UserChangePassword from "./UserChangePassword";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserProfile } from "../../../../Redux/Slice/User/user.slice";
+import { getUserProfile } from "../../../../../Redux/Slice/User/user.slice";
 
 const UserProfile = () => {
   const token = localStorage.getItem("token");

@@ -14,7 +14,7 @@ const Headers = () => {
     localStorage.removeItem("user_details");
     localStorage.removeItem("roles");
     setTimeout(() => {
-      navigate("/");
+      navigate("/home");
     }, 1000);
   };
   return (

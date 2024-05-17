@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import {Route,Routes,useLocation,useNavigate,} from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 // import * as Config from "../Utils/Config";
 
 import Wraper from "../Layout/Wraper/Wraper";
@@ -16,13 +16,17 @@ const Admin = () => {
   const role_id = localStorage.getItem("Role");
   //   const dispatch = useDispatch();
   const roles = JSON.parse(localStorage.getItem("user_role"));
-  //   const token = JSON.parse(localStorage.getItem("user_details")).token;
+  const token = localStorage.getItem("token");
 
   const [admin_permission, setAdmin_permission] = useState([]);
 
   return (
     <>
-      {location.pathname !== "/super" && location.pathname !== "/super/*" ? (
+      {token != null &&
+      token != "null" &&
+      token != undefined &&
+      location.pathname !== "/super" &&
+      location.pathname !== "/super/*" ? (
         <Wraper />
       ) : null}
       <Routes>

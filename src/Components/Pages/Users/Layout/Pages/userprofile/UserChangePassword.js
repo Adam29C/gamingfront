@@ -1,9 +1,9 @@
 import React from "react";
-import Formikform from "../../../../Helpers/Form";
-import * as valid_err from "../../../../Utils/Common_Msg";
+import Formikform from "../../../../../Helpers/Form";
+import * as valid_err from "../../../../../Utils/Common_Msg";
 import { useFormik } from "formik";
-import ToastButton from "../../../../Helpers/Toast";
-import { ChangePasswordApi } from "../../../../Service/admin.service";
+import ToastButton from "../../../../../Helpers/Toast";
+import { ChangePasswordApi } from "../../../../../Service/admin.service";
 import toast from "react-hot-toast";
 
 const UserChangePassword = () => {

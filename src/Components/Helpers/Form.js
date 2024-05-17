@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import Loader from "./Loader";
 
 const ReusableForm = ({
   initialValues,
@@ -50,8 +51,6 @@ const ReusableForm = ({
 
     reader.readAsDataURL(file);
   };
-
-
 
   const getCurrentDate = () => {
     const today = new Date();
@@ -426,6 +425,7 @@ const ReusableForm = ({
                       />
                       {field.showButton ? (
                         <button
+                          style={{ background: "#4e3897" }}
                           className="btn btn-primary ms-3 col-4"
                           onClick={(e) => {
                             e.preventDefault();
@@ -457,11 +457,13 @@ const ReusableForm = ({
           {additional_field}
           <div className="form-group mb-0">
             <button
+              style={{ background: "#4e3897" }}
               className={`btn btn-primary ${button_Size} ${
                 location.pathname === "resetpassword" ? "col-md-11" : ""
               }`}
               type="submit"
             >
+              {/* <Loader /> */}
               {btn_name}
             </button>
           </div>

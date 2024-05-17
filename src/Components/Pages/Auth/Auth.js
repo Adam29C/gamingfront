@@ -16,10 +16,14 @@ import {
 } from "../../Utils/Valid_Rejex";
 
 import { useFormik } from "formik";
+import Loader from "../../Helpers/Loader";
 
 const Users = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { isLoading } = useSelector((state) => state.AuthSlice);
+
+  // const [ShowLoader, setShowLoader] = useState(false);
 
   const [token, setToken] = useState("");
 
@@ -35,9 +39,9 @@ const Users = () => {
       deviceId: v4(),
     };
     const res1 = await dispatch(Generate_Token(request1)).unwrap();
-
     if (res1.statusCode === 200) {
       setToken(res1.data);
+    } else {
     }
   };
 
@@ -77,29 +81,33 @@ const Users = () => {
       const res = await dispatch(Login(request)).unwrap();
 
       if (res.status) {
+        toast.success(res.msg);
         localStorage.setItem("user_details", JSON.stringify(res.details));
         localStorage.setItem("roles", JSON.stringify(res.details.role));
         localStorage.setItem("token", res.token);
         let ROLES =
           res.details.role === 0
-            ? "admin"
+            ? "superadmin"
             : res.details.role === 1
-            ? "subadmin"
+            ? "admin"
             : res.details.role === 2
             ? "user"
             : "";
-        if (ROLES === "admin") {
+        if (ROLES === "superadmin") {
+          setTimeout(() => {
+            navigate("/super/dashboard");
+          }, 500);
+        } else if (ROLES === "admin") {
           setTimeout(() => {
             navigate("/admin/dashboard");
           }, 1000);
-        } else if (ROLES === "subadmin") {
-          setTimeout(() => {
-            navigate("/subadmin/dashboard");
-          }, 1000);
         } else if (ROLES === "user") {
+          navigate("/dashboard");
         } else {
           toast.error(res.msg);
         }
+      } else {
+        toast.error(res.msg);
       }
     },
   });
@@ -127,7 +135,16 @@ const Users = () => {
         <Formikform
           fieldtype={fields.filter((field) => !field.showWhen)}
           formik={formik}
-          btn_name="Login "
+          btn_name={
+            isLoading ? (
+              <div class="d-flex justify-content-center align-items-center">
+                <span>Login &nbsp;</span>
+                <Loader />
+              </div>
+            ) : (
+              "Login"
+            )
+          }
           button_Size="col-12"
           additional_field={
             <div className="d-flex justify-content-between mb-2">
@@ -148,6 +165,7 @@ const Users = () => {
             </div>
           }
         />
+        {/* {isLoading && <Loader />} */}
         <ToastButton />
       </Content>
     </>
