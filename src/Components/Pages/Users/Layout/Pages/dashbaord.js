@@ -1,25 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import GameContent from "../content/GameContent";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllMatches } from "../../../../Redux/Slice/User/user.slice";
 import moment from "moment/moment";
+import { v4 } from "uuid";
+import { Generate_Token } from "../../../../Redux/Slice/Auth/auth.slice";
 
 const MainContent = () => {
-  const token = localStorage.getItem("token");
-  const dispatch = useDispatch();
-  const { getAllMatchListState } = useSelector((state) => state.UserSlice);
-  const data = getAllMatchListState?.data?.response?.items;
+  const [token, setToken] = useState("");
+  const dispatch = useDispatch()
+  const {getAllMatchListState} =useSelector((state)=>state.UserSlice)
+  const data = getAllMatchListState?.data?.response?.items
 
-  // console.log(data)
 
-  useEffect(() => {
-    dispatch(getAllMatches(token));
-  }, []);
-  const array = [
-    { name: "dfdjh", id: 1 },
-    { name: "dsd", id: 5 },
-    { name: "dsds", id: 3 },
-  ];
+
+useEffect(() => {
+  const getToken = async () => {
+    const request1 = { deviceId: v4() };
+    try {
+      const res1 = await dispatch(Generate_Token(request1)).unwrap();
+      if (res1.statusCode === 200) {
+        const token = res1.data;
+        setToken(token);
+        await dispatch(getAllMatches(token)).unwrap();
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  getToken();
+}, [dispatch]);
+
+
   return (
     <GameContent title="Cricket">
       {data?.map((row, index) => (
