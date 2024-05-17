@@ -78,8 +78,6 @@ const Users = () => {
 
       const res = await dispatch(Login(request)).unwrap();
 
-
-
       if (res.status) {
         toast.success(res.msg);
 
@@ -103,7 +101,7 @@ const Users = () => {
             navigate("/admin/dashboard");
           }, 1000);
         } else if (ROLES === "user") {
-          navigate("/dashboard");
+          navigate("/");
         } else {
           toast.error(res.msg);
         }

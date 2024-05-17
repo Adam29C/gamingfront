@@ -4,22 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllMatches } from "../../../../Redux/Slice/User/user.slice";
 import moment from "moment/moment";
 
-
 const MainContent = () => {
-  const token = localStorage.getItem("token")
-  const dispatch = useDispatch()
-  const {getAllMatchListState} =useSelector((state)=>state.UserSlice)
-  const data = getAllMatchListState?.data?.response?.items
+  const token = localStorage.getItem("token");
+  const dispatch = useDispatch();
+  const { getAllMatchListState } = useSelector((state) => state.UserSlice);
+  const data = getAllMatchListState?.data?.response?.items;
 
+  // console.log(data)
 
-console.log(data)
-
-
-  
-  useEffect(()=>{
- 
-    dispatch(getAllMatches(token))
-  },[])
+  useEffect(() => {
+    dispatch(getAllMatches(token));
+  }, []);
   const array = [
     { name: "dfdjh", id: 1 },
     { name: "dsd", id: 5 },
@@ -27,9 +22,8 @@ console.log(data)
   ];
   return (
     <GameContent title="Cricket">
-      {data?.map((row,index) => (
-      
-        <div  _ngcontent-jgm-c70="" className="bet-table-row" key={index}>
+      {data?.map((row, index) => (
+        <div _ngcontent-jgm-c70="" className="bet-table-row" key={index}>
           <div _ngcontent-jgm-c70="" className="row">
             <div _ngcontent-jgm-c70="" className="col-md-6">
               <div _ngcontent-jgm-c70="" className="game-box">
@@ -37,13 +31,13 @@ console.log(data)
                   <div _ngcontent-jgm-c70="" className="game-name">
                     <a _ngcontent-jgm-c70="" href="javascript:void(0)">
                       <p _ngcontent-jgm-c70="" className="team-name text-left">
-                       {row?.title ? row?.title :" _ "}
+                        {row?.title ? row?.title : " _ "}
                       </p>
                       <p
                         _ngcontent-jgm-c70=""
                         className="team-name text-left team-event"
                       >
-                      {  row?.short_title ? row?.short_title : "_"}
+                        {row?.short_title ? row?.short_title : "_"}
                       </p>
                     </a>
                   </div>
@@ -55,14 +49,22 @@ console.log(data)
                     <p _ngcontent-jgm-c70="" className="mb-0 day text-left">
                       {/* 01 Mar <br/>
                       04:30 PM */}
-                      { moment.unix(row?.timestamp_start).format('DD MMM hh:mm A')}
+                      {moment
+                        .unix(row?.timestamp_start)
+                        .format("DD MMM hh:mm A")}
                     </p>
-                    
                   </div>
                 </div>
                 <div _ngcontent-jgm-c70="" className="game-icons">
-                  <div _ngcontent-jgm-c70="" className="match-icons-main game-icons">
-                    <a _ngcontent-jgm-c70="" href="javascript:void(0);" className="match-icons">
+                  <div
+                    _ngcontent-jgm-c70=""
+                    className="match-icons-main game-icons"
+                  >
+                    <a
+                      _ngcontent-jgm-c70=""
+                      href="javascript:void(0);"
+                      className="match-icons"
+                    >
                       <img
                         _ngcontent-jgm-c70=""
                         // src="assets/images/fancy.svg"
@@ -78,14 +80,6 @@ console.log(data)
                         alt=""
                       />
                     </a>
-                    {/**/}
-                    {/**/}
-                    {/* <span _ngcontent-jgm-c70="" className="game-bm">
-                      BM
-                    </span> */}
-                    {/**/}
-                    {/**/}
-                    {/**/}
                   </div>
                 </div>
               </div>

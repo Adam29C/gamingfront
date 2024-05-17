@@ -24,11 +24,10 @@ const Header = () => {
     getWithdrawData();
     if (token != null && token != "null" && token != undefined) {
       const decoded = jwtDecode(token && token);
-      const expiryTimestamp = decoded.exp * 1000
-   
-if (expiryTimestamp < Date.now()) {
+      const expiryTimestamp = decoded.exp * 1000;
+
+      if (expiryTimestamp < Date.now()) {
         navigate("/");
-      
       }
     }
   }, []);
@@ -60,7 +59,7 @@ if (expiryTimestamp < Date.now()) {
           >
             <Link
               _ngcontent-nsr-c54=""
-             to='/dashboard'
+              to="/dashboard"
               className="logo d-flex align-items-center"
             >
               <img
@@ -209,7 +208,7 @@ if (expiryTimestamp < Date.now()) {
                       <li _ngcontent-mmi-c54="">
                         <Link
                           _ngcontent-mmi-c54=""
-                          to='/dashboard'
+                          to="/"
                           className="dropdown-item d-flex align-items-center deposit-withdraw-sidebar-title"
                         >
                           <img
@@ -263,71 +262,6 @@ if (expiryTimestamp < Date.now()) {
                         </Link>
                       </li>
                       <li _ngcontent-mmi-c54="">
-                        <a
-                          _ngcontent-mmi-c54=""
-                          href="/reports/account-statement"
-                          routerlink="/reports/account-statement"
-                          className="dropdown-item d-flex align-items-center"
-                        >
-                          <i
-                            _ngcontent-mmi-c54=""
-                            className="bi bi-bar-chart-steps"
-                          />
-                          <span _ngcontent-mmi-c54="">Account statement</span>
-                        </a>
-                      </li>
-
-                      {/* <li _ngcontent-mmi-c54="">
-                      <a
-                        _ngcontent-mmi-c54=""
-                        href="/profile/stake-settings"
-                        routerlink="/profile/stake-settings"
-                        className="dropdown-item d-flex align-items-center"
-                      >
-                        <i _ngcontent-mmi-c54="" className="bi bi-bullseye" />
-                        <span _ngcontent-mmi-c54="">stake settings</span>
-                      </a>
-                    </li> */}
-                      <li _ngcontent-mmi-c54="">
-                        <a
-                          _ngcontent-mmi-c54=""
-                          href="/reports/profit-loss"
-                          routerlink="/reports/profit-loss"
-                          className="dropdown-item d-flex align-items-center"
-                        >
-                          <i
-                            _ngcontent-mmi-c54=""
-                            className="bi bi-bar-chart-line"
-                          />
-                          <span _ngcontent-mmi-c54="">profit &amp; loss</span>
-                        </a>
-                      </li>
-                      <li _ngcontent-mmi-c54="">
-                        <a
-                          _ngcontent-mmi-c54=""
-                          href="/reports/unsettled-bets"
-                          routerlink="/reports/unsettled-bets"
-                          className="dropdown-item d-flex align-items-center"
-                        >
-                          <i
-                            _ngcontent-mmi-c54=""
-                            className="bi bi-bar-chart"
-                          />
-                          <span _ngcontent-mmi-c54="">Unsettled Bets</span>
-                        </a>
-                      </li>
-                      {/* <li _ngcontent-mmi-c54="">
-                      <a
-                        _ngcontent-mmi-c54=""
-                        href="/profile/change-password"
-                        routerlink="/profile/change-password"
-                        className="dropdown-item d-flex align-items-center"
-                      >
-                        <i _ngcontent-mmi-c54="" className="bi bi-lock" />
-                        <span _ngcontent-mmi-c54="">change password</span>
-                      </a>
-                    </li> */}
-                      <li _ngcontent-mmi-c54="">
                         <Link
                           _ngcontent-mmi-c54=""
                           href="#"
@@ -380,7 +314,7 @@ if (expiryTimestamp < Date.now()) {
                     <li _ngcontent-nsr-c54="">
                       <Link
                         _ngcontent-nsr-c54=""
-                        to='/dashboard'
+                        to="/dashboard"
                         className="dropdown-item d-flex align-items-center deposit-withdraw-sidebar-title"
                       >
                         <img
@@ -491,11 +425,7 @@ if (expiryTimestamp < Date.now()) {
       <div _ngcontent-nsr-c54="" className="new-middle-menus">
         <ul _ngcontent-nsr-c54="">
           <li _ngcontent-nsr-c54="">
-            <Link
-              _ngcontent-nsr-c54=""
-              to='/dashboard'
-              className="nmm-active"
-            >
+            <Link _ngcontent-nsr-c54="" to="/dashboard" className="nmm-active">
               <img _ngcontent-nsr-c54="" src="/assets/images/menu-home.png" />
               Home
             </Link>

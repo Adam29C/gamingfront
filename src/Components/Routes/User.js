@@ -7,7 +7,7 @@ import Deposit from "../Pages/Users/Layout/Pages/deposit/Deposit";
 import Withdraw from "../Pages/Users/Layout/Pages/withdraw/Withdraw";
 import UserProfile from "../Pages/Users/Layout/Pages/userprofile/UserProfile";
 import PaymentHistory from "../Pages/Users/Layout/Pages/paymenthistory/PaymentHistory";
-
+import NotFound from "../Pages/Auth/NotFound";
 const Admin = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -22,15 +22,17 @@ const Admin = () => {
       {token != null &&
       token != "null" &&
       token != undefined &&
-      location.pathname !== "/user" &&
-      location.pathname !== "/user/*" ? (
+      location.pathname !== "/" &&
+      location.pathname !== "/*" ? (
         <Wraper />
       ) : null}
       <Routes>
+        <Route exact path="/" element={<Dashboard />} />
         <Route exact path="/deposit" element={<Deposit />} />
         <Route exact path="/withdraw" element={<Withdraw />} />
         <Route exact path="/userprofile" element={<UserProfile />} />
         <Route exact path="/payment-history" element={<PaymentHistory />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

@@ -11,17 +11,14 @@ const NotFound = () => {
           <div className="erro-thumb">
             <img src="/assets/img/bg-img/bg.png" alt="" />
           </div>
-          <h2>Opps! This page Could Not Be Found!</h2>
-          <p>
-            Sorry bit the page you are looking for does not exist, have been
-            removed or name changed
-          </p>
+          <h2>Token Expired </h2>
+          <p>Your token has expired, you need to log in again.</p>
           <Link
             className="colorlib-btn"
             to={"/login"}
             style={{ background: "#4e3897" }}
           >
-            Back To Homepage
+            Back To Log - in
           </Link>
         </div>
       </div>

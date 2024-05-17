@@ -4,9 +4,9 @@ import Sidebar from "../Layout/Sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
 // import Main from '../../container/pages/Main'
 
-import "../common_style.css"
-import "../global.css"
-import "../theme_style.css"
+import "../common_style.css";
+import "../global.css";
+import "../theme_style.css";
 
 const Layout = () => {
   return (
@@ -16,13 +16,10 @@ const Layout = () => {
         <app-layout _nghost-nsr-c57="">
           <Header />
           <Sidebar />
-          {/* <Main/> */}
           <Outlet />
-          <app-footer _ngcontent-nsr-c57="" _nghost-nsr-c56="" />{" "}
+          <app-footer _ngcontent-nsr-c57="" _nghost-nsr-c56="" />
         </app-layout>
-        {/**/}
       </app-root>
-      
     </>
   );
 };
