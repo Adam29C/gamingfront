@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Content from "../../Layout/Content/Content1";
 import Formikform from "../../Helpers/Form";
-// import * as valid_err from "../../../Utils/Common_Messages";
+import { jwtDecode } from "jwt-decode";
 import * as valid_err from "../../Utils/Common_Msg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -22,8 +22,6 @@ const Users = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.AuthSlice);
-
-  // const [ShowLoader, setShowLoader] = useState(false);
 
   const [token, setToken] = useState("");
 
@@ -80,8 +78,11 @@ const Users = () => {
 
       const res = await dispatch(Login(request)).unwrap();
 
+
+
       if (res.status) {
         toast.success(res.msg);
+
         localStorage.setItem("user_details", JSON.stringify(res.details));
         localStorage.setItem("roles", JSON.stringify(res.details.role));
         localStorage.setItem("token", res.token);

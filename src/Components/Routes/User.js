@@ -1,12 +1,12 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-// import * as Config from "../Utils/Config";
 
 import Wraper from "../Pages/Users/Wraper/Wraper";
 import Dashboard from "../Pages/Users/Layout/Pages/dashbaord";
 import Deposit from "../Pages/Users/Layout/Pages/deposit/Deposit";
 import Withdraw from "../Pages/Users/Layout/Pages/withdraw/Withdraw";
 import UserProfile from "../Pages/Users/Layout/Pages/userprofile/UserProfile";
+import PaymentHistory from "../Pages/Users/Layout/Pages/paymenthistory/PaymentHistory";
 
 const Admin = () => {
   const location = useLocation();
@@ -27,10 +27,10 @@ const Admin = () => {
         <Wraper />
       ) : null}
       <Routes>
-
         <Route exact path="/deposit" element={<Deposit />} />
         <Route exact path="/withdraw" element={<Withdraw />} />
         <Route exact path="/userprofile" element={<UserProfile />} />
+        <Route exact path="/payment-history" element={<PaymentHistory />} />
       </Routes>
     </>
   );

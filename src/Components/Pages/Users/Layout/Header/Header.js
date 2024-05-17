@@ -2,30 +2,45 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Withdraw } from "../../../../Service/user.service";
 import { useSelector } from "react-redux";
+import { jwtDecode } from "jwt-decode";
 
 const Header = () => {
-  const [data, setData] = useState();
   const role = localStorage.getItem("roles");
   const token = localStorage.getItem("token");
   const user_details = JSON.parse(localStorage.getItem("user_details"));
 
+  const [data, setData] = useState();
+
   const navigate = useNavigate();
 
   const getWithdrawData = async () => {
-    const res = await Withdraw(user_details?.id, token);
-    setData(res);
+    if (role == 2) {
+      const res = await Withdraw(user_details?.id, token);
+      setData(res);
+    }
   };
 
   useEffect(() => {
     getWithdrawData();
+    if (token != null && token != "null" && token != undefined) {
+      const decoded = jwtDecode(token && token);
+      const expiryTimestamp = decoded.exp * 1000
+   
+if (expiryTimestamp < Date.now()) {
+        navigate("/");
+      
+      }
+    }
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user_details");
     localStorage.removeItem("roles");
-
-    navigate("/");
+    console.log("check logout");
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   };
 
   return (
@@ -43,10 +58,9 @@ const Header = () => {
             _ngcontent-nsr-c54=""
             className="d-flex align-items-center justify-content-between"
           >
-            <a
+            <Link
               _ngcontent-nsr-c54=""
-              href="/home"
-              routerlink="/home"
+             to='/dashboard'
               className="logo d-flex align-items-center"
             >
               <img
@@ -60,7 +74,7 @@ const Header = () => {
                 className="mobile-logo"
                 src="/assets/images/reddybook/logo.png"
               />
-            </a>
+            </Link>
             <i
               _ngcontent-nsr-c54=""
               className="bi bi-list-nested toggle-sidebar-btn"
@@ -180,43 +194,43 @@ const Header = () => {
                         _ngcontent-mmi-c54=""
                         className="dropdown-toggle ps-lg-2"
                       >
-                        {/* 9101270692 */}
                         {user_details?.name}
                       </span>
                     </a>
 
                     <ul
                       _ngcontent-mmi-c54=""
-                      className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile"
+                      className="dropdown-menu header-ul  dropdown-menu-end dropdown-menu-arrow profile"
                     >
-                      <li _ngcontent-mmi-c54="" className="dropdown-header">
+                      <li _ngcontent-mmi-c54="" className="dropdown-header ">
                         <h6 _ngcontent-mmi-c54="">HI, {user_details?.name}</h6>
                       </li>
 
                       <li _ngcontent-mmi-c54="">
-                        <a
+                        <Link
                           _ngcontent-mmi-c54=""
-                          href="/home"
-                          routerlink="/home"
+                          to='/dashboard'
                           className="dropdown-item d-flex align-items-center deposit-withdraw-sidebar-title"
                         >
                           <img
                             _ngcontent-mmi-c54=""
                             src="assets/images/menu-home.png"
+                            className="user-header-menue-img"
                           />
                           <span _ngcontent-mmi-c54="">home</span>
-                        </a>
+                        </Link>
                       </li>
                       <li _ngcontent-mmi-c54="" className="ng-star-inserted">
                         <a
                           _ngcontent-mmi-c54=""
                           href="/deposit"
                           routerlink="/deposit"
-                          className="dropdown-item d-flex align-items-center deposit-withdraw-sidebar-title deposit"
+                          className="dropdown-item hover-list d-flex align-items-center deposit-withdraw-sidebar-title deposit"
                         >
                           <img
                             _ngcontent-mmi-c54=""
                             src="assets/images/deposit-icon.png"
+                            className="user-header-menue-img"
                           />
                           <span _ngcontent-mmi-c54="">Deposit </span>
                         </a>
@@ -227,11 +241,12 @@ const Header = () => {
                           _ngcontent-mmi-c54=""
                           href="/withdraw"
                           routerlink="/withdraw"
-                          className="dropdown-item d-flex align-items-center deposit-withdraw-sidebar-title withdraw"
+                          className="dropdown-item hover-list d-flex align-items-center deposit-withdraw-sidebar-title withdraw"
                         >
                           <img
                             _ngcontent-mmi-c54=""
                             src="assets/images/withdrawal-icon.png"
+                            className="user-header-menue-img"
                           />
                           <span _ngcontent-mmi-c54="">Withdraw</span>
                         </a>
@@ -363,10 +378,9 @@ const Header = () => {
                     </li>
 
                     <li _ngcontent-nsr-c54="">
-                      <a
+                      <Link
                         _ngcontent-nsr-c54=""
-                        href="/home"
-                        routerlink="/home"
+                        to='/dashboard'
                         className="dropdown-item d-flex align-items-center deposit-withdraw-sidebar-title"
                       >
                         <img
@@ -374,7 +388,7 @@ const Header = () => {
                           src="/assets/images/menu-home.png"
                         />
                         <span _ngcontent-nsr-c54="">home</span>
-                      </a>
+                      </Link>
                     </li>
 
                     <li _ngcontent-nsr-c54="">
@@ -451,9 +465,10 @@ const Header = () => {
                       </a>
                     </li>
                     <li _ngcontent-nsr-c54="">
-                      <a
+                      <Link
                         _ngcontent-nsr-c54=""
                         href="#"
+                        onClick={handleLogout}
                         className="dropdown-item d-flex align-items-center"
                       >
                         <i
@@ -461,7 +476,7 @@ const Header = () => {
                           className="bi bi-box-arrow-right"
                         />
                         <span _ngcontent-nsr-c54="">Sign Out</span>
-                      </a>
+                      </Link>
                     </li>
                   </ul>
                 </li>
@@ -476,15 +491,14 @@ const Header = () => {
       <div _ngcontent-nsr-c54="" className="new-middle-menus">
         <ul _ngcontent-nsr-c54="">
           <li _ngcontent-nsr-c54="">
-            <a
+            <Link
               _ngcontent-nsr-c54=""
-              href="/home"
-              routerlinkactive="nmm-active"
+              to='/dashboard'
               className="nmm-active"
             >
               <img _ngcontent-nsr-c54="" src="/assets/images/menu-home.png" />
               Home
-            </a>
+            </Link>
           </li>
           <li _ngcontent-nsr-c54="">
             <a

@@ -67,7 +67,7 @@ body {
   box-shadow: 0px 0px 2px 1px #ffffff;
 }
 .sidebar-nav .nav-link.withdraw, .dropdown-menu .withdraw {
-  background: darkred;
+background: var(--theme-primary-color);
   color: #fff;
 }
 
@@ -107,7 +107,7 @@ iframe#tvStr {
 }
 
 .sidebar-nav .nav-link.deposit, .dropdown-menu .deposit {
-  background: darkgreen;
+  background: var(--theme-secondary-color);
   color: #fff;
 }
 
@@ -301,9 +301,7 @@ iframe#casino-link.ludoIfrm {
   height: 17px;
   font-size: 8px;
 }
-.game-icons img{
-  width: 17px;
-}
+
 
 /* .new-middle-menus ul li a img {
  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
@@ -658,7 +656,7 @@ h6 {
 }
 
 .dropdown-menu .dropdown-item:hover {
-  background-color: #f6f9ff;
+  /* background-color: #f6f9ff; */
 }
 
 @media (max-width: 768px) {
@@ -1131,8 +1129,9 @@ h6 {
   display: block !important;
   font-weight: 900;
   text-transform: uppercase;
-  background: linear-gradient(180deg, #fa7e29 0%, #F6682F 80%, #F6682F 100%);
-  box-shadow: inset 0px -10px 20px 0px #9f0101;
+  background: rgb(78,56,151);
+  background: linear-gradient(0deg, rgba(78,56,151,1) 0%, rgba(75,182,185,1) 100%);
+  box-shadow: inset 0px -10px 20px 0px #4f389b;
   font-size: 15px;
 }
 .header-nav .profile .dropdown-item {
@@ -1149,7 +1148,7 @@ h6 {
 }
 
 .header-nav .profile .dropdown-item:hover {
-  background-color: #FFF6EE !important;
+  /* background-color: #FFF6EE !important; */
 }
 
 /*--------------------------------------------------------------
@@ -2139,7 +2138,7 @@ span.redeem {
   color: #7f7f7f;
 }
 .game-icons img {
-  width: 15px;
+  width: 25px;
   vertical-align: baseline;
 }
 .game-icons a {
@@ -3904,7 +3903,7 @@ typeahead-container.dropdown-menu button.dropdown-item {
   font-size: 13px;
   color: #000;
   font-weight: 300;
-  height: 50px;
+  height: 40px;
   text-align: left;
 }
 

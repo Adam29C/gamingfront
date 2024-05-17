@@ -109,7 +109,8 @@ const GameContent = ({title,children}) => {
                                     </div>
                                   </div>
                                 </div>
-                            {children}
+                                <div _ngcontent-jgm-c70="" className="bet-table-body"> {children}</div>
+                           
                               </div>
                             </div>
                           </app-sport-list>

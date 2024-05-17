@@ -3,8 +3,8 @@ import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 
-const Data_Table = ({ columns, data }) => {
-  const customStyles = {
+const Data_Table = ({ columns, data , tableStyle }) => {
+  const adminStyles = {
     rows: {
       style: {
         // minHeight: "72px",
@@ -27,6 +27,30 @@ const Data_Table = ({ columns, data }) => {
     },
   };
 
+  const userStyles = {
+    rows: {
+      style: {
+        // minHeight: "72px",
+      },
+    },
+    headCells: {
+      style: {
+        // paddingLeft: "8px",
+        // paddingRight: "8px",
+
+        background: "#4E3896",
+        color: "#fff",
+      },
+    },
+    cells: {
+      // style: {
+      //   paddingLeft: "8px",
+      //   paddingRight: "8px",
+      // },
+    },
+  };
+
+
   return (
     <>
       <DataTableExtensions columns={columns} data={data}>
@@ -36,7 +60,7 @@ const Data_Table = ({ columns, data }) => {
           defaultSortAsc={false}
           pagination
           highlightOnHover
-          customStyles={customStyles}
+          customStyles={tableStyle ? adminStyles : userStyles }
         />
       </DataTableExtensions>
     </>

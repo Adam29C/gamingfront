@@ -1,9 +1,11 @@
 import React from "react";
 import { useAppContext } from "../../Context/CreateContext";
 import { Link, useNavigate } from "react-router-dom";
+
 const Headers = () => {
-  const { toggleMenuCollapsed } = useAppContext();
-  const navigate = useNavigate();
+
+  const {toggleMenuCollapsed } = useAppContext();
+  const navigate = useNavigate()
 
   const handleClick = () => {
     toggleMenuCollapsed();

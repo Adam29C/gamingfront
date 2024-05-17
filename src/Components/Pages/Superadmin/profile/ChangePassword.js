@@ -36,7 +36,7 @@ const ChangePassword = () => {
 
       return errors;
     },
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       try {
         const data = {
           user_id:user_details?.id,
@@ -45,8 +45,12 @@ const ChangePassword = () => {
         };
 
         const response = await ChangePasswordApi(data, token);
-        if (response?.status) {
+        if (response?.status == 200) {
           toast.success(response?.data?.msg);
+          resetForm()
+        }
+        else if(response.response.data.statusCode === 400){
+          toast.error(response.response.data.msg);
         }
       } catch (error) {
         toast.error(error.message);
@@ -58,21 +62,21 @@ const ChangePassword = () => {
     {
       name: "old_password",
       label: "Old Password",
-      type: "text",
+      type: "password",
       label_size: 12,
       col_size: 12,
     },
     {
       name: "new_password",
       label: "New Password",
-      type: "text",
+      type: "password",
       label_size: 12,
       col_size: 12,
     },
     {
       name: "confirm_password",
       label: "Confirm Password",
-      type: "text",
+      type: "password",
       label_size: 12,
       col_size: 12,
     },
