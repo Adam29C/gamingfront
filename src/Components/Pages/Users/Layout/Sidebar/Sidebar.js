@@ -1,20 +1,61 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getSeriesList } from "../../../../Redux/Slice/User/user.slice";
-
+import { getMatchList, getSeriesList } from "../../../../Redux/Slice/User/user.slice";
+import { v4 } from "uuid";
+import { Generate_Token } from "../../../../Redux/Slice/Auth/auth.slice";
 const Sidebar = () => {
+
 const role = localStorage.getItem("roles")
-const token = localStorage.getItem("token")
-const dispatch = useDispatch()
-const {getSeriesListState}=useSelector((state)=>state.UserSlice)
+const [token, setToken] = useState("");
+const [selectedMatch, setSelectedMatch] = useState(null);
+const [selectedMatchDetails, setSelectedMatchDetails] = useState(null);
+const dispatch = useDispatch();
+const {  getSeriesListState } = useSelector((state) => state.UserSlice);
 
-const data = getSeriesListState?.data?.response?.items
+const getSeriesListdata = getSeriesListState?.data?.response?.items
 
-useEffect(()=>{
-  dispatch(getSeriesList(token))
+useEffect(() => {
+  const fetchData = async () => {
+    const request1 = { deviceId: v4() };
+    try {
+      const res1 = await dispatch(Generate_Token(request1)).unwrap();
+      if (res1.statusCode === 200) {
+        const token = res1.data;
+        setToken(token);
+        await dispatch(getSeriesList(token)).unwrap();
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
-},[])
+  fetchData();
+}, [dispatch]);
+
+const handleMatchClick = async (matchId) => {
+  console.log(matchId)
+  setSelectedMatch(matchId);
+  setSelectedMatchDetails(null);
+  if (token) {
+    try {
+      let data = {
+        token:token,
+        matchId:matchId
+      }
+      await dispatch(getMatchList(data)).unwrap();
+    } catch (error) {
+      console.error('Error fetching match details:', error);
+    }
+  }
+};
+
+const handleMatchDetailClick = (matchDetail) => {
+  setSelectedMatchDetails(matchDetail);
+};
+
+
+const matchlist=[{name:"match1",id:1},{name:"match2",id:2},{name:"match3",id:3}];
 
   return (
     <app-sidebar _ngcontent-nsr-c57="" _nghost-nsr-c55="">
@@ -66,7 +107,7 @@ useEffect(()=>{
             </Link>
           </li>
          <li className="nav-item">
-      {" "}
+      
       <Link to="/withdraw" className="nav-link" aria-expanded="false">
         <img src="/assets/images/withdrawal-icon.png" />
         <span>Withdraw</span>
@@ -74,7 +115,7 @@ useEffect(()=>{
       </Link>
     </li>
     <li className="nav-item">
-      {" "}
+     
       <Link to="/payment-history" className="nav-link" aria-expanded="false">
         <img src="/assets/images/withdrawal-icon.png" />
         <span>Payment History</span>
@@ -83,8 +124,7 @@ useEffect(()=>{
     </li></>)
      }
           <li className="nav-item">
-            {/**/}
-            {/**/}
+           
             <a
               data-bs-toggle="collapse"
               className="nav-link collapsed"
@@ -95,129 +135,50 @@ useEffect(()=>{
               <span>Cricket</span>
               <i className="bi bi-caret-down ms-auto" />
             </a>
-            {/**/}
+         
             <ul className="nav-content collapse" id="collapse0">
-              <li>
+            {
+              getSeriesListdata?.map((row)=>(
+                <li>
                 <a
                   data-bs-toggle="collapse"
                   href="#collapse00"
                   className="collapsed"
                   aria-expanded="false"
                 >
-                  <span>Indian Premier League</span>
+                  <span>{row?.title}</span>
                   <i className="bi bi-caret-down ms-auto" />
                 </a>
+            
                 <div className="collapse" id="collapse00">
                   <ul className="nav-second-level">
-                    <li>
-                      <Link to="/hlo" className="final-link">
-                        <span>Indian Premier League</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <a href="javascript: void(0);" className="final-link">
-                        <span>Lucknow Super Giants v Mumbai Indians</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript: void(0);" className="final-link">
-                        <span>Chennai Super Kings v Punjab Kings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript: void(0);" className="final-link">
-                        <span>Sunrisers Hyderabad v Rajasthan Royals</span>
-                      </a>
-                    </li>
-                    {/**/}
+                    {
+                      matchlist?.map((rowdata)=>(
+                        <li>
+                        <Link to="/hlo" className="final-link">
+                          <span>Indian Premier League</span>
+                        </Link>
+                      </li>
+                      ))
+                    }
+               
+                    
+                   
+                   
+                  
                   </ul>
                 </div>
+
+                
               </li>
-              <li>
-                <a data-bs-toggle="collapse" href="#collapse01">
-                  <span>Others</span>
-                  <i className="bi bi-caret-down ms-auto" />
-                </a>
-                <div className="collapse" id="collapse01">
-                  <ul className="nav-second-level">
-                    <li>
-                      <a href="javascript: void(0);" className="final-link">
-                        <span>🎮SOUTH AFRICA T10 VS ENGLAND T10</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript: void(0);" className="final-link">
-                        <span>🎮SRI LANKA T10 VS BANGLADESH T10</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript: void(0);" className="final-link">
-                        <span>🎮INDIA T10 VS AUSTRALIA T10</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript: void(0);" className="final-link">
-                        <span>🎮AUSTRALIA T10 VS PAKISTAN T10</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript: void(0);" className="final-link">
-                        <span>🎮SRI LANKA T10 VS PAKISTAN T10</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript: void(0);" className="final-link">
-                        <span>🎮SOUTH AFRICA T10 VS WEST INDIES T10</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript: void(0);" className="final-link">
-                        <span>🎮AUSTRALIA T10 VS ENGLAND T10</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript: void(0);" className="final-link">
-                        <span>🎮NEW ZEALAND T10 VS SOUTH AFRICA T10</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript: void(0);" className="final-link">
-                        <span>🎮NEW ZEALAND T10 VS INDIA T10</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="javascript: void(0);" className="final-link">
-                        <span>🎮ENGLAND T10 VS WEST INDIES T10</span>
-                      </a>
-                    </li>
-                    {/**/}
-                  </ul>
-                </div>
-              </li>
-              <li>
-                <a data-bs-toggle="collapse" href="#collapse02">
-                  <span>Womens International Twenty20 Matches</span>
-                  <i className="bi bi-caret-down ms-auto" />
-                </a>
-                <div className="collapse" id="collapse02">
-                  <ul className="nav-second-level">
-                    <li>
-                      <a href="javascript: void(0);" className="final-link">
-                        <span>Pakistan Women v West Indies Women</span>
-                      </a>
-                    </li>
-                    {/**/}
-                  </ul>
-                </div>
-              </li>
-              {/**/}
+              ))
+            }
+          
             </ul>
-            {/**/}
-            {/**/}
+          
           </li>
           <li className="nav-item">
-            {/**/}
-            {/**/}
+           
             <a data-bs-toggle="collapse" className="nav-link" href="#collapse1">
               <img src="/assets/images/events/menu-1.png" />
               <span>Football</span>
