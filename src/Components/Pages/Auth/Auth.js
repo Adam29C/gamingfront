@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Content from "../../Layout/Content/Content1";
 import Formikform from "../../Helpers/Form";
-// import * as valid_err from "../../../Utils/Common_Messages";
+import { jwtDecode } from "jwt-decode";
 import * as valid_err from "../../Utils/Common_Msg";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,6 +24,7 @@ const Users = () => {
   const [token, setToken] = useState("");
 
 
+
   const isValidContact = (mobile) => {
     return Mobile_regex(mobile);
   };
@@ -33,7 +34,6 @@ const Users = () => {
 
   const getToken = async () => {
     const request1 = {
-      
       deviceId: v4(),
     };
     const res1 = await dispatch(Generate_Token(request1)).unwrap();
@@ -41,14 +41,11 @@ const Users = () => {
     if (res1.statusCode === 200) {
       setToken(res1.data);
     }
-
-  
   };
 
   useEffect(() => {
     getToken();
   }, []);
-
 
   const formik = useFormik({
     initialValues: {
@@ -76,36 +73,39 @@ const Users = () => {
       const request = {
         mobileNumber: parseInt(values.mobileNumber),
         password: values.password,
-        token:token
+        token: token,
       };
 
       const res = await dispatch(Login(request)).unwrap();
 
-
+      console.log(res, 600);
       if (res.status) {
+        toast.success(res.msg);
+
         localStorage.setItem("user_details", JSON.stringify(res.details));
         localStorage.setItem("roles", JSON.stringify(res.details.role));
         localStorage.setItem("token", res.token);
-        let ROLES = res.details.role === 0 ? "admin" : res.details.role === 1 ? "subadmin" : res.details.role === 2 ? "user" : ""
-        if (ROLES==="admin") {
-        
+        let ROLES =
+          res.details.role === 0
+            ? "admin"
+            : res.details.role === 1
+            ? "subadmin"
+            : res.details.role === 2
+            ? "user"
+            : "";
+        if (ROLES === "admin") {
           setTimeout(() => {
             navigate("/admin/dashboard");
           }, 1000);
         } else if (ROLES === "subadmin") {
-        
           setTimeout(() => {
             navigate("/subadmin/dashboard");
           }, 1000);
         } else if (ROLES === "user") {
-      
-        
           setTimeout(() => {
             navigate("/");
           }, 1000);
         }
-      
-     
       } else {
         toast.error(res.msg);
       }

@@ -34,3 +34,38 @@ export async function UserProfileGetApi(id,token){
   }
 }
   
+
+//all match get api
+export async function AllMatchesApi(token){
+  try {
+    const res = await axios.get(`${baseurl}sports/getAllMatchesList`,{headers:header(token)})
+
+    return await res?.data
+    
+  } catch (error) {
+    return error
+  }
+}
+
+//get match list
+export async function MatchListApi(id,token){
+  try {
+    const res = await axios.get(`${baseurl}sports/getMatchsList/${id}`)
+    return await res?.data
+  } catch (error) {
+    return error
+  }
+}
+
+
+//get series list
+export async function SeriesListApi(token){
+  try {
+    const res = await axios.get(`${baseurl}sports/getSeriesList`,{headers:header(token)})
+    return await res?.data
+    
+  } catch (error) {
+    return error
+    
+  }
+}

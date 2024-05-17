@@ -16290,3 +16290,21 @@ a.mytooltip {
 .list-hover{
   
 }
+
+
+.header-nav .header-ul li a .user-header-menue-img{
+  /* border:2px solid black; */
+  width: 7.5%;
+    margin-right: 7px;
+    line-height: 0;
+}
+
+
+
+.user-data-table-main .user-data-table .mHisf{
+border-bottom-style: 0px;
+}
+
+.match-icons-main .match-icons{
+  width: 25px;
+}

@@ -15,6 +15,7 @@ import Dashboard from "../Pages/Users/Layout/Pages/dashbaord";
 import Deposit from "../Pages/Users/Layout/Pages/deposit/Deposit";
 import Withdraw from "../Pages/Users/Layout/Pages/withdraw/Withdraw";
 import UserProfile from "../Pages/Users/pages/userprofile/UserProfile";
+import PaymentHistory from "../Pages/Users/Layout/Pages/paymenthistory/PaymentHistory";
 
 
 // import { useDispatch, useSelector } from "react-redux";
@@ -42,6 +43,7 @@ const Admin = () => {
         <Route exact path="/deposit" element={<Deposit />} />
         <Route exact path="/withdraw" element={<Withdraw />} />
         <Route exact path="/userprofile" element={<UserProfile />} />
+        <Route exact path="/payment-history" element={<PaymentHistory />} />
 
      
         {/* <Route exact path="/dashboard" element={<Dashboard />} />

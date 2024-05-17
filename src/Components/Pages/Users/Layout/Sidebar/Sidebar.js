@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getSeriesList } from "../../../../Redux/Slice/User/user.slice";
 
 const Sidebar = () => {
+const role = localStorage.getItem("roles")
+const token = localStorage.getItem("token")
+const dispatch = useDispatch()
+const {getSeriesListState}=useSelector((state)=>state.UserSlice)
 
-  const role = localStorage.getItem("roles")
+const data = getSeriesListState?.data?.response?.items
+
+useEffect(()=>{
+  dispatch(getSeriesList(token))
+
+},[])
 
   return (
     <app-sidebar _ngcontent-nsr-c57="" _nghost-nsr-c55="">
@@ -34,24 +45,42 @@ const Sidebar = () => {
           </li>
           {/**/}
           {/**/}
-          {(role == 2 ) && (      <li className="nav-item">
+          {/* {(role == 2 ) && (      <li className="nav-item">
             {" "}
             <Link to='/deposit' className="nav-link" aria-expanded="false">
               <img src="/assets/images/deposit-icon.png" />
               <span>Deposit</span>
               <i className="bi bi-caret-down ms-auto" />
             </Link>
-          </li>)}
+          </li>)} */}
     
      {
-      (role==2)&&(     <li className="nav-item">
+      (role==2)&&(    
+       <>
+       <li className="nav-item">
+            {" "}
+            <Link to='/deposit' className="nav-link" aria-expanded="false">
+              <img src="/assets/images/deposit-icon.png" />
+              <span>Deposit</span>
+              <i className="bi bi-caret-down ms-auto" />
+            </Link>
+          </li>
+         <li className="nav-item">
       {" "}
       <Link to="/withdraw" className="nav-link" aria-expanded="false">
         <img src="/assets/images/withdrawal-icon.png" />
         <span>Withdraw</span>
         <i className="bi bi-caret-down ms-auto" />
       </Link>
-    </li>)
+    </li>
+    <li className="nav-item">
+      {" "}
+      <Link to="/payment-history" className="nav-link" aria-expanded="false">
+        <img src="/assets/images/withdrawal-icon.png" />
+        <span>Payment History</span>
+        <i className="bi bi-caret-down ms-auto" />
+      </Link>
+    </li></>)
      }
           <li className="nav-item">
             {/**/}

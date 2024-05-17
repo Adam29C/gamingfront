@@ -23,6 +23,7 @@ const Withdraw = ({ abbb }) => {
                 Back
               </button>
             </h2>
+
             <div className="model-open">
               <div className="bankingUi">
                 <div className="container-fluid">
@@ -113,6 +114,7 @@ const Withdraw = ({ abbb }) => {
                 </div>
               </div>
             </div>
+            
           </div>
           <WithdrawModel show={show} setShow={setShow} />
         </app-deposit-withdraw>
