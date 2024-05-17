@@ -5,7 +5,7 @@ import {
   SeriesListApi,
   UserProfileGetApi,
 } from "../../../Service/user.service";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export const getUserProfile = createAsyncThunk(
   "User/getUserProfile",
@@ -47,7 +47,7 @@ export const getMatchList = createAsyncThunk(
 export const getSeriesList = createAsyncThunk(
   "user/getSeriesList",
   async (token) => {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     try {
       const res = await SeriesListApi(token);
@@ -58,9 +58,9 @@ export const getSeriesList = createAsyncThunk(
     } catch (error) {
       console.log("error", error);
 
-      if (error.response && error.response.status === 500) {
-        navigate("/login"); // Replace '/error500' with your desired route
-      }
+      // if (error.response && error.response.status === 500) {
+      //   navigate("/login"); // Replace '/error500' with your desired route
+      // }
 
       throw error; // Rethrow the error to let Redux Toolkit know that the action has failed
     }
