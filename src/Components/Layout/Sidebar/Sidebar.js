@@ -31,7 +31,7 @@ const Sidebar = () => {
           <ul className="sidebar-menu" data-widget="tree">
             {admin_sidebar &&
               admin_sidebar.map((item) => {
-                // console.log("item" ,item);
+            
                 return (
                   <>
                     {item.Data.length === 0 ? (

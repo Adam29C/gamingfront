@@ -22,8 +22,8 @@ export async function AllMatchesApi(token) {
 //get match list
 export async function MatchListApi(id, token) {
   try {
-    const res = await axios.get(`${baseurl}sports/getMatchsList/${id}`);
-    return await res?.data;
+    const res = await axios.get(`${baseurl}sports/getMatchsList/${id}`,{headers:header(token)})
+    return await res?.data
   } catch (error) {
     return error;
   }

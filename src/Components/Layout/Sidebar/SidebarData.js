@@ -3,7 +3,7 @@ export const admin_sidebar = [
     id: 1,
     name: "SuperAdmin Dashboard",
     Icon: "bx bx-home-heart",
-    route: "/admin/dashboard",
+    route: "/super/dashboard",
     Data: [],
   },
 
@@ -11,6 +11,7 @@ export const admin_sidebar = [
     id: 3,
     name: "Clients",
     Icon: "bx bx-user-circle",
+    route: "/super/users",
     Data: [
       {
         id: 1,
@@ -30,6 +31,22 @@ export const admin_sidebar = [
       },
     ],
   },
+  {
+    id: 4,
+    name: "Game Rules",
+    Icon: "bx bx-user-circle",
+    route: "/super/rules",
+    Data: [
+     
+    ],
+  },
+  {
+    id:5,
+    name:"Game",
+    Icon:"bx bx-user-circle",
+    route:"/super/game",
+    Data:[]
+  }
 
 ];
 

@@ -16,13 +16,12 @@ export const LICENCE_TYPE_ERROR = "Please Enter Licence Type ";
 export const LICENCE_ERROR = "Please Enter Licence Month";
 export const QUANTITYSELECT_ERROR = "Please Select Quantity Selection";
 export const GROUPSELECT_ERROR = "Please Select Group Service";
+export const TITLE_ERROR = "Please Enter Title";
+export const DESCRIPTION_ERROR = "Please Enter Description";
+export const STATUS_ERROR = "Please Select Status";
+export const GAME_NAME_ERROR = "Please Enter Game Name"
 
-export const EMPTY_SELECT_BANK_ERROR = "Please Select Account Type ";
-export const EMPTY_UPI_ERROR = "Please Enter UPI ID";
-export const EMPTY_UPI_NAME_ERROR = "Please Enter UPI  Name";
-export const EMPTY_BANK_NAME_ERROR = "Please Enter Bank Name";
-export const EMPTY_BANK_IFSC_ERROR = "Please Enter Bank IFSC Code";
-export const EMPTY_BANK_ACCOUNT_NUMBER_ERROR =  "Please Enter Bank Acount Number";
+
 
 // export const PER_TRADE_ERROR = 'Please Enter Per Trade Fund Value ';
 // export const PER_TRADE_INVALID_ERROR = 'Please Enter integer  Value ';
