@@ -1,7 +1,8 @@
 export const EMPTY_EMAIL_ERROR = "Please Enter Email ";
 export const INVALID_EMAIL_ERROR = "please Enter A Valid Email ";
 export const PASSWORD_ERROR = "Please Enter Password ";
-export const PASSWORD__LENGTH_ERROR = "Password Length Should Be  Min 8 and Max 16 Charctor ";
+export const PASSWORD__LENGTH_ERROR =
+  "Password Length Should Be  Min 8 and Max 16 Charctor ";
 export const USERNAME_ERROR = "Please Enter Username ";
 export const FULLNAME_ERROR = "Please Enter FullName ";
 export const INVALID_ERROR = "Number Not Allow ";
@@ -16,8 +17,12 @@ export const LICENCE_ERROR = "Please Enter Licence Month";
 export const QUANTITYSELECT_ERROR = "Please Select Quantity Selection";
 export const GROUPSELECT_ERROR = "Please Select Group Service";
 
-
-
+export const EMPTY_SELECT_BANK_ERROR = "Please Select Account Type ";
+export const EMPTY_UPI_ERROR = "Please Enter UPI ID";
+export const EMPTY_UPI_NAME_ERROR = "Please Enter UPI  Name";
+export const EMPTY_BANK_NAME_ERROR = "Please Enter Bank Name";
+export const EMPTY_BANK_IFSC_ERROR = "Please Enter Bank IFSC Code";
+export const EMPTY_BANK_ACCOUNT_NUMBER_ERROR =  "Please Enter Bank Acount Number";
 
 // export const PER_TRADE_ERROR = 'Please Enter Per Trade Fund Value ';
 // export const PER_TRADE_INVALID_ERROR = 'Please Enter integer  Value ';

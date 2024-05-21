@@ -1,8 +1,13 @@
 import React from "react";
 import Footer from "../Footer/Footer";
 import Headers from "../Header/Headers";
-const Content = ({ title, children, col_size, show_footer, responsive_col }) => {
-
+const Content = ({
+  title,
+  children,
+  col_size,
+  show_footer,
+  responsive_col,
+}) => {
   return (
     <>
       <div className="flapt-page-content">
@@ -21,7 +26,7 @@ const Content = ({ title, children, col_size, show_footer, responsive_col }) => 
               </div>
             </div>
           </div>
-          {show_footer ? <Footer /> :"" }
+          {show_footer ? <Footer /> : ""}
         </div>
       </div>
     </>

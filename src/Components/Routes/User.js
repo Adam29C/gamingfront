@@ -4,7 +4,7 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Wraper from "../Pages/Users/Wraper/Wraper";
 import Dashboard from "../Pages/Users/Layout/Pages/dashbaord";
 import Deposit from "../Pages/Users/Layout/Pages/deposit/Deposit";
-import Withdraw from "../Pages/Users/Layout/Pages/withdraw/Withdraw";
+import Withdraw from "../Pages/Users/Layout/Pages/withdraw/WithdrawWraper";
 import UserProfile from "../Pages/Users/Layout/Pages/userprofile/UserProfile";
 import PaymentHistory from "../Pages/Users/Layout/Pages/paymenthistory/PaymentHistory";
 import NotFound from "../Pages/Auth/NotFound";

@@ -15,7 +15,7 @@ const Header = () => {
 
   const getWithdrawData = async () => {
     if (role == 2) {
-      const res = await Withdraw(user_details?.id, token);
+      const res = await Withdraw(user_details?.id, token, navigate);
       setData(res);
     }
   };

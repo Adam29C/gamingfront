@@ -27,8 +27,10 @@ const ReusableForm = ({
   Disable_Button,
   after_password_field,
   after_submit_button,
+  before_text_field,
+  after_text_field,
   before_submit,
-  disable_button,
+  Disable_Submit,
 }) => {
   const location = useLocation();
 
@@ -402,54 +404,58 @@ const ReusableForm = ({
                   </div>
                 </>
               ) : (
-                <div className={`col-lg-${field.col_size}`}>
-                  <div className="mb-3 row flex-column">
-                    <label
-                      className={`col-lg-${field.label_size}`}
-                      htmlFor={field.name}
-                    >
-                      {field.label}
-                      <span className="text-danger">*</span>
-                    </label>
-                    <div className={`d-flex`}>
-                      <input
-                        type="text"
-                        autocomplete="off"
-                        className="form-control"
-                        style={{ background: field.disable ? "#eeeeee" : "" }}
-                        id={field.name}
-                        placeholder={`Enter ${field.label}`}
-                        {...formik.getFieldProps(field.name)}
-                        // required=""
-                        readOnly={field.disable}
-                      />
-                      {field.showButton ? (
-                        <button
-                          style={{ background: "#4e3897" }}
-                          className="btn btn-primary ms-3 col-4"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            VerifyMobileN();
-                          }}
-                          disabled={Disable_Button}
-                        >
-                          Send OTP
-                        </button>
-                      ) : (
-                        ""
+                <>
+                  {before_text_field}
+                  <div className={`col-lg-${field.col_size}`}>
+                    <div className="mb-3 row flex-column">
+                      <label
+                        className={`col-lg-${field.label_size}`}
+                        htmlFor={field.name}
+                      >
+                        {field.label}
+                        <span className="text-danger">*</span>
+                      </label>
+                      <div className={`d-flex`}>
+                        <input
+                          type="text"
+                          autocomplete="off"
+                          className="form-control"
+                          style={{ background: field.disable ? "#eeeeee" : "" }}
+                          id={field.name}
+                          placeholder={`Enter ${field.label}`}
+                          {...formik.getFieldProps(field.name)}
+                          // required=""
+                          readOnly={field.disable}
+                        />
+                        {field.showButton ? (
+                          <button
+                            style={{ background: "#4e3897" }}
+                            className="btn btn-primary ms-3 col-4"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              VerifyMobileN();
+                            }}
+                            disabled={Disable_Button}
+                          >
+                            Send OTP
+                          </button>
+                        ) : (
+                          ""
+                        )}
+                        <div className="invalid-feedback">
+                          Please enter {field.label}
+                        </div>
+                      </div>
+                      {formik.errors[field.name] && (
+                        <div style={{ color: "red" }}>
+                          {formik.errors[field.name]}
+                        </div>
                       )}
-                      <div className="invalid-feedback">
-                        Please enter {field.label}
-                      </div>
                     </div>
-                    {formik.errors[field.name] && (
-                      <div style={{ color: "red" }}>
-                        {formik.errors[field.name]}
-                      </div>
-                    )}
                   </div>
-                </div>
+                </>
               )}
+              {field.showButton && after_text_field}
             </>
           ))}
           {before_submit}
@@ -462,6 +468,7 @@ const ReusableForm = ({
                 location.pathname === "resetpassword" ? "col-md-11" : ""
               }`}
               type="submit"
+              disabled={Disable_Submit}
             >
               {/* <Loader /> */}
               {btn_name}

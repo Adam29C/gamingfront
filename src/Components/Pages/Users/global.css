@@ -1,4 +1,3 @@
-
 @font-face {
   font-family: "Titillium Web";
   font-style: normal;
@@ -6,9 +5,8 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPDcZTIAOhVxoMyOr9n_E7ffAzHGIVzY5abuWIGxA.woff2)
     format("woff2");
-  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F,
-    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
-    U+A720-A7FF;
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @font-face {
@@ -18,9 +16,9 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPDcZTIAOhVxoMyOr9n_E7ffAzHGItzY5abuWI.woff2)
     format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
-    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -30,9 +28,8 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPecZTIAOhVxoMyOr9n_E7fdM3mDaZRbryhsA.woff2)
     format("woff2");
-  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F,
-    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
-    U+A720-A7FF;
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @font-face {
@@ -42,9 +39,9 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPecZTIAOhVxoMyOr9n_E7fdMPmDaZRbrw.woff2)
     format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
-    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -54,9 +51,8 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPDcZTIAOhVxoMyOr9n_E7ffBzCGIVzY5abuWIGxA.woff2)
     format("woff2");
-  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F,
-    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
-    U+A720-A7FF;
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @font-face {
@@ -66,9 +62,9 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPDcZTIAOhVxoMyOr9n_E7ffBzCGItzY5abuWI.woff2)
     format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
-    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -78,9 +74,8 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPDcZTIAOhVxoMyOr9n_E7ffHjDGIVzY5abuWIGxA.woff2)
     format("woff2");
-  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F,
-    U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
-    U+A720-A7FF;
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @font-face {
@@ -90,9 +85,9 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/titilliumweb/v17/NaPDcZTIAOhVxoMyOr9n_E7ffHjDGItzY5abuWI.woff2)
     format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
-    U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
-    U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 *,
@@ -120,8 +115,6 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-
-
 body::-webkit-scrollbar {
   width: 8px;
   background-color: #eee !important;
@@ -143,9 +136,6 @@ body {
 
 @media (max-width: 320px) {
 }
-
-
-
 
 @-webkit-keyframes spin {
   0% {
@@ -234,8 +224,6 @@ input.bito-email-input:-webkit-autofill:focus {
     transform: rotate(360deg);
   }
 }
-
-
 
 .modal-content-padding-custom[_ngcontent-nsr-c54] {
   margin-top: 30%;
@@ -327,8 +315,7 @@ li.ab_rae_btns[_ngcontent-nsr-c54] button[_ngcontent-nsr-c54] {
   border: none;
 }
 
-.deposit-withdraw-sidebar-title[_ngcontent-nsr-c54]
-  img[_ngcontent-nsr-c54] {
+.deposit-withdraw-sidebar-title[_ngcontent-nsr-c54] img[_ngcontent-nsr-c54] {
   width: 7.5%;
   margin-right: 7px;
   line-height: 0;
@@ -351,8 +338,6 @@ a.whatsapp_link[_ngcontent-nsr-c54] img[_ngcontent-nsr-c54] {
   }
 }
 
-
-
 .fp[_ngcontent-nsr-c51] {
   color: #fff;
   font-size: 13px;
@@ -362,8 +347,6 @@ a.whatsapp_link[_ngcontent-nsr-c54] img[_ngcontent-nsr-c54] {
   width: 100%;
   height: 100vh;
 }
-
-
 
 .home-animated[_ngcontent-nsr-c73] {
   position: absolute;
@@ -564,8 +547,7 @@ a.whatsapp_link[_ngcontent-nsr-c54] img[_ngcontent-nsr-c54] {
   }
 }
 
-.egc_second[_ngcontent-nsr-c73]
-  .exchangeGames-img-body[_ngcontent-nsr-c73] {
+.egc_second[_ngcontent-nsr-c73] .exchangeGames-img-body[_ngcontent-nsr-c73] {
   border-radius: 1px;
   height: 110px;
 }
@@ -748,6 +730,327 @@ ul li {
   list-style: none !important;
 }
 
-a{
+a {
   text-decoration: none !important;
 }
+
+.bankingUi .card {
+  background: #fff;
+  box-shadow: none;
+  border: 1px solid #eee;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  border-radius: 25px;
+  padding: 5px;
+  margin-bottom: 12px;
+}
+.bankingUi .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 5px 0 #ddd;
+}
+.bankingUi .card .card-title {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: center;
+  position: relative;
+  margin-bottom: 25px;
+}
+.bankingUi .card .card-title:after {
+  content: "";
+  width: 20%;
+  display: block;
+  background: #d5d5d5;
+  height: 1px;
+  margin: 0 auto;
+  bottom: -7px;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.bankingUi .card .card-body {
+  text-align: center;
+}
+.bankingUi .card .card-body p {
+  margin-bottom: 2px;
+}
+.bankingUi .card .card-text {
+  font-weight: 300;
+  font-size: 15px;
+  position: relative;
+  margin-bottom: 2px;
+  text-align: left;
+  padding: 2px 8px;
+  color: #222;
+}
+.bankingUi .card .card-text:hover {
+  color: #000;
+}
+.bankingUi .account-data {
+  background: #f3f2f6;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+.bankingUi .account-data img {
+  margin-top: 10px;
+  width: 150px;
+}
+.bankingUi .card .card-text button {
+  border: 1px solid #f3f2f6;
+  background: none;
+  padding: 0;
+  font-size: 15px;
+  position: absolute;
+  right: 10%;
+  color: var(--theme-secondary);
+  width: 20px;
+  height: 20px;
+  margin-bottom: 10px;
+}
+.bankingUi .card .card-text button:hover {
+  color: var(--theme-primary);
+}
+.bankingUi .card .btn-primary {
+  border-color: var(--theme-secondary);
+  background: var(--theme-secondary);
+  text-align: center;
+  margin: 0 auto;
+}
+.bankingUi .card .btn-primary:hover {
+  box-shadow: 0 0 10px 5px #ddd;
+  background: none;
+  color: var(--theme-secondary);
+}
+.bankingUi .account-table {
+  padding: 10px;
+  border-radius: 16px;
+  background: #fff;
+}
+.bankingUi .table {
+  width: 100%;
+  overflow-y: overlay;
+  max-height: 585px;
+  display: inline-block;
+  border: none;
+  margin-bottom: 0;
+}
+.bankingUi .table thead th {
+  padding: 7px;
+  text-align: center;
+  border: none;
+  /* background: var(--theme-secondary); */
+  /* color: #fff; */
+  font-size: 12px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+}
+.bankingUi .table tbody td {
+  padding: 7px;
+  text-align: center;
+  font-size: 13px;
+  white-space: nowrap;
+  border-color: #f5f5f5;
+}
+.bankingUi .table tbody tr:nth-child(odd) {
+  background: #fff;
+}
+.bankingUi .table tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+.bankingUi .table tbody tr:hover {
+  background: #f3f2f6;
+}
+.bankingUi .table .badge-success {
+  background: none;
+  border: 1px solid #28a745;
+  color: #28a745;
+  padding: 5px 0;
+  width: 70px;
+  text-transform: uppercase;
+}
+.bankingUi .table .badge-success:hover {
+  background: #28a745;
+  color: #000;
+}
+.bankingUi .table .badge-warning {
+  background: none;
+  border: 1px solid #ffc107;
+  color: #ffc107;
+  width: 70px;
+  padding: 5px 0;
+  text-transform: uppercase;
+}
+.bankingUi .table .badge-warning:hover {
+  background: #ffc107;
+  color: #000;
+}
+.bankingUi .table .badge-danger {
+  background: none;
+  border: 1px solid #dc3545;
+  color: #dc3545;
+  width: 70px;
+  padding: 5px 0;
+  text-transform: uppercase;
+}
+
+.bankingUi .table .badge-danger:hover {
+  background: #dc3545;
+  color: #000;
+}
+.bankingUi .nav-tabs button {
+  font-size: 14px;
+  background: none;
+  border-radius: 15px;
+  border: 1px solid #d5d5d5;
+  cursor: pointer;
+  margin: 0 5px;
+}
+.bankingUi .nav-tabs button.active,
+.bankingUi .nav-tabs button.active:hover {
+  background: var(--theme-secondary);
+  color: #fff;
+}
+.bankingUi .nav-tabs button:hover {
+  background: #f3f2f6;
+}
+.bankingUi .nav-tabs button img {
+  /* height: 25px; */
+  display: block;
+  margin: 0 auto;
+  width: 40px;
+  object-fit: contain;
+}
+.bankingUi .nav-tabs button.active img {
+  filter: invert(1);
+}
+.bankingUi .nav-tabs {
+  justify-content: center;
+  margin-bottom: 10px;
+  border: none;
+  background: #fff;
+  flex-wrap: nowrap;
+  border-radius: 15px;
+  padding: 10px 0;
+  border-bottom: 5px solid #e4e4e4;
+}
+.bankingUi form {
+  position: relative;
+}
+.bankingUi form::before {
+  content: "";
+  width: 1px;
+  height: 100%;
+  background: #d5d5d5;
+  position: absolute;
+  left: -15px;
+  top: 0;
+}
+.withdrawalForm::before {
+  display: none;
+}
+.bankingUi form .depositBtn {
+  background: #00b800;
+  border-color: #00b800;
+  padding: 10px 30px;
+  text-transform: uppercase;
+  font-weight: 200;
+  border-radius: 2px;
+  width: 100%;
+}
+.bankingUi form .depositBtn:hover {
+  background: green;
+}
+.bankingUi form .withdrawBtn {
+  background: var(--theme-primary-color);
+  color: white;
+  /* border-bottom: 4px solid var(--theme-secondary-color); */
+  padding: 10px 30px;
+  text-transform: uppercase;
+  font-weight: 200;
+  border-radius: 2px;
+  width: 100%;
+  margin-top: 10px;
+}
+.bankingUi form .withdrawBtn:hover {
+  /* background: red; */
+  background: var(--theme-secondary-color);
+    /* border-bottom: 4px solid var(--theme-secondary-color); */
+  color: white;
+
+}
+.bankingUi form label {
+  text-align: left;
+  display: inherit;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+.bankingUi form input {
+  border-radius: 5px;
+  font-size: 13px;
+  color: #000;
+  font-weight: 300;
+  height: 50px;
+  text-align: left;
+}
+.bankingUi form .btn-group {
+  margin-top: 10px;
+}
+.bankingUi form .btn-group button {
+  border: none;
+  background: var(--theme-secondary);
+  color: #fff;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 8px 0;
+  cursor: pointer;
+  width: 32%;
+  margin-bottom: 2px;
+}
+.bankingUi form .btn-group {
+}
+.bankingUi form .btn-group {
+  display: block;
+  text-align: left;
+}
+.bankingUi form .form-check {
+  /* padding: 0; */
+}
+.bankingUi form .form-check input {
+  display: block;
+  height: auto;
+}
+.bankingUi form .custom-control-label {
+  font-size: 13px;
+}
+.bankingUi form .custom-control-label a {
+  color: var(--theme-secondary);
+}
+.bankingUi form .custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: var(--theme-primary);
+  background-color: var(--theme-primary);
+}
+.bankingUi form .custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 0.2rem var(--theme-opacity);
+}
+
+.delete-account-btn {
+  top: 4px;
+  right: 4px;
+  position: absolute;
+  border-top-right-radius: 15px;
+}
+
+/* .bankingUi .card .card-text {
+  font-weight: 300;
+  font-size: 15px;
+  position: relative;
+  margin-bottom: 2px;
+  text-align: left;
+  padding: 2px 8px;
+  color: #222;
+} */
