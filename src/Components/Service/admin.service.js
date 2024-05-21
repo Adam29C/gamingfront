@@ -55,3 +55,50 @@ export async function ChangePasswordApi(data,token){
     
   }
 }
+
+
+//game add
+
+export async function GameAddApi(data,token){
+  try {
+    const res = await axios.post(`${baseurl}adminRouter/gamesCreatedByAdmin`,data ,{
+      headers : header(token)
+    })
+    return res
+    
+  } catch (error) {
+    return error
+    
+  }
+}
+
+//game update api
+
+export async function GameUpdateApi(data,token){
+  try {
+    const res = await axios.put(`${baseurl}adminRouter/gamesUpdatedByAdmin`,data ,{
+      headers : header(token)
+    })
+    return res
+    
+  } catch (error) {
+    return error
+    
+  }
+}
+
+//game delete api
+
+export async function GameDeleteApi(id,token){
+  try {
+    const res = await axios.delete(`${baseurl}adminRouter/gameDeletedByAdmin?gameId=${id}` ,{
+      headers : header(token)
+    })
+    return res
+    
+  } catch (error) {
+    return error
+    
+  }
+}
+

@@ -34,10 +34,11 @@ export const getAllMatches = createAsyncThunk(
 export const getMatchList = createAsyncThunk(
   "user/getMatchList",
   async (data) => {
-    console.log(data, "check data in matchlist");
+  
     try {
-      // const res = await MatchListApi(data)
-      // return await res
+      let { id, token } = data;
+      const res = await MatchListApi(id, token)
+      return await res
     } catch (error) {
       return error;
     }
@@ -52,7 +53,7 @@ export const getSeriesList = createAsyncThunk(
     try {
       const res = await SeriesListApi(token);
 
-      console.log("res", res);
+
 
       return res;
     } catch (error) {

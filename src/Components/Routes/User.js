@@ -1,6 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
-
 import Wraper from "../Pages/Users/Wraper/Wraper";
 import Dashboard from "../Pages/Users/Layout/Pages/dashbaord";
 import Deposit from "../Pages/Users/Layout/Pages/deposit/Deposit";
@@ -32,6 +31,7 @@ const Admin = () => {
         <Route exact path="/withdraw" element={<Withdraw />} />
         <Route exact path="/userprofile" element={<UserProfile />} />
         <Route exact path="/payment-history" element={<PaymentHistory />} />
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

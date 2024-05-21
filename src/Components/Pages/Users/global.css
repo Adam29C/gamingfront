@@ -751,3 +751,83 @@ ul li {
 a{
   text-decoration: none !important;
 }
+
+.user-modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: var(--bs-modal-color);
+  pointer-events: auto;
+  background-color: var(--bs-modal-bg);
+  background-clip: padding-box;
+  border: var(--bs-modal-border-width) solid var(--bs-modal-border-color);
+  border-radius: var(--bs-modal-border-radius);
+  outline: 0;
+
+}
+
+
+.user-card {
+  /* margin-bottom: 30px; */
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0 30px rgba(1, 41, 112, 0.1);
+}
+
+#accordion .accordion-button {
+  color: black; 
+  font-weight: bold; 
+  background-color:#49B3B8;
+  font-size: 16px;
+  position: relative;
+}
+
+#accordion .accordion-body {
+  background-color: #ffffff; 
+  font-weight: 500; 
+  color: black; 
+  height: 100px;
+  overflow-y: auto; 
+  font-size: 15px;
+}
+
+
+
+#accordion .accordion-button::after {
+  display: none; 
+}
+
+.user-loading-main{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.no-record-text{
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 38px;
+}
+
+
+.custom-switch .form-check-input {
+  width: 30px;
+  height: 15px;
+  background-color: #d1d1d1;
+  border-radius: 15px;
+  position: relative;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  outline: none;
+  transition: background-color 0.3s;
+border: none;
+}
+
+.custom-switch .form-check-input:checked {
+  background-color: #4E3896; 
+}
+

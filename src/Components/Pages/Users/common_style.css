@@ -1318,7 +1318,7 @@ h6 {
 
 .sidebar-nav .nav-link:hover img,
 .sidebar-nav .nav-content a:hover img {
-  filter: grayscale(1);
+  /* filter: grayscale(1); */
 }
 
 .sidebar-nav .nav-content a i {
@@ -2138,7 +2138,7 @@ span.redeem {
   color: #7f7f7f;
 }
 .game-icons img {
-  width: 25px;
+  width: 18px;
   vertical-align: baseline;
 }
 .game-icons a {

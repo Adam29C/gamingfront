@@ -29,6 +29,7 @@ const ReusableForm = ({
   after_submit_button,
   before_submit,
   disable_button,
+  
 }) => {
   const location = useLocation();
 
@@ -253,11 +254,10 @@ const ReusableForm = ({
                           className={` form-control`}
                         />
                         <i
-                          class={`fa-solid ${
-                            passwordVisible[field.name]
+                          class={`fa-solid ${passwordVisible[field.name]
                               ? "fa-eye-slash"
                               : "fa-eye"
-                          }`}
+                            }`}
                           style={{
                             position: "absolute",
                             top: "1.5px",
@@ -458,9 +458,8 @@ const ReusableForm = ({
           <div className="form-group mb-0">
             <button
               style={{ background: "#4e3897" }}
-              className={`btn btn-primary ${button_Size} ${
-                location.pathname === "resetpassword" ? "col-md-11" : ""
-              }`}
+              className={`btn btn-primary ${button_Size} ${location.pathname === "resetpassword" ? "col-md-11" : ""
+                }`}
               type="submit"
             >
               {/* <Loader /> */}

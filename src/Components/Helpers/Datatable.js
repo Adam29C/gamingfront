@@ -2,8 +2,9 @@ import React from "react";
 import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
+import Loader from "./Loader";
 
-const Data_Table = ({ columns, data , tableStyle }) => {
+const Data_Table = ({ columns, data , tableStyle,isLoading }) => {
   const adminStyles = {
     rows: {
       style: {
@@ -56,11 +57,16 @@ const Data_Table = ({ columns, data , tableStyle }) => {
       <DataTableExtensions columns={columns} data={data}>
         <DataTable
           noHeader
-          defaultSortField="id"
+          // defaultSortField="id"
           defaultSortAsc={false}
           pagination
           highlightOnHover
           customStyles={tableStyle ? adminStyles : userStyles }
+          noDataComponent={isLoading ? (<div className="user-loading-main">
+          <Loader lodersize={25}/>
+        </div>) :"There are no records to display"}
+
+
         />
       </DataTableExtensions>
     </>

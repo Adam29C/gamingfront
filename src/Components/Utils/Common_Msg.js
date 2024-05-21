@@ -15,7 +15,10 @@ export const LICENCE_TYPE_ERROR = "Please Enter Licence Type ";
 export const LICENCE_ERROR = "Please Enter Licence Month";
 export const QUANTITYSELECT_ERROR = "Please Select Quantity Selection";
 export const GROUPSELECT_ERROR = "Please Select Group Service";
-
+export const TITLE_ERROR = "Please Enter Title";
+export const DESCRIPTION_ERROR = "Please Enter Description";
+export const STATUS_ERROR = "Please Select Status";
+export const GAME_NAME_ERROR = "Please Enter Game Name"
 
 
 

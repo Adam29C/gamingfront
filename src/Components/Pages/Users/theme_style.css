@@ -113,19 +113,19 @@ a {
   color: var(--theme-secondary-color);
 }
 .sidebar-nav .nav-link:hover {
-  color: var(--theme-primary-color);
+  color: var(--theme-secondary-color);
   background: #FFF6EE;
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: var(--theme-primary-color);
+  color: var(--theme-secondary-color);
 }
 .sidebar-nav .nav-content a {
   color: var(--dark-color);
 }
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  color: var(--theme-primary-color);
+  color: var(--theme-secondary-color);
 }
 .sidebar-nav .nav-content a.active i {
   background-color: var(--theme-secondary-color);
