@@ -1,9 +1,10 @@
 import React from "react";
 import { admin_sidebar, supper_admin_sidebar } from "./SidebarData";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAppContext } from "../../Context/CreateContext";
 
 const Sidebar = () => {
+  const location = useLocation();
   const ROLES = JSON.parse(localStorage.getItem("user_role"));
 
   const { handleMouseLeave, handleMouseEnter } = useAppContext();
@@ -15,27 +16,21 @@ const Sidebar = () => {
     handleMouseEnter();
   };
 
-  // res.role === 0
-  //   ? "superadmin"
-  //   : res.role === 1
-  //   ? "admin"
-  //   : res.role === 2
-  //   ? "user"
-  //   : "";
-  // if (ROLES === "superadmin") {
-  // }
   return (
     <>
       <div className="side-menu-area">
         <nav onMouseEnter={mouseEnter} onMouseLeave={MouserExit}>
-          <ul className="sidebar-menu" data-widget="tree">
+          <ul className="sidebar-menu tree" data-widget="tree">
             {admin_sidebar &&
               admin_sidebar.map((item) => {
-            
                 return (
                   <>
                     {item.Data.length === 0 ? (
-                      <li className="active">
+                      <li
+                        className={
+                          location.pathname === item.route ? ` active` : ""
+                        }
+                      >
                         <Link to={item.route}>
                           <i className={item.Icon} />
                           <span>{item.name}</span>

@@ -3,12 +3,12 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 // import * as Config from "../Utils/Config";
 
 import Wraper from "../Layout/Wraper/Wraper";
-import Dashboard from "../Pages/Superadmin/Dashboard/Dashboard";
+import Dashboard from "../Pages/SuperAdmin/Dashboard/Dashboard";
 // import { useDispatch, useSelector } from "react-redux";
-import AddUsers from "../Pages/Superadmin/Users/AddUsers";
-import EditUsers from "../Pages/Superadmin/Users/EditUsers";
-import Users from "../Pages/Superadmin/Users/Users";
-import Profile from "../Pages/Superadmin/profile/Profile";
+import AddUsers from "../Pages/SuperAdmin/Users/AddUsers";
+import EditUsers from "../Pages/SuperAdmin/Users/EditUsers";
+import Users from "../Pages/SuperAdmin/Users/Users";
+import Profile from "../Pages/SuperAdmin/profile/Profile";
 import GameRuleList from "../Pages/Admin/gamerule/GameRuleList";
 import GameRuleAdd from "../Pages/Admin/gamerule/GameRuleAdd";
 import GameList from "../Pages/Admin/addgame/GameList";
