@@ -2,11 +2,13 @@ import React from "react";
 import { admin_sidebar, supper_admin_sidebar } from "./SidebarData";
 import { Link, useLocation } from "react-router-dom";
 import { useAppContext } from "../../Context/CreateContext";
+import { useState } from "react";
 
 const Sidebar = () => {
   const location = useLocation();
   const ROLES = JSON.parse(localStorage.getItem("user_role"));
 
+  const [ShowSubMenu, setShowSubMenu] = useState(false);
   const { handleMouseLeave, handleMouseEnter } = useAppContext();
 
   const MouserExit = () => {
@@ -37,13 +39,22 @@ const Sidebar = () => {
                         </Link>
                       </li>
                     ) : (
-                      <li className="treeview">
-                        <a href="">
-                          <i className={item.Icon} />
+                      <li
+                        className={`${ShowSubMenu ? "menu-open" : ""} treeview`}
+                      >
+                        <a
+                          href="#"
+                          onClick={() => setShowSubMenu(!ShowSubMenu)}
+                        >
+                          <i className={item.Icon} /> &nbsp;
                           <span>{item.name}</span>
                           <i className="fa fa-angle-right" />
                         </a>
-                        <ul className="treeview-menu">
+                        <ul
+                          className={`${
+                            ShowSubMenu ? "d-block" : ""
+                          } treeview-menu `}
+                        >
                           {item.Data.map((subItem) => (
                             <li key={subItem.id}>
                               <Link to={subItem.route}>{subItem.name}</Link>
@@ -56,38 +67,7 @@ const Sidebar = () => {
                 );
               })}
 
-            {/* <li className="active">
-              <a href="index.html">
-                <i className="bx bx-home-heart" />
-                <span>Dashboard</span>
-              </a>
-            </li>
-            <li className="treeview">
-              <a href="javascript:void(0)">
-                <i className="bx bxs-cart" />
-                <span>Shop</span> <i className="fa fa-angle-right" />
-              </a>
-              <ul className="treeview-menu">
-                <li>
-                  <a href="product.html">Products</a>
-                </li>
-                <li>
-                  <a href="product-details.html">Products Details</a>
-                </li>
-                <li>
-                  <a href="order.html">Orders</a>
-                </li>
-                <li>
-                  <a href="cart.html">Cart</a>
-                </li>
-                <li>
-                  <a href="checkout.html">Checkout</a>
-                </li>
-                <li>
-                  <a href="invoice.html">Invoice</a>
-                </li>
-              </ul>
-            </li> */}
+           
           </ul>
         </nav>
       </div>

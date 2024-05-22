@@ -1,7 +1,7 @@
 import React from "react";
 import Footer from "../Footer/Footer";
 import Headers from "../Header/Headers";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 const Content = ({
   title,
   children,
@@ -9,9 +9,10 @@ const Content = ({
   show_footer,
   responsive_col,
   addtitle,
-  handleAdd
+  handleAdd,
+  Back_Button,
+  Back__Button_route,
 }) => {
-
   return (
     <>
       <div className="flapt-page-content">
@@ -23,7 +24,7 @@ const Content = ({
                   <div className="card">
                     <div className="card-body">
                       <div class="admin-add-main">
-                        <h3 className="card-titl1e mb-4">{title}</h3>{" "}
+                        <h3 className="card-titl1e mb-4">{title}</h3>
                         {addtitle ? (
                           <button
                             onClick={handleAdd}
@@ -31,6 +32,17 @@ const Content = ({
                           >
                             {addtitle}
                           </button>
+                        ) : (
+                          ""
+                        )}
+
+                        {Back_Button ? (
+                          <Link
+                            to={Back__Button_route}
+                            className="admin-add-btn mb-4"
+                          >
+                            Back
+                          </Link>
                         ) : (
                           ""
                         )}

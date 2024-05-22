@@ -9,6 +9,27 @@ export async function ALL_ADMINS(token) {
   try {
     const res = await axios.post(
       `${baseurl}adminRouter/listOfUserAndSubAdmin`,
+      
+      {
+        headers: header(token),
+      }
+    );
+
+    return await res?.data;
+  } catch (err) {
+    return err;
+  }
+}
+
+
+
+
+
+// ALL ANTADMINS
+export async function ADD_ADMINS(data , token) {
+  try {
+    const res = await axios.post(
+      `${baseurl}adminRouter/createSubAdmin`,
       data,
       {
         headers: header(token),
@@ -20,6 +41,7 @@ export async function ALL_ADMINS(token) {
     return err;
   }
 }
+
 
 
 

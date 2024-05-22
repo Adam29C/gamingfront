@@ -924,7 +924,7 @@ a {
   object-fit: contain;
 }
 .bankingUi .nav-tabs button.active img {
-  filter: invert(1);
+  /* filter: invert(1); */
 }
 .bankingUi .nav-tabs {
   justify-content: center;

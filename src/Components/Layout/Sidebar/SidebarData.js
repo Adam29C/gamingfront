@@ -10,44 +10,49 @@ export const admin_sidebar = [
   {
     id: 3,
     name: "Clients",
-    Icon: "bx bx-user-circle",
+    Icon: "fa fa-user-plus",
     route: "/super/users",
     Data: [
       {
         id: 1,
         name: "Add Client",
-        route: "/superadmin/user/add",
+        route: "/super/user/add",
       },
       {
         id: 2,
         name: "Clients",
-        route: "/superadmin/users",
+        route: "/super/users",
       },
 
-      {
-        id: 4,
-        name: "Expired-Clients",
-        route: "/superadmin/user/edit",
-      },
+      // {
+      //   id: 4,
+      //   name: "Expired-Clients",
+      //   route: "/super/user/edit",
+      // },
     ],
   },
+
   {
     id: 4,
     name: "Game Rules",
-    Icon: "bx bx-user-circle",
+    Icon: "fa fa-window-restore",
     route: "/super/rules",
-    Data: [
-     
-    ],
+    Data: [],
   },
   {
-    id:5,
-    name:"Game",
-    Icon:"bx bx-user-circle",
-    route:"/super/game",
-    Data:[]
-  }
-
+    id: 5,
+    name: "Game",
+    Icon: "fa fa-gamepad",
+    route: "/super/game",
+    Data: [],
+  },
+  {
+    id: 4,
+    name: "Payment Details",
+    Icon: "fa fa-credit-card-alt",
+    route: "/super/bankdetails",
+    Data: [],
+  },
 ];
 
 export const supper_admin_sidebar = [
