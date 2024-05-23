@@ -3,19 +3,17 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 // import * as Config from "../Utils/Config";
 
 import Wraper from "../Layout/Wraper/Wraper";
-import Dashboard from "../Pages/SuperAdmin/Dashboard/Dashboard";
+import Dashboard from "../Pages/Superadmin/Dashboard/Dashboard";
+// import { useDispatch, useSelector } from "react-redux";
 
-import AddUsers from "../Pages/SuperAdmin/Admins/AddUsers";
-import EditUsers from "../Pages/SuperAdmin/Admins/EditUsers";
-import Users from "../Pages/SuperAdmin/Admins/Users";
-import Profile from "../Pages/SuperAdmin/Profile/Profile";
-
-
-
-import GameRuleList from "../Pages/SuperAdmin/GameRules/GameRuleList";
-import GameRuleAdd from "../Pages/SuperAdmin/GameRules/GameRuleAdd";
-import GameList from "../Pages/SuperAdmin/Games/GameList";
-import GameAdd from "../Pages/SuperAdmin/Games/GameAdd";
+import AddUsers from "../Pages/Superadmin/Users/AddUsers";
+import EditUsers from "../Pages/Superadmin/Users/EditUsers";
+import Users from "../Pages/Superadmin/Users/Users";
+import Profile from "../Pages/Superadmin/profile/Profile";
+import GameRuleList from "../Pages/Admin/gamerule/GameRuleList";
+import GameRuleAdd from "../Pages/Admin/gamerule/GameRuleAdd";
+import GameList from "../Pages/Admin/addgame/GameList";
+import GameAdd from "../Pages/Admin/addgame/GameAdd";
 
 // Bank Details
 import BankDetailsList from "../Pages/SuperAdmin/BankDetails/BankDetailsList";

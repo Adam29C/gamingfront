@@ -22,8 +22,10 @@ export async function AllMatchesApi(token) {
 //get match list
 export async function MatchListApi(id, token) {
   try {
-    const res = await axios.get(`${baseurl}sports/getMatchsList/${id}`,{headers:header(token)})
-    return await res?.data
+    const res = await axios.get(`${baseurl}sports/getMatchsList/${id}`, {
+      headers: header(token),
+    });
+    return await res?.data;
   } catch (error) {
     return error;
   }
@@ -71,7 +73,7 @@ export async function Withdraw(id, token, navigate) {
 
     return await res?.data;
   } catch (error) {
-    if (error.response.data.statusCode === 400) {
+    if (error?.response?.data?.statusCode === 400) {
       navigate("tokenexpiry", { replace: true });
       return;
     }
@@ -164,13 +166,9 @@ export async function CreateWithdrawRequest(data, token) {
 // Create Withdrawl Request
 export async function GenerateWithdrawalRequest(data, token) {
   try {
-    const res = await axios.post(
-      `${baseurl}userRouter/withdrawPayment`,
-      data,
-      {
-        headers: header(token),
-      }
-    );
+    const res = await axios.post(`${baseurl}userRouter/withdrawPayment`, data, {
+      headers: header(token),
+    });
     return await res?.data;
   } catch (error) {
     return error;
@@ -207,4 +205,21 @@ export async function UpdateResetPassword(data, token) {
   } catch (error) {
     return error;
   }
+}
+
+
+
+export async function PaymentHistory(data, token) {
+
+  
+  try {
+    const res = await axios.post(`${baseurl}userRouter/filterPaymentHistory`,data, {
+      headers: header(token),
+    });
+
+    return await res?.data;
+  } catch (error) {
+    return error;
+  }
+
 }

@@ -4,12 +4,20 @@ import ShowWithdrawList from "./ShowBankList";
 import WithrowRules from "./WithdrowRules";
 import CreateWithdrawPasswordd from "./CreateWithdrawPassword";
 // import { CreateWithdrawPassword } from "../../../../../Service/user.service";
-import { getUserProfile } from "../../../../../Redux/Slice/User/user.slice";
-import { useDispatch } from "react-redux";
+import {
+  getPaymentHistory,
+  getUserProfile,
+} from "../../../../../Redux/Slice/User/user.slice";
+import { useDispatch, useSelector } from "react-redux";
+import moment from "moment";
+import Loader from "../../../../../Helpers/Loader";
 
 const Withdraw = ({ abbb }) => {
   const dispatch = useDispatch();
-
+  const { getPaymentHistorytState, isLoading } = useSelector(
+    (state) => state.UserSlice
+  );
+  console.log(getPaymentHistorytState?.paymentInfo, 500);
   const [show, setShow] = useState(false);
   const [showCreatePassword, setShowCreatePassword] = useState(false);
 
@@ -27,8 +35,18 @@ const Withdraw = ({ abbb }) => {
       setShowCreatePassword(true);
     }
   };
+  const getPaymentData = () => {
+    let data = {
+      token: token,
+      userId: userId,
+      paymentstatus: "debit",
+    };
+
+    dispatch(getPaymentHistory(data));
+  };
   useEffect(() => {
     getUserData();
+    getPaymentData();
   }, []);
 
   return (
@@ -69,17 +87,55 @@ const Withdraw = ({ abbb }) => {
                       >
                         <thead>
                           <tr>
-                            <th>Amount</th>
-                            <th>Status</th>
-                            <th>Account</th>
-                            <th>Date</th>
-                            <th>Reason</th>
+                          <th>Transaction No</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Reason</th>
                           </tr>
                         </thead>
                         <tbody id="withdrawTableData">
-                          <tr id="no_data_found">
-                            <td colSpan={12}>No data found!</td>
-                          </tr>
+                          {isLoading ? (
+                            <tr id="no_data_found">
+                              <td colSpan={5}>
+                                {" "}
+                                <Loader lodersize={20} />
+                              </td>
+                            </tr>
+                          ) : getPaymentHistorytState?.paymentInfo?.length ===0 ? (
+                            <tr id="no_data_found">
+                              <td colSpan={5}>No data found!</td>
+                            </tr>
+                          ) : (
+                            getPaymentHistorytState?.paymentInfo?.map(
+                              (transaction) => {
+                                const {
+                                  accountId,
+                                  amount,
+                                  status,
+                                  createdAt,
+                                  reason,
+                                } = transaction;
+
+                                return (
+                                  <tr key={accountId}>
+                                  <td>
+                                    {accountId ? accountId : " _ "}
+                                  </td>
+                                  <td>{amount ? amount : " _ "}</td>
+                                  <td>{status ? status : " _ "}</td>
+                                  <td>
+                                    {moment(
+                                      createdAt ? createdAt : " _ "
+                                    ).format("DD-MM-YYYY")}
+                                  </td>
+                                  <td>{reason ? reason : " _ "}</td>
+                                </tr>
+                                );
+                              }
+                            )
+                          )}
+                         
                         </tbody>
                       </table>
                     </div>

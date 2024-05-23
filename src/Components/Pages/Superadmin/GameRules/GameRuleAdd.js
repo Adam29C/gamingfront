@@ -119,7 +119,8 @@ const GameRuleAdd = () => {
 
   return (
     <>
-      <Content title={state?._id ? "Update Rule" : "Add Rule"} col_size={12}>
+      <Content title={state?._id ? "Update Rule" : "Add Rule"}  Back_Button={true}
+        Back__Button_route="/super/rules" col_size={12}>
         <Formikform
           fieldtype={fields.filter((field) => !field.showWhen)}
           formik={formik}
