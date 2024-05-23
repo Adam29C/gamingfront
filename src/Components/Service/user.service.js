@@ -108,7 +108,7 @@ export async function AccountDetailsList(id, token, navigate) {
     );
     return await res?.data;
   } catch (error) {
-    if (error.response.data.statusCode === 400) {
+    if (error?.response?.data?.statusCode === 400) {
       navigate("tokenexpiry", { replace: true });
       return;
     }
@@ -128,7 +128,7 @@ export async function RemoveAccountDetails(data, token) {
     });
     return res?.data;
   } catch (error) {
-    return error.response?.data || error;
+    return error?.response?.data || error;
   }
 }
 
