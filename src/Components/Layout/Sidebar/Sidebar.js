@@ -1,12 +1,12 @@
 import React from "react";
-import { admin_sidebar, supper_admin_sidebar } from "./SidebarData";
+import { superadmin_sidebar, admin_sidebar } from "./SidebarData";
 import { Link, useLocation } from "react-router-dom";
 import { useAppContext } from "../../Context/CreateContext";
 import { useState } from "react";
 
 const Sidebar = () => {
   const location = useLocation();
-  const ROLES = JSON.parse(localStorage.getItem("user_role"));
+  const ROLES = JSON.parse(localStorage.getItem("roles"));
 
   const [ShowSubMenu, setShowSubMenu] = useState(false);
   const { handleMouseLeave, handleMouseEnter } = useAppContext();
@@ -18,13 +18,20 @@ const Sidebar = () => {
     handleMouseEnter();
   };
 
+  let sidebarTabs;
+  if (parseInt(ROLES) == 0) {
+    sidebarTabs = superadmin_sidebar;
+  } else if (parseInt(ROLES) == 1) {
+    sidebarTabs = admin_sidebar;
+  }
+
   return (
     <>
       <div className="side-menu-area">
         <nav onMouseEnter={mouseEnter} onMouseLeave={MouserExit}>
           <ul className="sidebar-menu tree" data-widget="tree">
-            {admin_sidebar &&
-              admin_sidebar.map((item) => {
+            {sidebarTabs &&
+              sidebarTabs.map((item) => {
                 return (
                   <>
                     {item.Data.length === 0 ? (
@@ -66,8 +73,6 @@ const Sidebar = () => {
                   </>
                 );
               })}
-
-           
           </ul>
         </nav>
       </div>

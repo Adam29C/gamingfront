@@ -1,35 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Content from "../../../Layout/Content/Content";
 import Data_Table from "../../../Helpers/Datatable";
 import { Link, useNavigate } from "react-router-dom";
-import { getGameRule } from "../../../Redux/Slice/common/common.slice";
+import { getGame, getGameRule } from "../../../Redux/Slice/common/common.slice";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
-import {
-  GameRuleDeleteApi,
-  GameRuleListStatus,
-} from "../../../Service/common.service";
+import { GameRuleDeleteApi,  } from "../../../Service/common.service";
 import ToastButton from "../../../Helpers/Toast";
 import toast from "react-hot-toast";
+import GameAdd from "./GameAdd";
+import { GameDeleteApi } from "../../../Service/admin.service";
+import { GameRuleListStatus } from "../../../Service/superadmin.service";
 
-const GameRuleList = () => {
+const GameList = () => {
   const token = localStorage.getItem("token");
-  const { getGameRuleState, isLoading } = useSelector(
-    (state) => state.CommonSlice
-  );
-  console.log(isLoading, "check loding");
+  const { getGameListState,isLoading } = useSelector((state) => state.CommonSlice);
+
   const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const[updateData,setUpdateData]=useState()
+
   const dispatch = useDispatch();
   const columns = [
     {
-      name: "Title",
-      selector: (row) => row.title,
+      name: "Game Name",
+      selector: (row) => row?.gameName,
     },
 
-    {
-      name: "Description",
-      selector: (row) => row.description,
-    },
+
     {
       name: "Status",
       selector: (row) => (
@@ -37,8 +35,8 @@ const GameRuleList = () => {
           <Form.Check
             type="switch"
             id="custom-switch"
-            defaultChecked={row?.status}
-            onChange={(e) => handleStatusUpdate(e.target.checked, row?._id)}
+            defaultChecked={row?.isShow}
+            onChange={(e) => handleStatusUpdate(e.target.checked , row?._id)}
             className="custom-switch"
           />
         </>
@@ -49,13 +47,13 @@ const GameRuleList = () => {
       selector: (cell, row) => (
         <div style={{ width: "120px" }}>
           <div>
-            <Link to={`/super/rules/add`} state={cell}>
+            <Link onClick={() => handleUpdate(cell)}>
               <span data-toggle="tooltip" data-placement="top" title="Edit">
                 <i class="ti-marker-alt fs-5 mx-1"></i>
               </span>
             </Link>
 
-            <Link href="#" onClick={() => handleDeleteGameRule(cell?._id)}>
+            <Link href="#" onClick={() => handleDeleteGame(cell?._id)}>
               <span data-toggle="tooltip" data-placement="top" title="Delete">
                 <i class="ti-trash fs-5 mx-1"></i>
               </span>
@@ -67,20 +65,20 @@ const GameRuleList = () => {
   ];
 
   useEffect(() => {
-    dispatch(getGameRule(token));
+    dispatch(getGame(token));
   }, []);
 
-  const data = getGameRuleState?.data;
+  const data = getGameListState?.data;
 
-  const handleDeleteGameRule = async (id) => {
+  const handleDeleteGame = async (id) => {
     const confirmed = window.confirm(
       "Do You Really Want To Remove This  Game Rule"
     );
     if (confirmed) {
-      const response = await GameRuleDeleteApi(id, token);
+      const response = await GameDeleteApi(id, token);
       if (response.statusCode == 200) {
         toast.success(response.msg);
-        dispatch(getGameRule(token));
+        dispatch(getGame(token));
       } else {
         toast.error(response.msg);
       }
@@ -89,37 +87,46 @@ const GameRuleList = () => {
     }
   };
 
-  const handleStatusUpdate = async (value, id) => {
-    let data = {
+  const handleStatusUpdate = async(value,id)=>{
+    let data ={
       ruleId: id,
-      status: value,
-    };
-
-    const response = await GameRuleListStatus(data, token);
-    if (response?.statusCode === 200) {
+      status: value
+    }
+    
+    // console.log(data,"checlllllll")
+    const response = await GameRuleListStatus(data,token)
+    if(response?.statusCode===200){
       toast.success(response.msg);
       dispatch(getGameRule(token));
-    } else {
+      
+    }else {
       toast.error(response.msg);
     }
     // console.log(response)
-  };
+  }
+
   const handleAdd = () => {
-    navigate("/super/bankdetail/add");
+    setShow(true)
+    setUpdateData("")
+
   };
+  const handleUpdate = (data)=>{
+    setUpdateData(data)
+    setShow(true)
+   
+
+
+  }
   return (
     <>
-      <Content
-        title="Bank Details"
-        addtitle="Add Bank"
-        handleAdd={handleAdd}
-        col_size={12}
-      >
+      <Content title="Game" addtitle="Add Game" handleAdd={handleAdd} col_size={12}>
         <Data_Table isLoading={isLoading} columns={columns} data={data} />
         <ToastButton />
       </Content>
+      <GameAdd show={show} setShow={setShow} updateData={updateData} />
+      
     </>
   );
 };
 
-export default GameRuleList;
+export default GameList;

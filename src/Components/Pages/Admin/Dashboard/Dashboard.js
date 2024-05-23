@@ -4,9 +4,7 @@ import Content from "../../../Layout/Content/Content";
 const Dashboard = () => {
   return (
     <div>
-      <Content title="Dashboard">
-        <h1>hello world</h1>
-      </Content>
+      <Content title="Admin Dashboad">{/* <h1>hello world</h1> */}</Content>
     </div>
   );
 };

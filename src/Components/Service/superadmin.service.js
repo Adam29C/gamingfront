@@ -45,6 +45,70 @@ export async function ADD_ADMINS(data , token) {
 
 
 
+
+// ---------------  Game Rules -------------------------------
+
+
+
+
+  //add game rule api
+  export async function GameRuleAddApi(data,token){
+
+    try {
+      const res = await axios.post(`${baseurl}adminRouter/addRules`,data,{headers:header(token)})
+      return await res?.data
+      
+    } catch (error) {
+      return error;
+    }
+  }
+    
+  //update rule api
+export async function GameRuleUpdateApi(data,token){
+    try {
+      const res = await axios.patch(`${baseurl}adminRouter/updateRules`,data,{headers:header(token)})
+      return await res?.data
+      
+    } catch (error) {
+      return error;
+    }
+  }
+    
+
+  
+
+    //delete rule api
+export async function GameRuleDeleteApi(id,token){
+    try {
+      const res = await axios.delete(`${baseurl}adminRouter/deleteRules?ruleId=${id}`,{headers:header(token)})
+      return await res?.data
+      
+    } catch (error) {
+      return error;
+    }
+  }
+    
+
+  
+    //game rule list status change api
+export async function GameRuleListStatus(data,token){
+  try {
+    const res = await axios.patch(`${baseurl}adminRouter/updateRulesStatus`,data,{headers:header(token)})
+    return await res?.data
+    
+  } catch (error) {
+    return error;
+  }
+}
+  
+
+
+
+
+
+
+
+
 // //get profile api data
 // export async function ProfileGet(token){
 

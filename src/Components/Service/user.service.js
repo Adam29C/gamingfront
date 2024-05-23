@@ -113,6 +113,8 @@ export async function AccountDetailsList(id, token, navigate) {
     return error;
   }
 }
+
+
 //  Remove Account Details
 export async function RemoveAccountDetails(data, token) {
   try {

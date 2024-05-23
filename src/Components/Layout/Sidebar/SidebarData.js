@@ -1,4 +1,4 @@
-export const admin_sidebar = [
+export const superadmin_sidebar = [
   {
     id: 1,
     name: "SuperAdmin Dashboard",
@@ -55,61 +55,61 @@ export const admin_sidebar = [
   },
 ];
 
-export const supper_admin_sidebar = [
+export const admin_sidebar = [
   {
     id: 1,
-    name: " Super Dashboard",
-    Icon: "LayoutDashboard",
-    route: "/super/dashboard",
+    name: "Admin Dashboard",
+    Icon: "bx bx-home-heart",
+    route: "/admin/dashboard",
     Data: [],
   },
   {
     id: 2,
-    name: "All Admins",
-    Icon: "Users",
+    name: "All Users",
+    Icon: "fa fa-user-plus ",
     route: "/super/alladmins",
     Data: [],
   },
-  {
-    id: 3,
-    name: "All Permissions",
-    Icon: "Vote",
-    route: "/super/permitions",
-    Data: [],
-  },
-  {
-    id: 4,
-    name: "History",
-    Icon: "FolderClock",
-    route: "/super/history",
-    Data: [],
-  },
-  {
-    id: 5,
-    name: "Select Theme",
-    Icon: "Paintbrush",
-    route: "/super/selecttheme",
-    Data: [],
-  },
-  {
-    id: 6,
-    name: "Api Create Info",
-    route: "/super/apicreateinfo",
-    Icon: "WalletCards",
-    Data: [],
-  },
-  {
-    id: 7,
-    name: "Query-Update",
-    Icon: "HelpingHand",
-    route: "/super/query",
-    Data: [],
-  },
-  {
-    id: 8,
-    name: "Support",
-    Icon: "HelpingHand",
-    route: "/super/support",
-    Data: [],
-  },
+  // {
+  //   id: 3,
+  //   name: "All Permissions",
+  //   Icon: "Vote",
+  //   route: "/super/permitions",
+  //   Data: [],
+  // },
+  // {
+  //   id: 4,
+  //   name: "History",
+  //   Icon: "FolderClock",
+  //   route: "/super/history",
+  //   Data: [],
+  // },
+  // {
+  //   id: 5,
+  //   name: "Select Theme",
+  //   Icon: "Paintbrush",
+  //   route: "/super/selecttheme",
+  //   Data: [],
+  // },
+  // {
+  //   id: 6,
+  //   name: "Api Create Info",
+  //   route: "/super/apicreateinfo",
+  //   Icon: "WalletCards",
+  //   Data: [],
+  // },
+  // {
+  //   id: 7,
+  //   name: "Query-Update",
+  //   Icon: "HelpingHand",
+  //   route: "/super/query",
+  //   Data: [],
+  // },
+  // {
+  //   id: 8,
+  //   name: "Support",
+  //   Icon: "HelpingHand",
+  //   route: "/super/support",
+  //   Data: [],
+  // },
 ];

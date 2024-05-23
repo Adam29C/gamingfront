@@ -4,19 +4,22 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 import Wraper from "../Layout/Wraper/Wraper";
 import Dashboard from "../Pages/SuperAdmin/Dashboard/Dashboard";
-// import { useDispatch, useSelector } from "react-redux";
-import AddUsers from "../Pages/SuperAdmin/Users/AddUsers";
-import EditUsers from "../Pages/SuperAdmin/Users/EditUsers";
-import Users from "../Pages/SuperAdmin/Users/Users";
-import Profile from "../Pages/SuperAdmin/profile/Profile";
-import GameRuleList from "../Pages/Admin/gamerule/GameRuleList";
-import GameRuleAdd from "../Pages/Admin/gamerule/GameRuleAdd";
-import GameList from "../Pages/Admin/addgame/GameList";
-import GameAdd from "../Pages/Admin/addgame/GameAdd";
+
+import AddUsers from "../Pages/SuperAdmin/Admins/AddUsers";
+import EditUsers from "../Pages/SuperAdmin/Admins/EditUsers";
+import Users from "../Pages/SuperAdmin/Admins/Users";
+import Profile from "../Pages/SuperAdmin/Profile/Profile";
+
+
+
+import GameRuleList from "../Pages/SuperAdmin/GameRules/GameRuleList";
+import GameRuleAdd from "../Pages/SuperAdmin/GameRules/GameRuleAdd";
+import GameList from "../Pages/SuperAdmin/Games/GameList";
+import GameAdd from "../Pages/SuperAdmin/Games/GameAdd";
 
 // Bank Details
-import BankDetailsList from "../Pages/Admin/BankDetails/BankDetailsList";
-import BankDetailsAdd from "../Pages/Admin/BankDetails/BankDetailsAdd";
+import BankDetailsList from "../Pages/SuperAdmin/BankDetails/BankDetailsList";
+import BankDetailsAdd from "../Pages/SuperAdmin/BankDetails/BankDetailsAdd";
 
 const Admin = () => {
   const location = useLocation();

@@ -5,9 +5,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { getGameRule } from "../../../Redux/Slice/common/common.slice";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
-import { GameRuleDeleteApi, GameRuleListStatus } from "../../../Service/common.service";
+// import { GameRuleDeleteApi, GameRuleListStatus } from "../../../Service/common.service";
 import ToastButton from "../../../Helpers/Toast";
 import toast from "react-hot-toast";
+import { GameRuleDeleteApi , GameRuleListStatus } from "../../../Service/superadmin.service";
+
 
 const GameRuleList = () => {
   const token = localStorage.getItem("token");

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { GameRuleGetApi, GetGameListApi } from "../../../Service/common.service";
+import { GameRuleGetApi , GetGameListApi} from "../../../Service/common.service";
 
 
 
@@ -29,7 +29,7 @@ const CommonSlice = createSlice({
   name: "CommonSlice",
   initialState: {
     getGameRuleState: [],
-    getGameListState:[],
+    // getGameListState:[],
     isLoading:false
   },
   reducers: {},

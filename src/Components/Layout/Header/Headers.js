@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useEffect} from "react";
 import { useAppContext } from "../../Context/CreateContext";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -6,9 +6,38 @@ const Headers = () => {
   const { toggleMenuCollapsed } = useAppContext();
   const navigate = useNavigate();
 
+  const getTokenExpiryTime = () => {
+    const tokenExpiry = localStorage.getItem("token");
+    return tokenExpiry ? new Date(tokenExpiry) : null;
+  };
+
   const handleClick = () => {
     toggleMenuCollapsed();
   };
+
+  // -----------------
+
+  useEffect(() => {
+    const checkTokenExpiry = () => {
+      const tokenExpiry = getTokenExpiryTime();
+      if (tokenExpiry && new Date() > tokenExpiry) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user_details");
+        localStorage.removeItem("roles");
+        setTimeout(() => {
+          navigate("/tokenexpiry");
+        }, 1000);
+      }
+    };
+
+    // Check token expiry every minute
+    const interval = setInterval(checkTokenExpiry, 60000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval);
+  }, [navigate]);
+
+  // -----------------
 
   const handleLogout = () => {
     localStorage.removeItem("token");
