@@ -9,9 +9,6 @@ import AddUsers from "../Pages/SuperAdmin/Admins/AddUsers";
 import EditUsers from "../Pages/SuperAdmin/Admins/EditUsers";
 import Users from "../Pages/SuperAdmin/Admins/Users";
 import Profile from "../Pages/SuperAdmin/Profile/Profile";
-
-
-
 import GameRuleList from "../Pages/SuperAdmin/GameRules/GameRuleList";
 import GameRuleAdd from "../Pages/SuperAdmin/GameRules/GameRuleAdd";
 import GameList from "../Pages/SuperAdmin/Games/GameList";
