@@ -4,8 +4,7 @@ import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 import Loader from "./Loader";
 
-
-const Data_Table = ({ columns, data , tableStyle,isLoading }) => {
+const Data_Table = ({ columns, data, tableStyle, isLoading }) => {
   const adminStyles = {
     rows: {
       style: {},
@@ -44,10 +43,18 @@ const Data_Table = ({ columns, data , tableStyle,isLoading }) => {
     },
   };
 
+  const columns1 = [
+    {
+      name: "Sr. No",
+      selector: (row, index) => index + 1,
+    },
+    ...columns,
+  ];
+
   return (
     <>
       <DataTableExtensions
-        columns={columns}
+        columns={columns1}
         data={data}
         print={false}
         export={false}
@@ -58,10 +65,16 @@ const Data_Table = ({ columns, data , tableStyle,isLoading }) => {
           defaultSortAsc={false}
           pagination
           highlightOnHover
-yles={tableStyle ? adminStyles : userStyles }
-          noDataComponent={isLoading ? (<div className="user-loading-main">
-          <Loader lodersize={25}/>
-        </div>) :"There are no records to display"}
+          yles={tableStyle ? adminStyles : userStyles}
+          noDataComponent={
+            isLoading ? (
+              <div className="user-loading-main">
+                <Loader lodersize={25} />
+              </div>
+            ) : (
+              "There are no records to display"
+            )
+          }
         />
       </DataTableExtensions>
     </>
