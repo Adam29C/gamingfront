@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   AllMatchesApi,
   MatchListApi,
+  PaymentHistory,
   SeriesListApi,
   UserProfileGetApi,
 } from "../../../Service/user.service";
@@ -34,11 +35,10 @@ export const getAllMatches = createAsyncThunk(
 export const getMatchList = createAsyncThunk(
   "user/getMatchList",
   async (data) => {
-  
     try {
       let { id, token } = data;
-      const res = await MatchListApi(id, token)
-      return await res
+      const res = await MatchListApi(id, token);
+      return await res;
     } catch (error) {
       return error;
     }
@@ -53,8 +53,6 @@ export const getSeriesList = createAsyncThunk(
     try {
       const res = await SeriesListApi(token);
 
-
-
       return res;
     } catch (error) {
       console.log("error", error);
@@ -68,28 +66,62 @@ export const getSeriesList = createAsyncThunk(
   }
 );
 
+
+// user get payment history
+export const getPaymentHistory = createAsyncThunk(
+  "user/getPaymentHistory",
+  async (data) => {
+    try {
+      let { userId, token ,paymentstatus } = data;
+      let getData = {
+        userId :userId ,
+        paymentstatus:paymentstatus
+      }
+   
+      const res = await PaymentHistory(getData, token)
+      return await res
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
 const UserSlice = createSlice({
   name: "UserSlice",
   initialState: {
     getUserProfileState: {},
     getAllMatchListState: [],
     getMatchListState: [],
-    getSeriesListState: [],
+    getPaymentHistorytState: {},
+    isLoading: false,
   },
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getUserProfile.fulfilled, (state, action) => {
-      state.getUserProfileState = action.payload;
-    });
-    builder.addCase(getAllMatches.fulfilled, (state, action) => {
-      state.getAllMatchListState = action.payload;
-    });
-    builder.addCase(getMatchList.fulfilled, (state, action) => {
-      state.getMatchListState = action.payload;
-    });
-    builder.addCase(getSeriesList.fulfilled, (state, action) => {
-      state.getSeriesListState = action.payload;
-    });
+    builder
+      .addCase(getUserProfile.fulfilled, (state, action) => {
+        state.getUserProfileState = action.payload;
+      })
+      .addCase(getAllMatches.fulfilled, (state, action) => {
+        state.getAllMatchListState = action.payload;
+      })
+      .addCase(getMatchList.fulfilled, (state, action) => {
+        state.getMatchListState = action.payload;
+      })
+      .addCase(getSeriesList.fulfilled, (state, action) => {
+        state.getSeriesListState = action.payload;
+      })
+      .addCase(getPaymentHistory.pending, (state, action) => {
+        state.getPaymentHistorytState = [];
+        state.isLoading = true;
+      })
+      .addCase(getPaymentHistory.fulfilled, (state, action) => {
+        state.getPaymentHistorytState = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(getPaymentHistory.rejected, (state, action) => {
+        state.getPaymentHistorytState = [];
+        state.isLoading = false;
+      });
   },
 });
 

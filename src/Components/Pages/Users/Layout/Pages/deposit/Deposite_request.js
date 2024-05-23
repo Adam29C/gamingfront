@@ -1,7 +1,8 @@
 import React from "react";
 import Rules from "./Rules";
 
-const Deposite_request = () => {
+const Deposite_request = ({handleTransactionSubmit}) => {
+
   return (
     <div>
       <div className="row">
@@ -12,7 +13,7 @@ const Deposite_request = () => {
               style={{ marginTop: 10 }}
             >
               <div className="card-body">
-                <form id="amountForm" method="post">
+                <form id="amountForm" method="post" >
                   <div className="form-group">
                     <label>Amount</label>
                     <div className="input-group">
@@ -26,6 +27,7 @@ const Deposite_request = () => {
                       <div className="input-group-append">
                         <button
                           type="button"
+                          onClick={()=>handleTransactionSubmit()}
                           className="input-group-text amountBtn"
                           data-wp-add=""
                           id="basic-addon2"

@@ -72,12 +72,13 @@ const GameList = () => {
 
   const handleDeleteGame = async (id) => {
     const confirmed = window.confirm(
-      "Do You Really Want To Remove This  Game Rule"
+      "Do You Really Want To Remove This Game"
     );
     if (confirmed) {
       const response = await GameDeleteApi(id, token);
-      if (response.statusCode == 200) {
-        toast.success(response.msg);
+   
+      if (response?.data?.statusCode == 200) {
+        toast.success(response?.data?.msg);
         dispatch(getGame(token));
       } else {
         toast.error(response.msg);
@@ -93,7 +94,7 @@ const GameList = () => {
       status: value
     }
     
-    // console.log(data,"checlllllll")
+
     const response = await GameRuleListStatus(data,token)
     if(response?.statusCode===200){
       toast.success(response.msg);
@@ -102,7 +103,7 @@ const GameList = () => {
     }else {
       toast.error(response.msg);
     }
-    // console.log(response)
+
   }
 
   const handleAdd = () => {

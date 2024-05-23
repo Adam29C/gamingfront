@@ -3786,6 +3786,7 @@ typeahead-container.dropdown-menu button.dropdown-item {
     line-height: 1;
     height: 30px;
   }
+
 }
 
 .img-fluid {
@@ -4026,7 +4027,7 @@ typeahead-container.dropdown-menu button.dropdown-item {
   margin-right: 5px;
   text-transform: uppercase;
   font-size: 12px;
-  padding: 5px 10px;
+  padding: 3px 10px;
   background-color: #343435;
 }
 

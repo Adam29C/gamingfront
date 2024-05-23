@@ -3,7 +3,8 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 // import * as Config from "../Utils/Config";
 
 import Wraper from "../Layout/Wraper/Wraper";
-import Dashboard from "../Pages/SuperAdmin/Dashboard/Dashboard";
+import Dashboard from "../Pages/Superadmin/Dashboard/Dashboard";
+// import { useDispatch, useSelector } from "react-redux";
 
 import AddUsers from "../Pages/SuperAdmin/Admins/AddUsers";
 import EditUsers from "../Pages/SuperAdmin/Admins/EditUsers";

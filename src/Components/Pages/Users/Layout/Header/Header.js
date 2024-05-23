@@ -6,7 +6,7 @@ import { jwtDecode } from "jwt-decode";
 import { Rule } from "../Pages/rules/Rule";
 import Model from "../../../../Helpers/Model";
 import SubHeader from "./SubHeader";
-const Header = () => {
+const Header = (props) => {
   const role = localStorage.getItem("roles");
   const token = localStorage.getItem("token");
   const user_details = JSON.parse(localStorage.getItem("user_details"));
@@ -37,7 +37,6 @@ const Header = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user_details");
     localStorage.removeItem("roles");
-
     setTimeout(() => {
       navigate("/");
     }, 1000);
@@ -77,14 +76,11 @@ const Header = () => {
                   src="/assets/images/reddybook/logo.png"
                 />
               </Link>
-              {/* <i
+
+              <i
                 _ngcontent-nsr-c54=""
                 className="bi bi-list-nested toggle-sidebar-btn"
-              /> */}
-                    <i
-                _ngcontent-nsr-c54=""
-                className="bi bi-list-nested toggle-sidebar-btn"
-              >checl</i>
+              />
             </div>
             <div _ngcontent-nsr-c54="" className="search-bar">
               <form
@@ -126,7 +122,7 @@ const Header = () => {
                 >
                   <img
                     _ngcontent-mmi-c54=""
-                    src="assets/images/deposit-icon.png"
+                    src="/assets/images/deposit-icon.png"
                   />{" "}
                   deposit
                 </Link>
@@ -138,7 +134,7 @@ const Header = () => {
                 >
                   <img
                     _ngcontent-mmi-c54=""
-                    src="assets/images/withdrawal-icon.png"
+                    src="/assets/images/withdrawal-icon.png"
                   />
                   withdrawal
                 </Link>
@@ -226,7 +222,7 @@ const Header = () => {
                           >
                             <img
                               _ngcontent-mmi-c54=""
-                              src="assets/images/menu-home.png"
+                              src="/assets/images/menu-home.png"
                               className="user-header-menue-img"
                             />
                             <span _ngcontent-mmi-c54="">home</span>
@@ -241,7 +237,7 @@ const Header = () => {
                           >
                             <img
                               _ngcontent-mmi-c54=""
-                              src="assets/images/deposit-icon.png"
+                              src="/assets/images/deposit-icon.png"
                               className="user-header-menue-img"
                             />
                             <span _ngcontent-mmi-c54="">Deposit </span>
@@ -257,7 +253,7 @@ const Header = () => {
                           >
                             <img
                               _ngcontent-mmi-c54=""
-                              src="assets/images/withdrawal-icon.png"
+                              src="/assets/images/withdrawal-icon.png"
                               className="user-header-menue-img"
                             />
                             <span _ngcontent-mmi-c54="">Withdraw</span>

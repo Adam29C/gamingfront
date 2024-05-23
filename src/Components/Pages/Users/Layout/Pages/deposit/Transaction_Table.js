@@ -1,6 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getPaymentHistory } from "../../../../../Redux/Slice/User/user.slice";
+import { PaymentHistory } from "../../../../../Service/user.service";
+import moment from "moment";
+import Loader from "../../../../../Helpers/Loader";
 
 const Transaction_Table = () => {
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+  const userId = JSON.parse(localStorage.getItem("user_details")).id;
+  const { getPaymentHistorytState, isLoading } = useSelector(
+    (state) => state.UserSlice
+  );
+
+  const getPaymentData = () => {
+    let data = {
+      token: token,
+      userId: userId,
+      paymentstatus: "credit",
+    };
+
+    dispatch(getPaymentHistory(data));
+  };
+
+  useEffect(() => {
+    getPaymentData();
+  }, []);
   return (
     <div>
       <div className="account-table">
@@ -18,9 +43,45 @@ const Transaction_Table = () => {
             </tr>
           </thead>
           <tbody id="depositTableData">
-            <tr id="no_data_found">
-              <td colSpan={5}>No data found!</td>
-            </tr>
+            {isLoading ? (
+              <tr id="no_data_found">
+                <td colSpan={5}>
+                  {" "}
+                  <Loader lodersize={20} />
+                </td>
+              </tr>
+            ) : getPaymentHistorytState?.paymentInfo?.length === 0 ? (
+              <tr id="no_data_found">
+                <td colSpan={5}>No data found!</td>
+              </tr>
+            ) : (
+              getPaymentHistorytState?.paymentInfo?.map((transaction) => {
+                const {
+                  accountId,
+                  amount,
+                  status,
+                  createdAt,
+                  reason,
+                } = transaction;
+                return( 
+                <tr key={accountId}>
+                  <td>
+                    {accountId ? accountId : " _ "}
+                  </td>
+                  <td>{amount ? amount : " _ "}</td>
+                  <td>{status ? status : " _ "}</td>
+                  <td>
+                    {moment(
+                      createdAt ? createdAt : " _ "
+                    ).format("DD-MM-YYYY")}
+                  </td>
+                  <td>{reason ? reason : " _ "}</td>
+                </tr>
+                )
+                
+               
+})
+            )}
           </tbody>
         </table>
         <div className="row video-player">
