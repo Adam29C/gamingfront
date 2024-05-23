@@ -1,7 +1,10 @@
 import React from "react";
 import Rules from "./Rules";
 
-const Deposite_request = ({handleTransactionSubmit}) => {
+const Deposite_request = ({handleTransactionSubmit,setAmount,error}) => {
+
+
+
 
   return (
     <div>
@@ -23,7 +26,11 @@ const Deposite_request = ({handleTransactionSubmit}) => {
                         name="amount"
                         id="amount"
                         placeholder="Enter amount"
+                        onChange={(e) => setAmount(e.target.value)}
+
                       />
+                           
+
                       <div className="input-group-append">
                         <button
                           type="button"
@@ -35,8 +42,10 @@ const Deposite_request = ({handleTransactionSubmit}) => {
                           SUBMIT
                         </button>
                       </div>
+                     
                     </div>
                   </div>
+                 {error && <div style={{ color: 'red', marginTop: '5px',textAlign:"left" }}>{error}</div>}
                 </form>
               </div>
             </div>
