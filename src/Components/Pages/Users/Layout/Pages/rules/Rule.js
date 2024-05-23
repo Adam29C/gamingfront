@@ -6,15 +6,13 @@ import Loader from "../../../../../Helpers/Loader";
 import { v4 } from "uuid";
 import { getGameRule } from "../../../../../Redux/Slice/common/common.slice";
 export const Rule = ({ setShow }) => {
-  // const token = localStorage.getItem("token");
+
   const [token, setToken] = useState("");
   const { getGameRuleState, isLoading } = useSelector(
     (state) => state.CommonSlice
   );
+
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getGameRule(token));
-  // }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,17 +67,22 @@ export const Rule = ({ setShow }) => {
                         <div className="user-loading-main">
                           <Loader lodersize={25}/>
                         </div>
-                      ) : getGameRuleState?.data?.length < 0 ? (
+                      ) : 
+                      getGameRuleState?.data?.length > 0 ? 
+                      (
                         getGameRuleState?.data?.map((item, index) => (
                           <Accordion.Item eventKey={item?._id} key={index}>
                             <Accordion.Header>{item?.title}</Accordion.Header>
                             <Accordion.Body>{item?.description}</Accordion.Body>
                           </Accordion.Item>
                         ))
-                      ) : (
+                      ) 
+                      : 
+                      (
                         <div className="user-loading-main">
                         <p className="no-record-text">No records found</p></div>
-                      )}
+                      )
+                      }
                     </Accordion>
                   </div>
                 </div>

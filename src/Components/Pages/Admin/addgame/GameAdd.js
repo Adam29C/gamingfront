@@ -44,7 +44,7 @@ const GameAdd = ({ show, setShow, updateData }) => {
           isShow: values.status,
         };
         const res = await GameUpdateApi(data, token);
-        console.log(res,"addupdated resss")
+      
         if (res?.status === 409) {
           toast.error(res.data.msg);
         } else if (res.data.statusCode === 200) {
@@ -55,7 +55,7 @@ const GameAdd = ({ show, setShow, updateData }) => {
         
 
           dispatch(getGame(token));
-        } else if (!res.status) {
+        } else if (!res?.data?.status) {
           toast.error(res.msg);
         }
       } else {
@@ -66,16 +66,16 @@ const GameAdd = ({ show, setShow, updateData }) => {
         const res = await GameAddApi(data, token);
 
         if (res?.status === 409) {
-          toast.error(res.data.msg);
-        } else if (res?.status === 201) {
+          toast.error(res?.data?.msg);
+        } else if (res?.data?.statusCode === 201) {
           resetForm()
-          toast.success(res?.statusText);
+          toast.success(res?.data?.msg);
     
             setShow(false)
        
 
           dispatch(getGame(token));
-        } else if (!res.data.status) {
+        } else if (!res?.data?.status) {
           toast.error(res.msg);
         }
       }

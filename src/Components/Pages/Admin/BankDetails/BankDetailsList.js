@@ -17,7 +17,7 @@ const GameRuleList = () => {
   const { getGameRuleState, isLoading } = useSelector(
     (state) => state.CommonSlice
   );
-  console.log(isLoading, "check loding");
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const columns = [
@@ -102,7 +102,7 @@ const GameRuleList = () => {
     } else {
       toast.error(response.msg);
     }
-    // console.log(response)
+
   };
   const handleAdd = () => {
     navigate("/super/bankdetail/add");

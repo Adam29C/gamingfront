@@ -7,7 +7,7 @@ import {
 } from "../../../../Redux/Slice/User/user.slice";
 import { v4 } from "uuid";
 import { Generate_Token } from "../../../../Redux/Slice/Auth/auth.slice";
-const Sidebar = () => {
+const Sidebar = (props) => {
   const { getSeriesListState, getMatchListState } = useSelector(
     (state) => state.UserSlice
   );

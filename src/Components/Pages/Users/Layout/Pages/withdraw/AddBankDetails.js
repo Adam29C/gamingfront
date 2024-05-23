@@ -38,7 +38,7 @@ const WithdrawModel = ({ show, setShow }) => {
       if (!values.isBank && formik.touched.isBank) {
         errors.isBank = valid_err.EMPTY_SELECT_BANK_ERROR;
       } else if (values.isBank == "true") {
-        console.log("values.isBank", values.isBank);
+   
         if (!values.bankName) {
           errors.bankName = valid_err.EMPTY_BANK_NAME_ERROR;
         }

@@ -255,7 +255,7 @@ const Headers = () => {
               <div className="dropdown-menu profile dropdown-menu-right">
                 {/* User Profile Area */}
                 <div className="user-profile-area">
-                  <Link to="/superadmin/profile" className="dropdown-item">
+                  <Link to="/super/profile" className="dropdown-item">
                     <i className="bx bx-user font-15" aria-hidden="true" /> My
                     profile
                   </Link>
