@@ -42,6 +42,16 @@ const Header = (props) => {
     }, 1000);
   };
 
+  const openSidebar = (e) => {
+  
+    if (props.open) {
+      document.body.classList.add("toggle-sidebar");
+    } else {
+      props.setOpen(!props.open);
+      document.body.classList.remove("toggle-sidebar");
+    }
+  };
+
   return (
     <>
       {" "}
@@ -59,6 +69,7 @@ const Header = (props) => {
               _ngcontent-nsr-c54=""
               className="d-flex align-items-center justify-content-between"
             >
+              {/* toggle */}
               <Link
                 _ngcontent-nsr-c54=""
                 to="/dashboard"
@@ -77,10 +88,18 @@ const Header = (props) => {
                 />
               </Link>
 
-              <i
-                _ngcontent-nsr-c54=""
-                className="bi bi-list-nested toggle-sidebar-btn"
-              />
+              <button
+                onClick={(e) => {
+                  props.setOpen(!props.open);
+                  openSidebar(e);
+                }}
+              >
+                <i
+                  _ngcontent-nsr-c54=""
+                  className="bi bi-list-nested toggle-sidebar-btn"
+                />
+              </button>
+              {/* toggle*/}
             </div>
             <div _ngcontent-nsr-c54="" className="search-bar">
               <form

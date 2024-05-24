@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Content from "../../../Layout/Content/Content";
 import Data_Table from "../../../Helpers/Datatable";
 import { Link, useNavigate } from "react-router-dom";
@@ -28,11 +28,13 @@ const GameRuleList = () => {
     {
       name: "Title",
       selector: (row) => row.title,
+      width: "200px",
     },
 
     {
       name: "Description",
       selector: (row) => row.description,
+      width: "300px",
     },
     {
       name: "Status",
@@ -78,7 +80,6 @@ const GameRuleList = () => {
     getRules();
   }, [token, dispatch]);
 
-  
   const handleDeleteGameRule = async (id) => {
     const confirmed = window.confirm(
       "Do You Really Want To Remove This  Game Rule"

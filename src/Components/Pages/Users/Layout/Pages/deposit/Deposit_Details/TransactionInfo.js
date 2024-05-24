@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TransactionInfo = () => {
+const TransactionInfo = ({amount}) => {
   return (
     <div className="col-md-6">
     <form
@@ -62,10 +62,10 @@ const TransactionInfo = () => {
             type="number"
             className="form-control"
             name="amount"
-            defaultValue={2300}
-            readOnly=""
+            defaultValue={amount}
+            disabled
             id="amount16485Input"
-            placeholder="Enter amount"
+            
           />
           <div
             className="btn-group"
@@ -141,13 +141,14 @@ const TransactionInfo = () => {
           name="account_id"
           defaultValue={16485}
         />
-        <div className="custom-control custom-checkbox">
+        <div className="custom-control custom-checkbox d-flex">
           <input
             type="checkbox"
             className="custom-control-input"
             name="terms_condition"
             id="termsCheck16485"
           />
+          <div>
           <label
             className="custom-control-label"
             htmlFor="termsCheck16485"
@@ -163,7 +164,33 @@ const TransactionInfo = () => {
               withdrawal policy.
             </a>
           </label>
+          </div>
         </div>
+             {/* <div className='d-flex' >
+          <input
+            type="checkbox"
+           
+            name="terms_condition"
+            id="termsCheck16485"
+          />
+         <div>
+         <label
+          
+          htmlFor="termsCheck16485"
+        >
+          I have read and agree with
+          <a
+            href="#"
+            data-toggle="modal"
+            data-target="#termsAndCondition"
+           
+          >
+            the terms of payment and
+            withdrawal policy.
+          </a>
+        </label>
+         </div>
+        </div> */}
       </div>
       <div className="modal-footer">
         <button

@@ -1038,6 +1038,13 @@ a {
   box-shadow: 0 0 0 0.2rem var(--theme-opacity);
 }
 
+.custom-control {
+  position: relative;
+  display: block;
+  min-height: 1.5rem;
+  padding-left: 1.5rem;
+}
+
 .delete-account-btn {
   top: 4px;
   right: 4px;
@@ -1142,4 +1149,5 @@ border: none;
 .custom-switch .form-check-input:checked {
   background-color: #4E3896; 
 }
+
 

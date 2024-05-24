@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 import Loader from "./Loader";
+import { Tooltip, OverlayTrigger, Form } from 'react-bootstrap';
 
 const Data_Table = ({ columns, data, tableStyle, isLoading }) => {
   const adminStyles = {
@@ -49,10 +50,23 @@ const Data_Table = ({ columns, data, tableStyle, isLoading }) => {
     },
   };
 
+  const TooltipCell = ({ value }) => (
+    <OverlayTrigger
+      placement="top"
+      overlay={<Tooltip>{value}</Tooltip>}
+    >
+      <div className="truncated-cell">{value}</div>
+    </OverlayTrigger>
+  );
+
+
+
+
   const columns1 = [
     {
       name: "Sr. No",
       selector: (row, index) => index + 1,
+      width: "70px",
     },
     ...columns,
   ];

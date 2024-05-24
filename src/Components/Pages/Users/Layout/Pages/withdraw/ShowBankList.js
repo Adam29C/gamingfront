@@ -70,7 +70,6 @@ const ShowWithdrawList = () => {
   // SUBMIT REQUEST
 
   const SubmitWithdraw = async (e, details) => {
-    console.log("details", details);
     e.preventDefault();
 
     const req = {

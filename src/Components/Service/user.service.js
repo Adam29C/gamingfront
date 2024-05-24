@@ -43,6 +43,20 @@ export async function SeriesListApi(token) {
   }
 }
 
+//get match details 
+export async function MATCH_DETAILS_API(id,token) {
+  try {
+    console.log(id,"id")
+    console.log(token,"token")
+    const res = await axios.get(`${baseurl}sports/matchDetails/${id}`, {
+      headers: header(token),
+    });
+    return await res?.data;
+  } catch (error) {
+    return error;
+  }
+}
+
 // -----------------------------  THIRD PARTY API END ------------------------------
 
 // -----------------------------  USERS API'S  ------------------------------
@@ -208,16 +222,13 @@ export async function UpdateResetPassword(data, token) {
 }
 
 
-
+//get payment history
 export async function PaymentHistory(data, token) {
-
-  
-  try {
+try {
     const res = await axios.post(`${baseurl}userRouter/filterPaymentHistory`,data, {
       headers: header(token),
     });
-
-    return await res?.data;
+return await res?.data;
   } catch (error) {
     return error;
   }

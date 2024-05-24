@@ -41,6 +41,7 @@ const ReusableForm = ({
   const [previews, setPreviews] = useState([]); // Array to store individual previews
 
   const handleFileChange = (event, index, name) => {
+    console.log(event.target.files[0])
     const file = event.target.files[0];
     const newPreviews = [...previews]; // Create a copy of the previews array
 
@@ -49,11 +50,13 @@ const ReusableForm = ({
 
     const reader = new FileReader();
     reader.onload = () => {
-      //setPreviewImage(reader.result);
-      formik.setFieldValue(name, reader.result); // Set Formik field value for the specific index
+      // setPreviewImage(reader.result);
+      // formik.setFieldValue(name, reader.result); // Set Formik field value for the specific index
     };
-
     reader.readAsDataURL(file);
+    return formik.setFieldValue(name, file);
+
+
   };
 
   const getCurrentDate = () => {
@@ -258,8 +261,8 @@ const ReusableForm = ({
                         />
                         <i
                           class={`fa-solid ${passwordVisible[field.name]
-                              ? "fa-eye-slash"
-                              : "fa-eye"
+                            ? "fa-eye-slash"
+                            : "fa-eye"
                             }`}
                           style={{
                             position: "absolute",

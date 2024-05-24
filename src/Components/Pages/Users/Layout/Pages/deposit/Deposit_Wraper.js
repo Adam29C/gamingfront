@@ -20,7 +20,7 @@ const Deposit = () => {
     }
     setShow(true);
     setError("");
-    setAmount("");
+    setAmount(amount);
   };
 
   return (
@@ -83,8 +83,8 @@ const Deposit = () => {
                                             PhonePe
                                           </h5>
                                           <div className="row">
-                                            <Available_Option_Details />
-                                            <TransactionInfo />
+                                            <Available_Option_Details/>
+                                            <TransactionInfo  amount={amount}/>
                                           </div>
                                         </div>
                                         <div

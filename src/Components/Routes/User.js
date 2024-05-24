@@ -7,6 +7,7 @@ import Withdraw from "../Pages/Users/Layout/Pages/withdraw/WithdrawWraper";
 import UserProfile from "../Pages/Users/Layout/Pages/userprofile/UserProfile";
 import PaymentHistory from "../Pages/Users/Layout/Pages/paymenthistory/PaymentHistory";
 import NotFound from "../Pages/Auth/NotFound";
+import MatchDetails from "../Pages/Users/Layout/Pages/matchdetails/MatchDetails";
 const Admin = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,7 +32,9 @@ const Admin = () => {
         <Route exact path="/withdraw" element={<Withdraw />} />
         <Route exact path="/userprofile" element={<UserProfile />} />
         <Route exact path="/payment-history" element={<PaymentHistory />} />
-
+        <Route exact path="match-details/:id" element={<MatchDetails />} />
+       
+s
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

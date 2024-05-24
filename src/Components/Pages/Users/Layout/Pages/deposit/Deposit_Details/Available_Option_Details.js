@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Available_Option_Details = () => {
+const Available_Option_Details = ({amount}) => {
   return (
     <div className="col-md-6">
     <div className="row justify-content-center">

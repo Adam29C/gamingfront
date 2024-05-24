@@ -65,7 +65,6 @@ const WithdrawModel = ({ show, setShow }) => {
 
       const response = await SendOtpForResetPassword(req, token);
 
-      console.log("response", response);
 
       if (response.status === 409) {
         toast.error(response.data.msg);

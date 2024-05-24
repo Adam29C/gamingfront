@@ -19,7 +19,6 @@ const Sidebar = (props) => {
   const getSeriesListdata = getSeriesListState?.data?.response?.items;
   const getMatchListdata = getMatchListState?.data?.response?.items;
 
-
   useEffect(() => {
     const fetchData = async () => {
       const request1 = { deviceId: v4() };
@@ -39,7 +38,6 @@ const Sidebar = (props) => {
   }, [dispatch]);
 
   const handleMatchClick = async (matchId) => {
- 
     if (token) {
       try {
         let data = {
@@ -47,7 +45,9 @@ const Sidebar = (props) => {
           id: matchId,
         };
         await dispatch(getMatchList(data)).unwrap();
-        setExpandedSeries((prevSeries) => (prevSeries === matchId ? null : matchId)); // Toggle the expanded series
+        setExpandedSeries((prevSeries) =>
+          prevSeries === matchId ? null : matchId
+        ); // Toggle the expanded series
       } catch (error) {
         console.error("Error fetching match details:", error);
       }
@@ -144,28 +144,33 @@ const Sidebar = (props) => {
                     onClick={() => handleMatchClick(row?.cid)}
                     className="collapsed"
                     // aria-expanded="false"
-                    aria-expanded={expandedSeries === row.cid ? "true" : "false"}
+                    aria-expanded={
+                      expandedSeries === row.cid ? "true" : "false"
+                    }
                   >
                     <span>{row?.title}</span>
                     <i className="bi bi-caret-down ms-auto" />
                   </Link>
 
-                  <div 
-                  // className="collapse" id="collapse00"
-                  className={`collapse ${expandedSeries === row.cid ? "show" : ""}`} id={`collapse${row.cid}`}
+                  <div
+                    // className="collapse" id="collapse00"
+                    className={`collapse ${
+                      expandedSeries === row.cid ? "show" : ""
+                    }`}
+                    id={`collapse${row.cid}`}
                   >
                     <ul className="nav-second-level">
                       {getMatchListdata?.map((matchrow) => (
                         <li>
                           <Link
-                          to={`/match/${matchrow.match_id}`}
-                           data-bs-toggle="collapse"  className="final-link" >
+                            to={`match-details/${matchrow.match_id}`}
+                            // data-bs-toggle="collapse"
+                            className="final-link"
+                          >
                             <span>{matchrow?.title}</span>
-                          
                           </Link>
                         </li>
                       ))}
-                   
                     </ul>
                   </div>
                 </li>
