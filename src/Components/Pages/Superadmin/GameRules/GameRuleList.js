@@ -8,15 +8,22 @@ import Form from "react-bootstrap/Form";
 // import { GameRuleDeleteApi, GameRuleListStatus } from "../../../Service/common.service";
 import ToastButton from "../../../Helpers/Toast";
 import toast from "react-hot-toast";
-import { GameRuleDeleteApi , GameRuleListStatus } from "../../../Service/superadmin.service";
-
+import {
+  GameRuleDeleteApi,
+  GameRuleListStatus,
+} from "../../../Service/superadmin.service";
 
 const GameRuleList = () => {
   const token = localStorage.getItem("token");
-  const { getGameRuleState,isLoading } = useSelector((state) => state.CommonSlice);
+  const { getGameRuleState, isLoading } = useSelector(
+    (state) => state?.CommonSlice
+  );
+
+  const data = getGameRuleState?.data;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const columns = [
     {
       name: "Title",
@@ -35,7 +42,7 @@ const GameRuleList = () => {
             type="switch"
             id="custom-switch"
             defaultChecked={row?.status}
-            onChange={(e) => handleStatusUpdate(e.target.checked , row?._id)}
+            onChange={(e) => handleStatusUpdate(e.target.checked, row?._id)}
             className="custom-switch"
           />
         </>
@@ -63,12 +70,15 @@ const GameRuleList = () => {
     },
   ];
 
+  const getRules = async () => {
+    await dispatch(getGameRule(token));
+  };
+
   useEffect(() => {
-    dispatch(getGameRule(token));
-  }, []);
+    getRules();
+  }, [token, dispatch]);
 
-  const data = getGameRuleState?.data;
-
+  
   const handleDeleteGameRule = async (id) => {
     const confirmed = window.confirm(
       "Do You Really Want To Remove This  Game Rule"
@@ -86,29 +96,31 @@ const GameRuleList = () => {
     }
   };
 
-  const handleStatusUpdate = async(value,id)=>{
-    let data ={
+  const handleStatusUpdate = async (value, id) => {
+    let data = {
       ruleId: id,
-      status: value
-    }
-    
+      status: value,
+    };
 
-    const response = await GameRuleListStatus(data,token)
-    if(response?.statusCode===200){
+    const response = await GameRuleListStatus(data, token);
+    if (response?.statusCode === 200) {
       toast.success(response.msg);
       dispatch(getGameRule(token));
-      
-    }else {
+    } else {
       toast.error(response.msg);
     }
-
-  }
+  };
   const handleAdd = () => {
     navigate("/super/rules/add");
   };
   return (
     <>
-      <Content title="Game Rule" addtitle="Add Rule" handleAdd={handleAdd}  col_size={12}>
+      <Content
+        title="Game Rule"
+        addtitle="Add Rule"
+        handleAdd={handleAdd}
+        col_size={12}
+      >
         <Data_Table isLoading={isLoading} columns={columns} data={data} />
         <ToastButton />
       </Content>

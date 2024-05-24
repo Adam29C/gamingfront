@@ -43,6 +43,20 @@ export async function ADD_ADMINS(data , token) {
 }
 
 
+//game rule list status change api
+export async function GET_ALL_SUBADMINS(data, token) {
+  try {
+    const res = await axios.get(
+      `${baseurl}adminRouter/subAdminList?adminId=${data}`,
+
+      { headers: header(token) }
+    );
+    return await res?.data;
+  } catch (error) {
+    return error;
+  }
+}
+
 
 
 

@@ -7,9 +7,8 @@ import Dashboard from "../Pages/SuperAdmin/Dashboard/Dashboard";
 // import { useDispatch, useSelector } from "react-redux";
 
 import AddUsers from "../Pages/SuperAdmin/Admins/AddUsers";
-import EditUsers from "../Pages/SuperAdmin/Admins/EditUsers";
 import Users from "../Pages/SuperAdmin/Admins/Users";
-import Profile from "../Pages/SuperAdmin/profile/Profile";
+import Profile from "../Pages/SuperAdmin/Profile/Profile";
 
 import GameRuleList from "../Pages/SuperAdmin/GameRules/GameRuleList";
 import GameRuleAdd from "../Pages/SuperAdmin/GameRules/GameRuleAdd";
@@ -42,7 +41,7 @@ const Admin = () => {
       <Routes>
         <Route exact path="/dashboard" element={<Dashboard />} />
         <Route exact path="/user/add" element={<AddUsers />} />
-        <Route exact path="/user/edit/1" element={<EditUsers />} />
+        {/* <Route exact path="/user/edit/1" element={<EditUsers />} /> */}
         <Route exact path="/users" element={<Users />} />
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/rules" element={<GameRuleList />} />

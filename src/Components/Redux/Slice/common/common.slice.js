@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { GameRuleGetApi , GetGameListApi} from "../../../Service/common.service";
-
-
+import {
+  GameRuleGetApi,
+  GetGameListApi,
+} from "../../../Service/common.service";
 
 export const getGameRule = createAsyncThunk(
   "common/getGameRule",
   async (token) => {
-   
     try {
       const res = await GameRuleGetApi(token);
       return await res;
@@ -16,48 +16,66 @@ export const getGameRule = createAsyncThunk(
   }
 );
 
-export const getGame = createAsyncThunk("common/getGame",async(token)=>{
+export const getGame = createAsyncThunk("common/getGame", async (token) => {
   try {
-    const res = await GetGameListApi(token)
-    return res
+    const res = await GetGameListApi(token);
+    return res;
   } catch (error) {
     return error;
   }
-})
+});
 
 const CommonSlice = createSlice({
   name: "CommonSlice",
   initialState: {
     getGameRuleState: [],
-    // getGameListState:[],
-    isLoading:false
+    getGameListState: [],
+    isLoading: false,
   },
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getGameRule.pending, (state, action) => {
-        state.getGameRuleState = [];
-        state.isLoading=true
+        return {
+          ...state,
+          getGameRuleState: [],
+          isLoading: true,
+        };
       })
       .addCase(getGameRule.fulfilled, (state, action) => {
-        state.getGameRuleState = action.payload;
-        state.isLoading=false
+        return {
+          ...state,
+          getGameRuleState: action.payload,
+          isLoading: false,
+        };
       })
       .addCase(getGameRule.rejected, (state, action) => {
-        state.getGameRuleState = [];
-        state.isLoading=false
+        return {
+          ...state,
+          getGameRuleState: [],
+          isLoading: false,
+        };
       })
       .addCase(getGame.pending, (state, action) => {
-        state.getGameListState = [];
-        state.isLoading=true
+        return {
+          ...state,
+          getGameListState: [],
+          isLoading: true,
+        };
       })
       .addCase(getGame.fulfilled, (state, action) => {
-        state.getGameListState = action.payload;
-        state.isLoading=false
+        return {
+          ...state,
+          getGameListState: [],
+          isLoading: false,
+        };
       })
       .addCase(getGame.rejected, (state, action) => {
-        state.getGameListState = [];
-        state.isLoading=false
+        return {
+          ...state,
+          getGameListState: [],
+          isLoading: false,
+        };
       });
   },
 });

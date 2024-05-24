@@ -7,11 +7,13 @@ import Loader from "./Loader";
 const Data_Table = ({ columns, data, tableStyle, isLoading }) => {
   const adminStyles = {
     rows: {
-      style: {},
+      
+      background: "#4E3896",
+      color: "#fff",
     },
     headCells: {
       style: {
-        background: "#0e0b2b",
+        background: "#4E3896",
         color: "#fff",
       },
     },
@@ -20,6 +22,8 @@ const Data_Table = ({ columns, data, tableStyle, isLoading }) => {
       //   paddingLeft: "8px",
       //   paddingRight: "8px",
       // },
+      background: "#4E3896",
+      color: "#fff",
     },
   };
 
@@ -40,6 +44,8 @@ const Data_Table = ({ columns, data, tableStyle, isLoading }) => {
       //   paddingLeft: "8px",
       //   paddingRight: "8px",
       // },
+      background: "#4E3896",
+      color: "#fff",
     },
   };
 
