@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Content from "../../../Layout/Content/Content";
 import Data_Table from "../../../Helpers/Datatable";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,15 +17,20 @@ const GameRuleList = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+
   const columns = [
     {
       name: "Title",
       selector: (row) => row.title,
+      width: '200px',
     },
 
     {
       name: "Description",
       selector: (row) => row.description,
+width: '300px', 
+
     },
     {
       name: "Status",

@@ -45,7 +45,6 @@ const WithdrawModel = ({ show, setShow }) => {
 
       const response = await CreateWithdrawPassword(req, token);
       // .then((response) => {
-      console.log("response111", response.statusCode);
 
       if (response.statusCode === 201) {
         toast.success(response.msg);

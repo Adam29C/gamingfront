@@ -19,6 +19,7 @@ import Dashboard from "../Pages/Users/Layout/Pages/dashbaord";
 import NotFound from "../Pages/Auth/NotFound";
 import TokenExpiry from "../Pages/Auth/TokenExpiry";
 import VerifySubadmin from "../Pages/Auth/VerifySubadmin";
+import MatchDetails from "../Pages/Users/Layout/Pages/matchdetails/MatchDetails";
 
 const Routing = () => {
   const location = useLocation();
@@ -45,6 +46,7 @@ const Routing = () => {
         <Route path="*" element={<NotFound />} />
         <Route path="/*" element={<Wraper />}>
           <Route path="" element={<Dashboard />} />
+          <Route exact path="match-details/:id" element={<MatchDetails />} />
           {/* <Route path="*" element={<NotFound />} /> */}
         </Route>
       </Routes>

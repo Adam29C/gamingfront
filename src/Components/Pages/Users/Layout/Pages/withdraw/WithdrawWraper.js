@@ -31,7 +31,7 @@ const Withdraw = ({ abbb }) => {
     };
     const res = await dispatch(getUserProfile(data)).unwrap();
 
-    if (!res.data.isWithdraw) {
+    if (!res?.data?.isWithdraw) {
       setShowCreatePassword(true);
     }
   };

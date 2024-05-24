@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {
   AllMatchesApi,
+  MATCH_DETAILS_API,
   MatchListApi,
   PaymentHistory,
   SeriesListApi,
@@ -86,6 +87,26 @@ export const getPaymentHistory = createAsyncThunk(
   }
 );
 
+//get match details 
+export const getMatchDetails = createAsyncThunk(
+  "user/getMatchDetails",
+  async (data) => {
+    try {
+      console.log(data)
+      let { id,token } = data;
+      // let getData = {
+      //   userId :userId ,
+      //   paymentstatus:paymentstatus
+      // }
+   
+      const res = await MATCH_DETAILS_API(id, token)
+      return await res
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
 const UserSlice = createSlice({
   name: "UserSlice",
   initialState: {
@@ -94,6 +115,7 @@ const UserSlice = createSlice({
     getMatchListState: [],
     getPaymentHistorytState: {},
     isLoading: false,
+    getMatchDetailsState:{}
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -121,7 +143,16 @@ const UserSlice = createSlice({
       .addCase(getPaymentHistory.rejected, (state, action) => {
         state.getPaymentHistorytState = [];
         state.isLoading = false;
-      });
+      })
+      .addCase(getMatchDetails.pending, (state, action) => {
+        return { ...state, getMatchDetailsState: [], isLoading: true };
+      })
+      .addCase(getMatchDetails.fulfilled, (state, action) => {
+        return { ...state, getMatchDetailsState: action.payload, isLoading: false };
+      })
+      .addCase(getMatchDetails.rejected, (state, action) => {
+        return { ...state, getMatchDetailsState: [], isLoading: false };
+      })
   },
 });
 
