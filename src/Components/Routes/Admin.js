@@ -12,6 +12,8 @@ import {
 
 import Wraper from "../Layout/Wraper/Wraper";
 import Dashboard from "../Pages/Admin/Dashboard/Dashboard";
+import AdminsList from "../Pages/Admin/AdminsList/AdminsList";
+import AddAdminList from "../Pages/Admin/AdminsList/AddAdminList";
 // import { useDispatch, useSelector } from "react-redux";
 // import AddUsers from "../Pages/Admin/Users/AddUsers";
 // import EditUsers from "../Pages/Admin/Users/EditUsers";
@@ -35,6 +37,8 @@ const Admin = () => {
       ) : null}
       <Routes>
         <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route exact path="/userlist" element={<AdminsList/>} />
+        <Route exact path="/userlist/add" element={<AddAdminList/>} />
         {/* <Route exact path="/user/add" element={<AddUsers />} />
         <Route exact path="/user/edit/1" element={<EditUsers />} />
         <Route exact path="/users" element={<Users />} />

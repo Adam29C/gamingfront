@@ -67,7 +67,7 @@ export const admin_sidebar = [
     id: 2,
     name: "All Users",
     Icon: "fa fa-user-plus ",
-    route: "/super/alladmins",
+    route: "/admin/userlist",
     Data: [],
   },
   // {

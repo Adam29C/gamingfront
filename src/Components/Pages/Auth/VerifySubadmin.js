@@ -167,7 +167,7 @@ const Users = () => {
           Disable_Button={Disabled}
           additional_field={
             <>
-              {!ShowOTP ? (
+              {ShowOTP ? (
                 <>
                   <div className="row  mb-2 d-flex align-items-center justify-content-between">
                     <div className=" col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-6   ">

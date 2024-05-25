@@ -3,26 +3,22 @@ import DataTable from "react-data-table-component";
 import DataTableExtensions from "react-data-table-component-extensions";
 import "react-data-table-component-extensions/dist/index.css";
 import Loader from "./Loader";
-import { Tooltip, OverlayTrigger, Form } from 'react-bootstrap';
+import { Tooltip, OverlayTrigger, Form } from "react-bootstrap";
 
 const Data_Table = ({ columns, data, tableStyle, isLoading }) => {
   const adminStyles = {
     rows: {
-      
       background: "#4E3896",
       color: "#fff",
     },
     headCells: {
       style: {
         background: "#4E3896",
+      
         color: "#fff",
       },
     },
     cells: {
-      // style: {
-      //   paddingLeft: "8px",
-      //   paddingRight: "8px",
-      // },
       background: "#4E3896",
       color: "#fff",
     },
@@ -41,26 +37,16 @@ const Data_Table = ({ columns, data, tableStyle, isLoading }) => {
       },
     },
     cells: {
-      // style: {
-      //   paddingLeft: "8px",
-      //   paddingRight: "8px",
-      // },
       background: "#4E3896",
       color: "#fff",
     },
   };
 
   const TooltipCell = ({ value }) => (
-    <OverlayTrigger
-      placement="top"
-      overlay={<Tooltip>{value}</Tooltip>}
-    >
+    <OverlayTrigger placement="top" overlay={<Tooltip>{value}</Tooltip>}>
       <div className="truncated-cell">{value}</div>
     </OverlayTrigger>
   );
-
-
-
 
   const columns1 = [
     {
@@ -85,7 +71,7 @@ const Data_Table = ({ columns, data, tableStyle, isLoading }) => {
           defaultSortAsc={false}
           pagination
           highlightOnHover
-          yles={tableStyle ? adminStyles : userStyles}
+          tableStyle={tableStyle ? adminStyles : userStyles}
           noDataComponent={
             isLoading ? (
               <div className="user-loading-main">

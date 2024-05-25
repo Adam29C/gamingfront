@@ -11,35 +11,43 @@ const MatchDetails = () => {
   const { id } = useParams();
   const [token, setToken] = useState("");
   const dispatch = useDispatch();
+console.log(getMatchDetailsState,"getMatchDetailsState")
+// Generate token and set it in state
+useEffect(() => {
+  const generateTokenApi = async () => {
+    const request1 = { deviceId: v4() };
+    try {
+      const res1 = await dispatch(Generate_Token(request1)).unwrap();
+      if (res1.statusCode === 200) {
+        const tokendata = res1.data;
+        setToken(tokendata);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
-  // MATCH_DETAILS_API
+  generateTokenApi();
+}, [dispatch]);
 
- 
-  useEffect(() => {
-    const genrateTokenApi = async () => {
-      const request1 = { deviceId: v4() };
+// Fetch match details after the token is set
+useEffect(() => {
+  if (token) {
+    const fetchMatchDetails = async () => {
+      const apidata = {
+        token: token,
+        id: id,
+      };
       try {
-        let apidata = {
-          token: token,
-          id: id,
-        };
-        console.log("check api working or not",apidata)
-        const res1 = await dispatch(Generate_Token(request1)).unwrap();
-        if (res1.statusCode === 200) {
-          const tokendata = res1.data;
-          setToken(tokendata);
-          
-          if (token) {
-            await dispatch(getMatchDetails(apidata)).unwrap();
-          }
-        }
+        await dispatch(getMatchDetails(apidata)).unwrap();
       } catch (error) {
         console.error("Error:", error);
       }
     };
-  
-    genrateTokenApi();
-  }, [dispatch]);
+
+    fetchMatchDetails();
+  }
+}, [dispatch, token, id]);
 
   return (
     <main _ngcontent-pfj-c57="" id="main" className="main">

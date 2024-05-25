@@ -40,5 +40,7 @@ export const OLD_PASSWORD_ERROR = "Please Enter Old Password ";
 export const CONFIRM_PASSWORD_ERROR = "Please Enter Confirm Password";
 export const CONFIRM_AND_NEW_PASSWORD_ERROR =
   "New Password And Confirm Password Are Not Matched";
+  export const CONFIRM_AND_PASSWORD_ERROR =
+  "Password And Confirm Password Are Not Matched";
 export const OLD_AND_NEW_PASSWORD_ERROR =
   "Old Password And New Password Are Not Matched";

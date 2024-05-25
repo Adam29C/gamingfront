@@ -87,3 +87,54 @@ export async function GameDeleteApi(id, token) {
     return error;
   }
 }
+
+
+//sub admin created by user
+
+export async function SUB_ADMIN_CREATED_USER(data, token) {
+  try {
+    const res = await axios.post(
+      `${baseurl}subAdminRouter/userCreatedBySubAdmin`,data,
+      {
+        headers: header(token),
+      }
+    );
+    return res;
+  } catch (error) {
+    return error;
+  }
+}
+
+
+//sub admin get api
+export async function SUB_ADMIN_GET_LIST(id, token) {
+  try {
+    const res = await axios.get(
+      `${baseurl}subAdminRouter/subAdminUserList?subAdminId=${id}`,
+      {
+        headers: header(token),
+      }
+    );
+    return res;
+  } catch (error) {
+    return error;
+  }
+}
+
+
+
+//sub admin delete get api
+export async function SUB_ADMIN_DELETE_LIST(id, token) {
+  console.log(id)
+  try {
+    // const res = await axios.get(
+    //   `${baseurl}subAdminRouter/subAdminUserList?subAdminId=${id}`,
+    //   {
+    //     headers: header(token),
+    //   }
+    // );
+    // return res;
+  } catch (error) {
+    return error;
+  }
+}
