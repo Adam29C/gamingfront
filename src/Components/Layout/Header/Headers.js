@@ -1,10 +1,53 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppContext } from "../../Context/CreateContext";
+import { Link, useNavigate } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
+
 const Headers = () => {
-  const {toggleMenuCollapsed } = useAppContext();
+  const { toggleMenuCollapsed } = useAppContext();
+  const navigate = useNavigate();
+
+  const getTokenExpiryTime = () => {
+    const tokenExpiry = localStorage.getItem("token");
+    return tokenExpiry ? new Date(tokenExpiry) : null;
+  };
 
   const handleClick = () => {
     toggleMenuCollapsed();
+  };
+
+  // -----------------
+
+  useEffect(() => {
+    const checkTokenExpiry = () => {
+      const tokenExpiry = getTokenExpiryTime();
+      console.log("tokenExpiry", tokenExpiry);
+      if (tokenExpiry && new Date() > tokenExpiry) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user_details");
+        localStorage.removeItem("roles");
+        setTimeout(() => {
+          navigate("/tokenexpiry");
+        }, 1000);
+      }
+    };
+
+    // Check token expiry every minute
+    const interval = setInterval(checkTokenExpiry, 60000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval);
+  }, [navigate]);
+
+  // -----------------
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_details");
+    localStorage.removeItem("roles");
+    setTimeout(() => {
+      navigate("/");
+    }, 1000);
   };
   return (
     <>
@@ -230,6 +273,8 @@ const Headers = () => {
                 </div>
               </div>
             </li>
+
+           
             <li className="nav-item dropdown">
               <button
                 type="button"
@@ -238,15 +283,15 @@ const Headers = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <img src="img/bg-img/person_1.jpg" alt="" />
+                <img src="/assets/img/bg-img/person_1.jpg" alt="" />
               </button>
               <div className="dropdown-menu profile dropdown-menu-right">
                 {/* User Profile Area */}
                 <div className="user-profile-area">
-                  <a href="#" className="dropdown-item">
+                  <Link to="/super/profile" className="dropdown-item">
                     <i className="bx bx-user font-15" aria-hidden="true" /> My
                     profile
-                  </a>
+                  </Link>
                   <a href="#" className="dropdown-item">
                     <i className="bx bx-wallet font-15" aria-hidden="true" /> My
                     wallet
@@ -255,10 +300,13 @@ const Headers = () => {
                     <i className="bx bx-wrench font-15" aria-hidden="true" />{" "}
                     settings
                   </a>
-                  <a href="#" className="dropdown-item">
+                  <button
+                    onClick={() => handleLogout()}
+                    className="dropdown-item"
+                  >
                     <i className="bx bx-power-off font-15" aria-hidden="true" />{" "}
                     Sign-out
-                  </a>
+                  </button>
                 </div>
               </div>
             </li>
