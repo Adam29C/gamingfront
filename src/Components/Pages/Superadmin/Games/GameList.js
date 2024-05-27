@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Content from "../../../Layout/Content/Content";
 import Data_Table from "../../../Helpers/Datatable";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { getGame, getGameRule } from "../../../Redux/Slice/common/common.slice";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "react-bootstrap/Form";
-import { GameRuleDeleteApi,  } from "../../../Service/common.service";
 import ToastButton from "../../../Helpers/Toast";
 import toast from "react-hot-toast";
 import GameAdd from "./GameAdd";
@@ -15,9 +14,7 @@ import { GameRuleListStatus } from "../../../Service/superadmin.service";
 const GameList = () => {
   const token = localStorage.getItem("token");
   const { getGameListState,isLoading } = useSelector((state) => state.CommonSlice);
-
-  const navigate = useNavigate();
-  const [show, setShow] = useState(false);
+const [show, setShow] = useState(false);
   const[updateData,setUpdateData]=useState()
 
   const dispatch = useDispatch();
@@ -83,26 +80,24 @@ const GameList = () => {
       } else {
         toast.error(response.msg);
       }
-    } else {
-      console.log("");
-    }
+    } 
   };
 
   const handleStatusUpdate = async(value,id)=>{
-    let data ={
-      ruleId: id,
-      status: value
-    }
+    // let data ={
+    //   ruleId: id,
+    //   status: value
+    // }
     
 
-    const response = await GameRuleListStatus(data,token)
-    if(response?.statusCode===200){
-      toast.success(response.msg);
-      dispatch(getGameRule(token));
+    // const response = await GameRuleListStatus(data,token)
+    // if(response?.statusCode===200){
+    //   toast.success(response.msg);
+    //   dispatch(getGameRule(token));
       
-    }else {
-      toast.error(response.msg);
-    }
+    // }else {
+    //   toast.error(response.msg);
+    // }
 
   }
 

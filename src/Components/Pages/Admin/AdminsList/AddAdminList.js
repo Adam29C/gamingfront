@@ -5,7 +5,6 @@ import { useFormik } from "formik";
 import * as valid_err from "../../../Utils/Common_Msg";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
 import ToastButton from "../../../Helpers/Toast";
 import { Mobile_regex, Password_Rejex } from "../../../Utils/Valid_Rejex";
 import { SUB_ADMIN_CREATED_USER } from "../../../Service/admin.service";
@@ -14,10 +13,9 @@ const AddAdminList = () => {
   const token = localStorage.getItem("token");
   const userId = JSON.parse(localStorage.getItem("user_details")).id;
   const role = JSON.parse(localStorage.getItem("roles"));
-  const [disable,setDisable]=useState(false)
+  const [disable, setDisable] = useState(false);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const isValidContact = (mobile) => {
     return Mobile_regex(mobile);
@@ -55,33 +53,32 @@ const AddAdminList = () => {
       return errors;
     },
     onSubmit: async (values, { resetForm }) => {
-
-        setDisable(true)
-    try {
+      setDisable(true);
+      try {
         const data = {
-            role: role,
-            mobileNumber: values.mobileNumber,
-            name: values.name,
-            password: values.password,
-            subAdminId: userId,
-          };
-    
+          role: role,
+          mobileNumber: values.mobileNumber,
+          name: values.name,
+          password: values.password,
+          subAdminId: userId,
+        };
+
         const res = await SUB_ADMIN_CREATED_USER(data, token);
-  
+
         if (res?.status === 201 || 200) {
-               toast.success(res?.data?.msg);
-              setTimeout(() => {
-                 navigate("/admin/userlist");
-                }, 2000);
-               } else {
-          toast.error(res?.response?.data?.msg || 'An error occurred.');
+          toast.success(res?.data?.msg);
+          setTimeout(() => {
+            navigate("/admin/userlist");
+          }, 2000);
+        } else {
+          toast.error(res?.response?.data?.msg || "An error occurred.");
         }
       } catch (error) {
-        toast.error('An error occurred: ' + error.message);
-      }finally{
-        setTimeout(()=>{
-            setDisable(false)
-        },1000)
+        toast.error("An error occurred: " + error.message);
+      } finally {
+        setTimeout(() => {
+          setDisable(false);
+        }, 1000);
       }
     },
   });

@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Formikform from "../../../Helpers/Form";
 import { useFormik } from "formik";
 import * as valid_err from "../../../Utils/Common_Msg";
-import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { getGame } from "../../../Redux/Slice/common/common.slice";
 import { useDispatch } from "react-redux";
@@ -12,31 +11,26 @@ import { GameAddApi, GameUpdateApi } from "../../../Service/admin.service";
 
 const GameAdd = ({ show, setShow, updateData }) => {
   const token = localStorage.getItem("token");
- 
   const dispatch = useDispatch();
-
 
   const formik = useFormik({
     initialValues: {
       gamename: updateData?.gameName ? updateData?.gameName : "",
       status: updateData?.isShow ? updateData?.isShow : "",
     },
-
-
     enableReinitialize: true,
-
     validate: (values) => {
       const errors = {};
       if (!values.gamename) {
         errors.gamename = valid_err.GAME_NAME_ERROR;
       }
-
       if (!values.status) {
         errors.status = valid_err.STATUS_ERROR;
       }
       return errors;
     },
-    onSubmit: async (values,{ resetForm }) => {
+    onSubmit: async (values, { resetForm }) => {
+
       if (updateData) {
         const data = {
           gameId: updateData?._id,
@@ -44,39 +38,30 @@ const GameAdd = ({ show, setShow, updateData }) => {
           isShow: values.status,
         };
         const res = await GameUpdateApi(data, token);
-      
-        if (res?.status === 409) {
-          toast.error(res.data.msg);
-        } else if (res.data.statusCode === 200) {
+        console.log(res?.response?.data?.msg,"check updated data")
+  if (res?.data?.statusCode === 200 ) {
           toast.success(res.data.msg);
-          resetForm()
-      
-            setShow(false)
-        
-
+          resetForm();
+          setShow(false);
           dispatch(getGame(token));
-        } else if (!res?.data?.status) {
-          toast.error(res.msg);
+        } else {
+          toast.error(res?.response?.data?.msg);
         }
+
+
       } else {
         const data = {
           gameName: values.gamename,
           isShow: values.status,
         };
         const res = await GameAddApi(data, token);
-
-        if (res?.status === 409) {
-          toast.error(res?.data?.msg);
-        } else if (res?.data?.statusCode === 201) {
-          resetForm()
+        if (res?.data?.statusCode === 201) {
           toast.success(res?.data?.msg);
-    
-            setShow(false)
-       
-
+          setShow(false);
           dispatch(getGame(token));
-        } else if (!res?.data?.status) {
-          toast.error(res.msg);
+          resetForm();
+        } else {
+          toast.error(res?.response?.data?.msg);
         }
       }
     },

@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { superadmin_sidebar, admin_sidebar } from "./SidebarData";
 import { Link, useLocation } from "react-router-dom";
 import { useAppContext } from "../../Context/CreateContext";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { subAdminPermissionGet } from "../../Redux/Slice/Admin/admin.slice";
 
 const Sidebar = () => {
   const location = useLocation();
+  const token = localStorage.getItem("token");
+  const userId = JSON.parse(localStorage.getItem("user_details")).id;
   const ROLES = JSON.parse(localStorage.getItem("roles"));
-
+  const { getSubAdminPermissionState } = useSelector(
+    (state) => state.AdminSlice
+  );
+  const dispatch = useDispatch();
+  const canViewUser =
+    (getSubAdminPermissionState.viewUser &&
+      getSubAdminPermissionState.viewUser)
+      console.log(canViewUser)
   const [ShowSubMenu, setShowSubMenu] = useState(false);
   const { handleMouseLeave, handleMouseEnter } = useAppContext();
 
@@ -25,6 +36,19 @@ const Sidebar = () => {
     sidebarTabs = admin_sidebar;
   }
 
+  const getPermission = async () => {
+    let data = {
+      id: userId,
+      token: token,
+    };
+    await dispatch(subAdminPermissionGet(data));
+  };
+
+  useEffect(() => {
+    getPermission();
+  }, []);
+
+
   return (
     <>
       <div className="side-menu-area">
@@ -35,6 +59,7 @@ const Sidebar = () => {
                 return (
                   <>
                     {item.Data.length === 0 ? (
+                      // {canViewUser ? ():""}
                       <li
                         className={
                           location.pathname === item.route ? ` active` : ""

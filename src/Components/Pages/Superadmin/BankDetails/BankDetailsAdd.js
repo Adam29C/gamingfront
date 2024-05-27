@@ -30,7 +30,8 @@ const GameRuleAdd = () => {
     },
 
     validate: (values) => {
-      console.log(values);
+
+ 
       // const errors = {};
 
       // if (!values.title) {
@@ -46,38 +47,40 @@ const GameRuleAdd = () => {
       // return errors;
     },
     onSubmit: async (values, { resetForm }) => {
-      console.log(values, "check values on submit");
-      if (values.isBank && values.isBank === "true") {
+let formData = new FormData();
+formData.append("id", userId);
+formData.append("isBank", values.isBank === "true");
+formData.append("image", values.image);
+formData.append("minAmount", values.minAmount);
+  formData.append("maxAmount", values.maxAmount);
+
+if (values.isBank === "true") {
+  formData.append("bankName", values.bankName);
+  formData.append("accountHolderName", values.accountHolderName);
+  formData.append("accountNumber", values.accountNumber);
+  formData.append("ifscCode", values.ifscCode);
+} else {
+  formData.append("upiName", values.upiName);
+  formData.append("upiId", values.upiId);
   
-       
-        let formData = new FormData();
-        formData.append("id", userId);
-        formData.append("isBank", true);
-        formData.append("bankName", values.bankName);
-        formData.append("accountHolderName", values.accountHolderName);
-        formData.append("accountNumber", values.accountNumber);
-        formData.append("ifscCode", values.ifscCode);
-        formData.append("image", values.image);
-        const res = await ADD_ADMIN_ACCOUNT_DETAILS(formData, token);
+}
 
-  
-      } else {
-        console.log(values.image, "check image")
+const res = await ADD_ADMIN_ACCOUNT_DETAILS(formData, token);
+console.log(res,"check res")
+if(res?.statusCode === 200 ||  201){
+  toast.success(res?.msg)
+  resetForm()
+  setTimeout(()=>{
+    navigate("/super/bankdetails")
+  },2000)
+}else{
+  toast.error(res?.msg)
+}
 
-        let formData = new FormData();
-        formData.append("id", userId);
-        formData.append("isBank", false);
-        formData.append("upiName", values.upiName);
-        formData.append("upiId", values.upiId);
-        formData.append("image", values.image);
-
-        const res = await ADD_ADMIN_ACCOUNT_DETAILS(formData, token);
-          // Log FormData contents for debugging
-    for (let [key, value] of formData.entries()) {
-      console.log(`${key}:`, value);
-    }
-     
-      }
+// Log FormData contents for debugging
+for (let [key, value] of formData.entries()) {
+  console.log(`${key}:`, value);
+}
 
     },
   });
@@ -155,6 +158,21 @@ const GameRuleAdd = () => {
       label_size: 12,
       col_size: 6,
     },
+    {
+      name: "minAmount",
+      label: "Min Amount",
+      type: "text",
+      label_size: 12,
+      col_size: 6,
+    },
+    {
+      name: "maxAmount",
+      label: "Max Amount",
+      type: "text",
+      label_size: 12,
+      col_size: 6,
+    },
+
   ];
 
   return (

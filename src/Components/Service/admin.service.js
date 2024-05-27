@@ -123,17 +123,31 @@ export async function SUB_ADMIN_GET_LIST(id, token) {
 
 
 
+
 //sub admin delete get api
-export async function SUB_ADMIN_DELETE_LIST(id, token) {
-  console.log(id)
+export async function SUB_ADMIN_DELETE_LIST(data, token) {
   try {
-    // const res = await axios.get(
-    //   `${baseurl}subAdminRouter/subAdminUserList?subAdminId=${id}`,
-    //   {
-    //     headers: header(token),
-    //   }
-    // );
-    // return res;
+    const res = await axios.request({
+      url: `${baseurl}subAdminRouter/deleteSubAdminUser`,
+      method: "DELETE",
+      headers: header(token),
+      data: data,
+    });
+    return res?.data;
+  } catch (error) {
+    return error?.response?.data || error;
+  }
+}
+
+
+// sub admin permission get api
+export async function SUB_ADMIN_PERMISSION_GET_API(id,token) {
+  try {
+    const res = await axios.get(`${baseurl}subAdminRouter/subAdminPermissions?subAdminId=${id}`, {
+      headers: header(token),
+    });
+
+    return await res?.data?.data;
   } catch (error) {
     return error;
   }

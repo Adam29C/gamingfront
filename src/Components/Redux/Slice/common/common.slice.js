@@ -66,7 +66,7 @@ const CommonSlice = createSlice({
       .addCase(getGame.fulfilled, (state, action) => {
         return {
           ...state,
-          getGameListState: [],
+          getGameListState: action.payload,
           isLoading: false,
         };
       })

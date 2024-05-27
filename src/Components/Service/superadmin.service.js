@@ -121,8 +121,10 @@ export async function GameRuleListStatus(data, token) {
 export async function ADD_ADMIN_ACCOUNT_DETAILS(data, token) {
   try {
     const res = await axios.post(`${baseurl}adminRouter/addAdminAccountDetail`, data, {
-      headers: header(token),
-      'Content-Type': 'multipart/form-data'
+      headers: {
+        ...header(token),
+        'Content-Type': 'multipart/form-data'
+      }
     })
     return await res?.data
   } catch (error) {
