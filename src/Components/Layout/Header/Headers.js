@@ -1,52 +1,10 @@
-import React , {useEffect} from "react";
+import React from "react";
 import { useAppContext } from "../../Context/CreateContext";
-import { Link, useNavigate } from "react-router-dom";
-
 const Headers = () => {
-  const { toggleMenuCollapsed } = useAppContext();
-  const navigate = useNavigate();
-
-  const getTokenExpiryTime = () => {
-    const tokenExpiry = localStorage.getItem("token");
-    return tokenExpiry ? new Date(tokenExpiry) : null;
-  };
+  const {toggleMenuCollapsed } = useAppContext();
 
   const handleClick = () => {
     toggleMenuCollapsed();
-  };
-
-  // -----------------
-
-  useEffect(() => {
-    const checkTokenExpiry = () => {
-      const tokenExpiry = getTokenExpiryTime();
-      console.log("tokenExpiry" ,tokenExpiry);
-      if (tokenExpiry && new Date() > tokenExpiry) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user_details");
-        localStorage.removeItem("roles");
-        setTimeout(() => {
-          navigate("/tokenexpiry");
-        }, 1000);
-      }
-    };
-
-    // Check token expiry every minute
-    const interval = setInterval(checkTokenExpiry, 60000);
-
-    // Cleanup interval on component unmount
-    return () => clearInterval(interval);
-  }, [navigate]);
-
-  // -----------------
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user_details");
-    localStorage.removeItem("roles");
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
   };
   return (
     <>
@@ -285,10 +243,10 @@ const Headers = () => {
               <div className="dropdown-menu profile dropdown-menu-right">
                 {/* User Profile Area */}
                 <div className="user-profile-area">
-                  <Link to="/super/profile" className="dropdown-item">
+                  <a href="#" className="dropdown-item">
                     <i className="bx bx-user font-15" aria-hidden="true" /> My
                     profile
-                  </Link>
+                  </a>
                   <a href="#" className="dropdown-item">
                     <i className="bx bx-wallet font-15" aria-hidden="true" /> My
                     wallet
@@ -297,13 +255,10 @@ const Headers = () => {
                     <i className="bx bx-wrench font-15" aria-hidden="true" />{" "}
                     settings
                   </a>
-                  <button
-                    onClick={() => handleLogout()}
-                    className="dropdown-item"
-                  >
+                  <a href="#" className="dropdown-item">
                     <i className="bx bx-power-off font-15" aria-hidden="true" />{" "}
                     Sign-out
-                  </button>
+                  </a>
                 </div>
               </div>
             </li>

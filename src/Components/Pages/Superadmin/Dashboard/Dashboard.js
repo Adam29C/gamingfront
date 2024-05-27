@@ -4,9 +4,9 @@ import Content from "../../../Layout/Content/Content";
 const Dashboard = () => {
   return (
     <div>
-      <Content title="Superadmin">
-       superadmin
-        </Content>
+      <Content title="Dashboard">
+        <h1>hello world</h1>
+      </Content>
     </div>
   );
 };

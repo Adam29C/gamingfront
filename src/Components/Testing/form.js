@@ -63,7 +63,16 @@ const Users = () => {
         // domain: values.domain,
         // port: values.port,
         // key: values.key,
-      
+        // ip_address: values.ip_address,
+        // theme_id: values.theme_id,
+        // db_url: values.db_url,
+        // db_name: values.db_name,
+        // broker_id: state1,
+        // Create_Strategy:
+        //   values.Create_Strategy && values.Create_Strategy ? 1 : 0,
+        // Option_chain: values.Option_chain && values.Option_chain ? 1 : 0,
+        // Strategy_plan: values.Strategy_plan && values.Strategy_plan ? 1 : 0,
+        // backend_rul: values.backend_rul,
       };
 
       // await dispatch(Add_Panel_data({ req: req, token: user_token }))

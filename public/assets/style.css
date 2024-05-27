@@ -158,7 +158,7 @@ h6 {
 p {
   color: #718096;
   line-height: 1.7;
-  font-size: 8px;
+  font-size: 14px;
   font-weight: 400;
   font-family: "Overpass", sans-serif;
 }
@@ -4026,7 +4026,7 @@ ul#flaptToDo-list {
 .btn:hover {
   font-weight: 600;
   box-shadow: none !important;
-  /* font-size: 13px; */
+  font-size: 13px;
 }
 
 @media only screen and (max-width: 767px) {
@@ -15349,7 +15349,7 @@ a.mytooltip {
 }
 
 .erro-thumb img {
-  max-width: 50%;
+  max-width: 100%;
   height: auto;
 }
 
@@ -16281,49 +16281,4 @@ a.mytooltip {
 
 .text-right {
   text-align: right;
-}
-
-.h-40{
-  height: 40px;
-}
-
-.list-hover{
-  
-}
-
-
-.header-nav .header-ul li a .user-header-menue-img{
-  /* border:2px solid black; */
-  width: 7.5%;
-    margin-right: 7px;
-    line-height: 0;
-}
-
-
-
-.user-data-table-main .user-data-table .mHisf{
-border-bottom-style: 0px;
-}
-
-.match-icons-main .match-icons{
-  width: 25px;
-}
-
-.admin-add-main{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  /* border: 1px solid grey; */
-}
-
-.admin-add-main .admin-add-btn {
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  background: #4E3896;
-  margin-top: 20px;
-  color: white;
-  font-size: 14px;
-  font-weight: 600;
-
 }

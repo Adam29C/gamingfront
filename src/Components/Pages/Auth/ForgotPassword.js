@@ -217,7 +217,6 @@ const ForgetPassword = () => {
                       </div>
                       <div>
                         <button
-                          style={{ background: "#4e3897" }}
                           className="btn btn-primary"
                           onClick={(e) => Verify_OTP_Function(e)}
                           disabled={DisabledVerifyOtp}
@@ -239,10 +238,9 @@ const ForgetPassword = () => {
           after_submit_button={
             <div>
               <Link
-                style={{ background: "#4e3897" }}
-                className="btn btn-primary  col-12 mt-1"
+                className="btn btn-primary d-block col-12 mt-1"
                 // onClick={(e) => Verify_OTP_Function(e)}
-                to="/login"
+                to="/"
               >
                 Back To Login
               </Link>

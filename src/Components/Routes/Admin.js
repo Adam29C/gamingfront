@@ -13,18 +13,17 @@ import {
 import Wraper from "../Layout/Wraper/Wraper";
 import Dashboard from "../Pages/Admin/Dashboard/Dashboard";
 // import { useDispatch, useSelector } from "react-redux";
-// import AddUsers from "../Pages/Admin/Users/AddUsers";
-// import EditUsers from "../Pages/Admin/Users/EditUsers";
-// import Users from "../Pages/Admin/Users/Users";
-// import Profile from "../Pages/Admin/profile/Profile";
+import AddUsers from "../Pages/Admin/Users/AddUsers";
+import EditUsers from "../Pages/Admin/Users/EditUsers";
+import Users from "../Pages/Admin/Users/Users";
 
 const Admin = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const role_id = localStorage.getItem("Role");
-  //   const dispatch = useDispatch();
+//   const dispatch = useDispatch();
   const roles = JSON.parse(localStorage.getItem("user_role"));
-  //   const token = JSON.parse(localStorage.getItem("user_details")).token;
+//   const token = JSON.parse(localStorage.getItem("user_details")).token;
 
   const [admin_permission, setAdmin_permission] = useState([]);
 
@@ -35,10 +34,9 @@ const Admin = () => {
       ) : null}
       <Routes>
         <Route exact path="/dashboard" element={<Dashboard />} />
-        {/* <Route exact path="/user/add" element={<AddUsers />} />
+        <Route exact path="/user/add" element={<AddUsers />} />
         <Route exact path="/user/edit/1" element={<EditUsers />} />
         <Route exact path="/users" element={<Users />} />
-        <Route exact path="/profile" element={<Profile />} /> */}
       </Routes>
     </>
   );

@@ -5,10 +5,7 @@ import { useFormik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
-import { v4 } from "uuid";
-
 import {
-  Generate_Token,
   Send_OTP,
   Sign_Up,
   Verify_OTP,
@@ -21,12 +18,12 @@ import {
 import ToastButton from "../../Helpers/Toast";
 import OTPInput, { ResendOTP } from "otp-input-react";
 import * as valid_err from "../../Utils/Common_Msg";
+
 const Users = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [OTP, setOTP] = useState("");
-  const [Token, setToken] = useState("");
   const [ShowOTP, setShowOTP] = useState(false);
   const [Disabled, setDisabled] = useState(false);
   const [DisabledOtp, setDisabledOtp] = useState(false);
@@ -42,20 +39,6 @@ const Users = () => {
   const isValidName = (name) => {
     return Name_regex(name);
   };
-
-  const getToken = async () => {
-    const request1 = {
-            deviceId: v4(),
-    };
-    const res1 = await dispatch(Generate_Token(request1)).unwrap();
-    if (res1.statusCode === 200) {
-      setToken(res1.data);
-    }
-  };
-
-  useEffect(() => {
-    getToken();
-  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -93,7 +76,7 @@ const Users = () => {
         otp: OTP,
       };
 
-      await dispatch(Sign_Up({ request: req, token: Token && Token }))
+      await dispatch(Sign_Up(req))
         .unwrap()
         .then((response) => {
           if (response.status === 400) {
@@ -163,10 +146,7 @@ const Users = () => {
       return;
     } else {
       const res = await dispatch(
-        Send_OTP({
-          mobileNumber: formik.values.mobileNumber,
-          token: Token && Token,
-        })
+        Send_OTP({ mobileNumber: formik.values.mobileNumber })
       ).unwrap();
 
       if (res.status) {
@@ -189,12 +169,8 @@ const Users = () => {
       return;
     }
 
-    const req = {
-      mobileNumber: formik.values.mobileNumber,
-      otp: parseInt(OTP),
-    };
     const response = await dispatch(
-      Verify_OTP({ request: req, token: Token && Token })
+      Verify_OTP({ mobileNumber: formik.values.mobileNumber, otp: OTP })
     )
       .unwrap()
       .then((response) => {
@@ -293,9 +269,9 @@ const Users = () => {
           }
         />
 
-        <p className="text-center my-3 fs-6">
+        <p className="text-center my-3">
           Already have an account?
-          <Link to="/login">&nbsp; Sign in</Link>
+          <Link to="/">&nbsp; Sign in</Link>
         </p>
       </Content>
 
