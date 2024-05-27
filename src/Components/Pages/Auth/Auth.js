@@ -106,7 +106,17 @@ const Users = () => {
           toast.error(res.msg);
         }
       } else {
-        toast.error(res.msg);
+        if (!res.status) {
+          toast.error(res.msg);
+        }
+        if (!res.response.data.isVerified) {
+          toast.error(res.response.data.msg);
+          setTimeout(() => {
+            navigate("/_verify_");
+          }, 1000);
+        } else {
+          toast.error(res.response.data.msg);
+        }
       }
     },
   });

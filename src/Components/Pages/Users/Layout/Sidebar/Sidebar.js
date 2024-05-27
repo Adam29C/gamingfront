@@ -1,61 +1,58 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getMatchList, getSeriesList } from "../../../../Redux/Slice/User/user.slice";
+import {
+  getMatchList,
+  getSeriesList,
+} from "../../../../Redux/Slice/User/user.slice";
 import { v4 } from "uuid";
 import { Generate_Token } from "../../../../Redux/Slice/Auth/auth.slice";
-const Sidebar = () => {
+const Sidebar = (props) => {
+  const { getSeriesListState, getMatchListState } = useSelector(
+    (state) => state.UserSlice
+  );
+  const role = localStorage.getItem("roles");
+  const [token, setToken] = useState("");
+  const [expandedSeries, setExpandedSeries] = useState(null);
+  const dispatch = useDispatch();
 
-const role = localStorage.getItem("roles")
-const [token, setToken] = useState("");
-const [selectedMatch, setSelectedMatch] = useState(null);
-const [selectedMatchDetails, setSelectedMatchDetails] = useState(null);
-const dispatch = useDispatch();
-const {  getSeriesListState } = useSelector((state) => state.UserSlice);
+  const getSeriesListdata = getSeriesListState?.data?.response?.items;
+  const getMatchListdata = getMatchListState?.data?.response?.items;
 
-const getSeriesListdata = getSeriesListState?.data?.response?.items
 
-useEffect(() => {
-  const fetchData = async () => {
-    const request1 = { deviceId: v4() };
-    try {
-      const res1 = await dispatch(Generate_Token(request1)).unwrap();
-      if (res1.statusCode === 200) {
-        const token = res1.data;
-        setToken(token);
-        await dispatch(getSeriesList(token)).unwrap();
+  useEffect(() => {
+    const fetchData = async () => {
+      const request1 = { deviceId: v4() };
+      try {
+        const res1 = await dispatch(Generate_Token(request1)).unwrap();
+        if (res1.statusCode === 200) {
+          const token = res1.data;
+          setToken(token);
+          await dispatch(getSeriesList(token)).unwrap();
+        }
+      } catch (error) {
+        console.error("Error:", error);
       }
-    } catch (error) {
-      console.error('Error:', error);
+    };
+
+    fetchData();
+  }, [dispatch]);
+
+  const handleMatchClick = async (matchId) => {
+ 
+    if (token) {
+      try {
+        let data = {
+          token: token,
+          id: matchId,
+        };
+        await dispatch(getMatchList(data)).unwrap();
+        setExpandedSeries((prevSeries) => (prevSeries === matchId ? null : matchId)); // Toggle the expanded series
+      } catch (error) {
+        console.error("Error fetching match details:", error);
+      }
     }
   };
-
-  fetchData();
-}, [dispatch]);
-
-const handleMatchClick = async (matchId) => {
-  console.log(matchId)
-  setSelectedMatch(matchId);
-  setSelectedMatchDetails(null);
-  if (token) {
-    try {
-      let data = {
-        token:token,
-        matchId:matchId
-      }
-      await dispatch(getMatchList(data)).unwrap();
-    } catch (error) {
-      console.error('Error fetching match details:', error);
-    }
-  }
-};
-
-const handleMatchDetailClick = (matchDetail) => {
-  setSelectedMatchDetails(matchDetail);
-};
-
-
-const matchlist=[{name:"match1",id:1},{name:"match2",id:2},{name:"match3",id:3}];
 
   return (
     <app-sidebar _ngcontent-nsr-c57="" _nghost-nsr-c55="">
@@ -94,37 +91,38 @@ const matchlist=[{name:"match1",id:1},{name:"match2",id:2},{name:"match3",id:3}]
               <i className="bi bi-caret-down ms-auto" />
             </Link>
           </li>)} */}
-    
-     {
-      (role==2)&&(    
-       <>
-       <li className="nav-item">
-            {" "}
-            <Link to='/deposit' className="nav-link" aria-expanded="false">
-              <img src="/assets/images/deposit-icon.png" />
-              <span>Deposit</span>
-              <i className="bi bi-caret-down ms-auto" />
-            </Link>
-          </li>
-         <li className="nav-item">
-      
-      <Link to="/withdraw" className="nav-link" aria-expanded="false">
-        <img src="/assets/images/withdrawal-icon.png" />
-        <span>Withdraw</span>
-        <i className="bi bi-caret-down ms-auto" />
-      </Link>
-    </li>
-    <li className="nav-item">
-     
-      <Link to="/payment-history" className="nav-link" aria-expanded="false">
-        <img src="/assets/images/withdrawal-icon.png" />
-        <span>Payment History</span>
-        <i className="bi bi-caret-down ms-auto" />
-      </Link>
-    </li></>)
-     }
+
+          {role == 2 && (
+            <>
+              <li className="nav-item">
+                {" "}
+                <Link to="/deposit" className="nav-link" aria-expanded="false">
+                  <img src="/assets/images/deposit-icon.png" />
+                  <span>Deposit</span>
+                  <i className="bi bi-caret-down ms-auto" />
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link to="/withdraw" className="nav-link" aria-expanded="false">
+                  <img src="/assets/images/withdrawal-icon.png" />
+                  <span>Withdraw</span>
+                  <i className="bi bi-caret-down ms-auto" />
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link
+                  to="/payment-history"
+                  className="nav-link"
+                  aria-expanded="false"
+                >
+                  <img src="/assets/images/withdrawal-icon.png" />
+                  <span>Payment History</span>
+                  <i className="bi bi-caret-down ms-auto" />
+                </Link>
+              </li>
+            </>
+          )}
           <li className="nav-item">
-           
             <a
               data-bs-toggle="collapse"
               className="nav-link collapsed"
@@ -135,50 +133,46 @@ const matchlist=[{name:"match1",id:1},{name:"match2",id:2},{name:"match3",id:3}]
               <span>Cricket</span>
               <i className="bi bi-caret-down ms-auto" />
             </a>
-         
-            <ul className="nav-content collapse" id="collapse0">
-            {
-              getSeriesListdata?.map((row)=>(
-                <li>
-                <a
-                  data-bs-toggle="collapse"
-                  href="#collapse00"
-                  className="collapsed"
-                  aria-expanded="false"
-                >
-                  <span>{row?.title}</span>
-                  <i className="bi bi-caret-down ms-auto" />
-                </a>
-            
-                <div className="collapse" id="collapse00">
-                  <ul className="nav-second-level">
-                    {
-                      matchlist?.map((rowdata)=>(
-                        <li>
-                        <Link to="/hlo" className="final-link">
-                          <span>Indian Premier League</span>
-                        </Link>
-                      </li>
-                      ))
-                    }
-               
-                    
-                   
-                   
-                  
-                  </ul>
-                </div>
 
-                
-              </li>
-              ))
-            }
-          
+            <ul className="nav-content collapse" id="collapse0">
+              {getSeriesListdata?.map((row) => (
+                <li>
+                  <Link
+                    data-bs-toggle="collapse"
+                    // href="#collapse00"
+                    href={`#collapse${row.cid}`}
+                    onClick={() => handleMatchClick(row?.cid)}
+                    className="collapsed"
+                    // aria-expanded="false"
+                    aria-expanded={expandedSeries === row.cid ? "true" : "false"}
+                  >
+                    <span>{row?.title}</span>
+                    <i className="bi bi-caret-down ms-auto" />
+                  </Link>
+
+                  <div 
+                  // className="collapse" id="collapse00"
+                  className={`collapse ${expandedSeries === row.cid ? "show" : ""}`} id={`collapse${row.cid}`}
+                  >
+                    <ul className="nav-second-level">
+                      {getMatchListdata?.map((matchrow) => (
+                        <li>
+                          <Link
+                          to={`/match/${matchrow.match_id}`}
+                           data-bs-toggle="collapse"  className="final-link" >
+                            <span>{matchrow?.title}</span>
+                          
+                          </Link>
+                        </li>
+                      ))}
+                   
+                    </ul>
+                  </div>
+                </li>
+              ))}
             </ul>
-          
           </li>
           <li className="nav-item">
-           
             <a data-bs-toggle="collapse" className="nav-link" href="#collapse1">
               <img src="/assets/images/events/menu-1.png" />
               <span>Football</span>

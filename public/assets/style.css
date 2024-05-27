@@ -16308,3 +16308,22 @@ border-bottom-style: 0px;
 .match-icons-main .match-icons{
   width: 25px;
 }
+
+.admin-add-main{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid grey; */
+}
+
+.admin-add-main .admin-add-btn {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background: #4E3896;
+  margin-top: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+
+}

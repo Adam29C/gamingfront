@@ -8,23 +8,25 @@ import UserContent from "../../content/UserContent";
 
 const UserProfile = () => {
   const token = localStorage.getItem("token");
-  const user_details = JSON.parse(localStorage.getItem("user_details"));
+  const userId = JSON.parse(localStorage.getItem("user_details")).id;
   const [activeTab, setActiveTab] = useState("Overview");
   const [data, setData] = useState();
   const dispatch = useDispatch();
 
   const getUserData = async () => {
     const data = {
-      id: user_details?.id,
+      id: userId,
       token: token,
     };
     const res = await dispatch(getUserProfile(data)).unwrap();
-
-    setData(res?.data);
+    if (res.status == "Success") {
+      setData(res.data);
+    }
   };
   useEffect(() => {
     getUserData();
   }, []);
+
   const handleTabChange = (tabName) => {
     setActiveTab(tabName);
   };

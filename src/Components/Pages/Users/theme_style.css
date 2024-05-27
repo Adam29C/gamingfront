@@ -1,12 +1,12 @@
 :root {
-    --theme-primary-color: #4e3897;
-    --theme-secondary-color: #4bb6b9;
-    --dark-color: #343435;
-    --be-img:url('/public/assets/images/inner-balexpo-red.png');
+  --theme-primary-color: #4e3897;
+  --theme-secondary-color: #4bb6b9;
+  --dark-color: #343435;
+  --be-img: url("/public/assets/images/inner-balexpo-red.png");
 }
-body{
-    background: #DFE8E9;
-    color: #444444;
+body {
+  background: #dfe8e9;
+  color: #444444;
 }
 body::-webkit-scrollbar-thumb,
 .sidebar::-webkit-scrollbar-thumb {
@@ -40,7 +40,7 @@ a.rules:hover {
 .login-popup .login-block {
   background: #005098;
 }
-.casino-back{
+.casino-back {
   background: var(--theme-secondary-color) !important;
 }
 .userscreen-title {
@@ -67,7 +67,7 @@ a {
   color: var(--theme-primary-text-color);
 }
 .signup_modal .modal-content {
-    background: var(--theme-secondary-color);
+  background: var(--theme-secondary-color);
 }
 .btn-login {
   background: var(--dark-color);
@@ -113,19 +113,19 @@ a {
   color: var(--theme-secondary-color);
 }
 .sidebar-nav .nav-link:hover {
-  color: var(--theme-primary-color);
-  background: #FFF6EE;
+  color: var(--theme-secondary-color);
+  background: #fff6ee;
 }
 
 .sidebar-nav .nav-link:hover i {
-  color: var(--theme-primary-color);
+  color: var(--theme-secondary-color);
 }
 .sidebar-nav .nav-content a {
   color: var(--dark-color);
 }
 .sidebar-nav .nav-content a:hover,
 .sidebar-nav .nav-content a.active {
-  color: var(--theme-primary-color);
+  color: var(--theme-secondary-color);
 }
 .sidebar-nav .nav-content a.active i {
   background-color: var(--theme-secondary-color);
@@ -154,14 +154,14 @@ a {
 .contact .php-email-form textarea:focus {
   border-color: var(--theme-secondary-color);
 }
-.contact .php-email-form button[type=submit] {
+.contact .php-email-form button[type="submit"] {
   background: var(--theme-secondary-color);
 }
 .error-404 h1 {
   color: var(--theme-secondary-color);
 }
-.footer .copyright{
-    color: var(--dark-color);
+.footer .copyright {
+  color: var(--dark-color);
 }
 .accounts .pagination .active a,
 .accounts .pagination .active a:focus,
@@ -197,10 +197,10 @@ a {
   background: var(--theme-secondary-color);
 }
 .game-icons .game-bm,
-.game-icons .game-custom{
+.game-icons .game-custom {
   background: var(--theme-primary-color);
 }
-.racing_listing .rl_div{
+.racing_listing .rl_div {
   background: var(--dark-color);
 }
 .game-images-box .text {
@@ -227,20 +227,28 @@ a {
   border: 1px solid var(--theme-secondary-color);
   color: #fff;
 }
-.best_link{
+.best_link {
   background: var(--theme-primary-color);
 }
 .market_section span.mrkname {
   background: var(--theme-primary-color);
 }
 .market_section span.mrkname:before {
-  background: linear-gradient(180deg, var(--theme-primary-color) 0, var(--theme-primary-color));
+  background: linear-gradient(
+    180deg,
+    var(--theme-primary-color) 0,
+    var(--theme-primary-color)
+  );
 }
 .list-sport-title {
   background: var(--theme-primary-color);
 }
 .list-sport-title:before {
-  background: linear-gradient(180deg, var(--theme-primary-color) 0, var(--theme-primary-color));
+  background: linear-gradient(
+    180deg,
+    var(--theme-primary-color) 0,
+    var(--theme-primary-color)
+  );
 }
 .market_section .add-pin i {
   color: var(--theme-primary-color);
@@ -260,13 +268,13 @@ a {
   color: #fff;
   background: var(--theme-secondary-color);
 }
-.new_icasino_tabs{
+.new_icasino_tabs {
   border: 1px solid var(--theme-secondary-color);
 }
-.new_icasino_tabs li:after{
+.new_icasino_tabs li:after {
   background: var(--dark-color);
 }
-.new_icasino_tabs li a.active{
+.new_icasino_tabs li a.active {
   background: var(--dark-color);
   color: #fff;
 }
@@ -310,15 +318,28 @@ typeahead-container.dropdown-menu a:hover {
   color: var(--theme-secondary-color) !important;
 }
 @media (max-width: 991px) {
-  .header-nav .nav-profile, .expo_bal span b{
+  .header-nav .nav-profile,
+  .expo_bal span b {
     color: #000;
   }
   .expo_bal span,
-  .header-nav .nav-profile, .expo_bal span b,
-  .commentary{
+  .header-nav .nav-profile,
+  .expo_bal span b,
+  .commentary {
     color: #fff;
   }
   .header {
     background: #000 !important;
   }
+}
+
+.btn_color {
+  background: var(--theme-primary-color);
+  color: #fff !important;
+  border-bottom: 4px solid var(--theme-secondary-color);
+}
+.btn_color:hover {
+  color: #fff;
+  background: var(--theme-secondary-color);
+  border-bottom: 4px solid var(--theme-primary-color);
 }

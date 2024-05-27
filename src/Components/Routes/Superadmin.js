@@ -5,10 +5,20 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import Wraper from "../Layout/Wraper/Wraper";
 import Dashboard from "../Pages/SuperAdmin/Dashboard/Dashboard";
 // import { useDispatch, useSelector } from "react-redux";
-import AddUsers from "../Pages/SuperAdmin/Users/AddUsers";
-import EditUsers from "../Pages/SuperAdmin/Users/EditUsers";
-import Users from "../Pages/SuperAdmin/Users/Users";
+
+import AddUsers from "../Pages/SuperAdmin/Admins/AddUsers";
+import EditUsers from "../Pages/SuperAdmin/Admins/EditUsers";
+import Users from "../Pages/SuperAdmin/Admins/Users";
 import Profile from "../Pages/SuperAdmin/profile/Profile";
+
+import GameRuleList from "../Pages/SuperAdmin/GameRules/GameRuleList";
+import GameRuleAdd from "../Pages/SuperAdmin/GameRules/GameRuleAdd";
+import GameList from "../Pages/SuperAdmin/Games/GameList";
+import GameAdd from "../Pages/SuperAdmin/Games/GameAdd";
+
+// Bank Details
+import BankDetailsList from "../Pages/SuperAdmin/BankDetails/BankDetailsList";
+import BankDetailsAdd from "../Pages/SuperAdmin/BankDetails/BankDetailsAdd";
 
 const Admin = () => {
   const location = useLocation();
@@ -35,6 +45,12 @@ const Admin = () => {
         <Route exact path="/user/edit/1" element={<EditUsers />} />
         <Route exact path="/users" element={<Users />} />
         <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/rules" element={<GameRuleList />} />
+        <Route exact path="/rules/add" element={<GameRuleAdd />} />
+        <Route exact path="/game" element={<GameList />} />
+        <Route exact path="/game/add" element={<GameAdd />} />
+        <Route exact path="/bankdetails" element={<BankDetailsList />} />
+        <Route exact path="/bankdetail/add" element={<BankDetailsAdd />} />
       </Routes>
     </>
   );

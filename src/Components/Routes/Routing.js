@@ -18,6 +18,7 @@ import Dashboard from "../Pages/Users/Layout/Pages/dashbaord";
 
 import NotFound from "../Pages/Auth/NotFound";
 import TokenExpiry from "../Pages/Auth/TokenExpiry";
+import VerifySubadmin from "../Pages/Auth/VerifySubadmin";
 
 const Routing = () => {
   const location = useLocation();
@@ -33,9 +34,10 @@ const Routing = () => {
           path="/super/*"
           element={roles === 0 ? <SuperAdmin /> : <Wraper />}
         />
-        {/* <Route path="/admin/*" element={roles === 1 ? <Admin /> : <Wraper />} /> */}
+        <Route path="/admin/*" element={roles === 1 ? <Admin /> : <Wraper />} />
         <Route path="/*" element={roles === 2 ? <Users /> : <Wraper />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/_verify_" element={<VerifySubadmin />} />
         <Route path="/tokenexpiry" element={<TokenExpiry />} />
         <Route path="/signup" element={<SignUpUser />} />
         <Route path="/verifyotp" element={<Otp />} />

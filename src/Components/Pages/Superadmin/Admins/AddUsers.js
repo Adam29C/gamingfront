@@ -2,13 +2,32 @@ import React, { useState } from "react";
 import Content from "../../../Layout/Content/Content";
 import Formikform from "../../../Helpers/Form";
 import { useFormik } from "formik";
-import { Mobile_regex, Password_Rejex } from "../../../Utils/Valid_Rejex";
+import {
+  Mobile_regex,
+  Name_regex,
+  Password_Rejex,
+} from "../../../Utils/Valid_Rejex";
 import * as valid_err from "../../../Utils/Common_Msg";
+import { ADD_ADMINS } from "../../../Service/superadmin.service";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+import ToastButton from "../../../Helpers/Toast";
+import { useNavigate } from "react-router-dom";
 
 const Add_User = () => {
-  const [Permisstion, setPermisstion] = useState([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  const token = localStorage.getItem("token");
 
+  const [Permisstion, setPermisstion] = useState({
+    gameCreated: false,
+    gameEdit: false,
+    gameDelete: false,
+    viewGame: false,
+    createUser: false,
+    viewUser: false,
+  });
 
   const isValidContact = (mobile) => {
     return Mobile_regex(mobile);
@@ -16,17 +35,25 @@ const Add_User = () => {
   const isValidPassword = (mobile) => {
     return Password_Rejex(mobile);
   };
+  const isValidName = (name) => {
+    return Name_regex(name);
+  };
+
   const formik = useFormik({
     initialValues: {
       mobileNumber: "",
       password: "",
       name: "",
-      permission: {},
     },
 
     validate: (values) => {
       const errors = {};
 
+      if (!values.name) {
+        errors.name = valid_err.FULLNAME_ERROR;
+      } else if (!isValidName(values.name)) {
+        errors.name = valid_err.INVALID_ERROR;
+      }
       if (!values.password) {
         errors.password = valid_err.PASSWORD_ERROR;
       } else if (!isValidPassword(values.password)) {
@@ -45,28 +72,33 @@ const Add_User = () => {
         mobileNumber: values.mobileNumber,
         password: values.password,
         name: values.name,
-        permission: Permisstion,
+        role: 1,
+        permission1: Permisstion,
       };
 
-      // await dispatch(Add_Panel_data({ req: req, token: user_token }))
-      //   .unwrap()
-      //   .then((response) => {
-      //     if (response.status === 409) {
-      //       toast.error(response.data.msg);
-      //     } else if (response.status) {
-      //       toast.success(response.msg);
+      const response = await ADD_ADMINS(req, token);
 
-      //       setTimeout(() => {
-      //         navigate("/super/alladmins");
-      //       }, 1000);
-      //     } else if (!response.status) {
-      //       toast.error(response.msg);
-      //     }
-      //   });
+      if (response.status === 409) {
+        toast.error(response.data.msg);
+      } else if (response.status) {
+        toast.success(response.msg);
+        setTimeout(() => {
+          navigate("/super/rules");
+        }, 1000);
+      } else if (!response.status) {
+        toast.error(response.msg);
+      }
     },
   });
 
   const fields = [
+    {
+      name: "name",
+      label: "Name",
+      type: "text",
+      label_size: 12,
+      col_size: 6,
+    },
     {
       name: "mobileNumber",
       label: "Mobile Number",
@@ -78,14 +110,6 @@ const Add_User = () => {
       name: "password",
       label: "Password",
       type: "password",
-      label_size: 12,
-      col_size: 6,
-    },
-
-    {
-      name: "name",
-      label: "Name",
-      type: "text",
       label_size: 12,
       col_size: 6,
     },
@@ -127,30 +151,17 @@ const Add_User = () => {
   const handleSBrokerChange = (e, checked) => {
     setPermisstion((prevValue) => ({
       ...prevValue,
-      [e]: checked === "true" || checked === true,
+      [e]: checked,
     }));
   };
 
-  // const handleSBrokerChange = (e, checked) => {
-  //   setPermisstion((prevValue) => {
-  //     const newValue = { ...prevValue };
-
-  //     if (newValue.hasOwnProperty(e) && Array.isArray(newValue[e])) {
-  //       newValue[e].push(checked);
-  //     } else {
-  //       newValue[e] = [checked];
-  //     }
-  //     return newValue;
-  //   });
-  // };
-
   return (
     <>
-      <Content title="Add User" col_size={12}>
+      <Content title="Add Admin" col_size={12}>
         <Formikform
           fieldtype={fields.filter((field) => !field.showWhen)}
           formik={formik}
-          btn_name="Add User"
+          btn_name="Add Admin"
           before_submit={
             <>
               <h5 className="fw-bold"> Permissions </h5>
@@ -165,7 +176,7 @@ const Add_User = () => {
                           name={broker.name}
                           value={broker.id}
                           onChange={(e) =>
-                            handleSBrokerChange(e.target.name, e.target.checked)
+                            handleSBrokerChange(broker.value, e.target.checked)
                           }
                         />
                         <label className="form-check-label" for={broker.name}>
@@ -176,11 +187,10 @@ const Add_User = () => {
                   </div>
                 </div>
               ))}
-
-         
             </>
           }
         />
+        <ToastButton />
       </Content>
     </>
   );
